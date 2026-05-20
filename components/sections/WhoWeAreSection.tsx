@@ -79,7 +79,6 @@ export function WhoWeAreSection() {
               fill
               style={{ objectFit: "cover" }}
               sizes="(max-width: 900px) 100vw, 50vw"
-              priority
             />
           </div>
 
