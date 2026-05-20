@@ -5,6 +5,8 @@ import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { SupportSection } from "@/components/sections/SupportSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { HeroEntrance } from "@/components/animations/HeroEntrance";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
 
 export default function HomePage() {
   return (
@@ -14,27 +16,35 @@ export default function HomePage() {
       </a>
 
       <main id="main-content">
+        {/* Hero — has its own entrance animation, no ScrollReveal */}
         <div id="hero">
+          <HeroEntrance />
           <HeroSection />
         </div>
-        <div id="who-we-are">
+
+        <ScrollReveal id="who-we-are">
           <WhoWeAreSection />
-        </div>
-        <div id="about">
+        </ScrollReveal>
+
+        <ScrollReveal id="about">
           <AboutSection />
-        </div>
-        <div id="solutions">
+        </ScrollReveal>
+
+        <ScrollReveal id="solutions">
           <SolutionsSection />
-        </div>
-        <div id="partners">
+        </ScrollReveal>
+
+        <ScrollReveal id="partners">
           <PartnersSection />
-        </div>
-        <div id="support">
+        </ScrollReveal>
+
+        <ScrollReveal id="support">
           <SupportSection />
-        </div>
-        <div id="contact">
+        </ScrollReveal>
+
+        <ScrollReveal id="contact">
           <ContactSection />
-        </div>
+        </ScrollReveal>
       </main>
 
       <style>{`

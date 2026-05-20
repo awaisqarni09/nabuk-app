@@ -43,6 +43,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
@@ -108,6 +111,16 @@
     border-radius: 20px;
     box-shadow: 0 10px 40px -15px rgba(15,39,48,0.18);
     overflow: hidden;
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .nabuk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px -15px rgba(15,39,48,0.26);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nabuk-card { transition: none; }
+    .nabuk-card:hover { transform: none; }
   }
 
   /* CTA band (teal-dark, reused on multiple pages) */

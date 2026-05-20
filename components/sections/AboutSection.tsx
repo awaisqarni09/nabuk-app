@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatedStatsCard } from "@/components/animations/AnimatedStatsCard";
 
 const PAW_PATH =
   "M11.35 3.836c-.065.21-.1.433-.1.664 0 1.21.847 2.193 1.892 2.193.025 0 .05 0 .074-.002.297.165.534.405.708.682.49.802.81 1.825.61 2.7-.205.91-.864 1.4-1.62 1.4-.756 0-1.418-.49-1.62-1.4-.2-.875.12-1.898.61-2.7.174-.277.41-.517.708-.682.025.002.05.002.074.002 1.045 0 1.892-.983 1.892-2.193 0-.23-.035-.453-.1-.664-.165-.55-.5-.997-.93-1.27a2.06 2.06 0 0 0-2.092 0c-.43.273-.766.72-.93 1.27zM4.5 8.5c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm12 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm-9 4c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm6 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zM7.5 18a4.5 4.5 0 0 1 9 0c0 1.5-1 2.5-2.5 2.5h-4C8.5 20.5 7.5 19.5 7.5 18z";
@@ -70,32 +71,7 @@ export function AboutSection() {
                 Our history is not a straight line from products to profit. It is a story of deepening specialisation — of a business that chose to understand veterinary medicine rather than simply supply it.
               </p>
             </div>
-            <div style={{
-              background: "rgba(255,255,255,0.7)",
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
-              borderRadius: "20px",
-              padding: "32px",
-              boxShadow: "0 10px 40px -15px rgba(15,39,48,0.15)",
-            }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                {[
-                  { label: "Founded", value: "1996" },
-                  { label: "Years in business", value: "28+" },
-                  { label: "Focus", value: "Veterinary equipment & diagnostics" },
-                  { label: "Market", value: "Malta & Gozo" },
-                ].map(({ label, value }) => (
-                  <div key={label} style={{ borderBottom: "1px solid rgba(26,58,74,0.08)", paddingBottom: "16px" }}>
-                    <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.5px", display: "block", marginBottom: "4px" }}>
-                      {label}
-                    </span>
-                    <span style={{ fontSize: "18px", fontWeight: 700, color: "var(--navy)" }}>
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <AnimatedStatsCard />
           </div>
         </section>
 
