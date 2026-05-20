@@ -9,27 +9,33 @@ const PAW_PATH =
   "M11.35 3.836c-.065.21-.1.433-.1.664 0 1.21.847 2.193 1.892 2.193.025 0 .05 0 .074-.002.297.165.534.405.708.682.49.802.81 1.825.61 2.7-.205.91-.864 1.4-1.62 1.4-.756 0-1.418-.49-1.62-1.4-.2-.875.12-1.898.61-2.7.174-.277.41-.517.708-.682.025.002.05.002.074.002 1.045 0 1.892-.983 1.892-2.193 0-.23-.035-.453-.1-.664-.165-.55-.5-.997-.93-1.27a2.06 2.06 0 0 0-2.092 0c-.43.273-.766.72-.93 1.27zM4.5 8.5c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm12 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm-9 4c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm6 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zM7.5 18a4.5 4.5 0 0 1 9 0c0 1.5-1 2.5-2.5 2.5h-4C8.5 20.5 7.5 19.5 7.5 18z";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/who-we-are", label: "Who We Are" },
-  { href: "/about", label: "About" },
-  { href: "/solutions", label: "Solutions" },
-  { href: "/partners", label: "Partners" },
-  { href: "/support", label: "Support" },
+  { href: "/", anchor: "#hero", label: "Home" },
+  { href: "/who-we-are", anchor: "#who-we-are", label: "Who We Are" },
+  { href: "/about", anchor: "#about", label: "About" },
+  { href: "/solutions", anchor: "#solutions", label: "Solutions" },
+  { href: "/partners", anchor: "#partners", label: "Partners" },
+  { href: "/support", anchor: "#support", label: "Support" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const getLinkHref = (link: { href: string; anchor: string }) =>
+    isHome ? link.anchor : link.href;
+
+  const ctaHref = isHome ? "#contact" : "/contact";
 
   return (
     <>
       <header className="nabuk-nav">
         <div className="nav-inner">
           {/* Logo */}
-          <Link href="/" className="nav-logo" aria-label="Nabuk Distributors Malta — home">
+          <Link href={isHome ? "#hero" : "/"} className="nav-logo" aria-label="Nabuk Distributors Malta — home">
             <svg
               viewBox="0 0 64 64"
               fill="none"
@@ -61,8 +67,8 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                className={`nav-link ${isActive(link.href) ? "nav-link--active" : ""}`}
+                href={getLinkHref(link)}
+                className={`nav-link ${!isHome && isActive(link.href) ? "nav-link--active" : ""}`}
               >
                 {link.label}
               </Link>
@@ -70,7 +76,7 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <Link href="/contact" className="nav-cta">
+          <Link href={ctaHref} className="nav-cta">
             Request a Consultation
           </Link>
 
@@ -94,15 +100,15 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
-                className={`nav-mobile-link ${isActive(link.href) ? "nav-mobile-link--active" : ""}`}
+                href={getLinkHref(link)}
+                className={`nav-mobile-link ${!isHome && isActive(link.href) ? "nav-mobile-link--active" : ""}`}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href="/contact"
+              href={ctaHref}
               className="nav-mobile-cta"
               onClick={() => setOpen(false)}
             >

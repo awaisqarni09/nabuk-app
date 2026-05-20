@@ -1,4 +1,10 @@
 import { HeroSection } from "@/components/sections/HeroSection";
+import { WhoWeAreSection } from "@/components/sections/WhoWeAreSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { SolutionsSection } from "@/components/sections/SolutionsSection";
+import { PartnersSection } from "@/components/sections/PartnersSection";
+import { SupportSection } from "@/components/sections/SupportSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function HomePage() {
   return (
@@ -8,7 +14,27 @@ export default function HomePage() {
       </a>
 
       <main id="main-content">
-        <HeroSection />
+        <div id="hero">
+          <HeroSection />
+        </div>
+        <div id="who-we-are">
+          <WhoWeAreSection />
+        </div>
+        <div id="about">
+          <AboutSection />
+        </div>
+        <div id="solutions">
+          <SolutionsSection />
+        </div>
+        <div id="partners">
+          <PartnersSection />
+        </div>
+        <div id="support">
+          <SupportSection />
+        </div>
+        <div id="contact">
+          <ContactSection />
+        </div>
       </main>
 
       <style>{`
