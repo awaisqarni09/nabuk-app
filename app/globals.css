@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-1: #e8f4f4;
+  --color-bg-2: #d5ebeb;
+  --color-navy: #1a3a4a;
+  --color-navy-dark: #0f2730;
+  --color-brand-red: #e63946;
+  --color-teal: #2b6b6b;
+  --color-teal-dark: #1f4e4e;
+  --color-card: #ffffff;
+  --color-muted: #4a5a60;
+  --font-display: var(--font-archivo-black);
+  --font-body: var(--font-manrope);
+}
+
+@layer base {
+  :root {
+    --bg-1: #e8f4f4;
+    --bg-2: #d5ebeb;
+    --navy: #1a3a4a;
+    --navy-dark: #0f2730;
+    --red: #e63946;
+    --teal: #2b6b6b;
+    --teal-dark: #1f4e4e;
+    --paw: rgba(43, 107, 107, 0.07);
+    --card: #ffffff;
+    --muted: #4a5a60;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-manrope, 'Manrope'), sans-serif;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: var(--navy);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Inner-page hero band */
+  .page-hero {
+    background: var(--navy);
+    padding: 72px 20px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .page-hero h1 {
+    font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .page-hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.75);
+    max-width: 600px;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .page-hero-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--teal);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .page-hero-paw {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Standard page content wrapper */
+  .page-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+  }
+
+  /* Shared card */
+  .nabuk-card {
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px -15px rgba(15,39,48,0.18);
+    overflow: hidden;
+  }
+
+  /* CTA band (teal-dark, reused on multiple pages) */
+  .page-cta-band {
+    background: var(--teal-dark);
+    border-radius: 20px;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-cta-band h2 {
+    font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    max-width: 560px;
+  }
+  .page-cta-band p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    max-width: 480px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--teal-dark);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 16px -4px rgba(0,0,0,0.15);
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover {
+    background: var(--bg-1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -6px rgba(0,0,0,0.2);
+  }
+  .btn-primary:focus-visible { outline: 3px solid rgba(255,255,255,0.6); outline-offset: 3px; }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-teal {
+    display: inline-flex;
+    align-items: center;
+    background: var(--teal);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    box-shadow: 0 6px 20px -6px rgba(31,78,78,0.4);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); }
+  .btn-teal:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .btn-teal:active { transform: translateY(0); }
+}
