@@ -129,7 +129,7 @@ export function SupportSection() {
             {/* PLACEHOLDER: swap for real image */}
             <div style={{ borderRadius: "16px", overflow: "hidden", position: "relative", height: "280px" }}>
               <Image
-                src="https://placehold.co/800x500/2b6b6b/e8f4f4?text=Support+%2F+Training+Photo"
+                src="/images/support-clinic.webp"
                 alt="Support and training — placeholder image"
                 fill
                 style={{ objectFit: "cover" }}

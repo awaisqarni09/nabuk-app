@@ -58,7 +58,7 @@ export function ContactSection() {
                 {
                   icon: Phone,
                   label: "Phone",
-                  value: "+356 2100 0000",
+                  value: "+356 2149 2190",
                   sub: "Call us today",
                   href: "tel:+35621000000",
                 },

@@ -61,7 +61,7 @@ export function WhoWeAreSection() {
           {/* Image — PLACEHOLDER: swap for real clinic/team photo */}
           <div style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 25px 50px -15px rgba(15,39,48,0.2)", position: "relative", height: "400px" }}>
             <Image
-              src="https://placehold.co/800x500/1a3a4a/e8f4f4?text=Clinic+%2F+Team+Photo"
+              src="/images/who-we-are.webp"
               alt="Nabuk Distributors team and clinic — placeholder image"
               fill
               style={{ objectFit: "cover" }}

@@ -177,7 +177,7 @@ export function HeroSection() {
         <div className="contact-item">
           <div className="contact-icon" aria-hidden="true"><Phone size={20} /></div>
           <div>
-            <strong className="contact-strong">+356 2100 0000</strong>
+            <strong className="contact-strong">+356 9947 2220</strong>
             <span className="contact-sub">Call us today</span>
           </div>
         </div>

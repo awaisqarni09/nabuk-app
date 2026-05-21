@@ -105,7 +105,7 @@ export function AboutSection() {
           {/* PLACEHOLDER: swap for real clinic/team photo */}
           <div className="about-image-wrap">
             <Image
-              src="https://placehold.co/800x560/1a3a4a/e8f4f4?text=Clinic+%2F+Team+Photo"
+              src="/images/nabuk-team.webp"
               alt="Nabuk Distributors team and clinic — placeholder image"
               fill
               style={{ objectFit: "cover" }}
