@@ -2,9 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { MessageSquare, Settings, BookOpen, Wrench } from "lucide-react";
 
-const PAW_PATH =
-  "M11.35 3.836c-.065.21-.1.433-.1.664 0 1.21.847 2.193 1.892 2.193.025 0 .05 0 .074-.002.297.165.534.405.708.682.49.802.81 1.825.61 2.7-.205.91-.864 1.4-1.62 1.4-.756 0-1.418-.49-1.62-1.4-.2-.875.12-1.898.61-2.7.174-.277.41-.517.708-.682.025.002.05.002.074.002 1.045 0 1.892-.983 1.892-2.193 0-.23-.035-.453-.1-.664-.165-.55-.5-.997-.93-1.27a2.06 2.06 0 0 0-2.092 0c-.43.273-.766.72-.93 1.27zM4.5 8.5c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm12 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm-9 4c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm6 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zM7.5 18a4.5 4.5 0 0 1 9 0c0 1.5-1 2.5-2.5 2.5h-4C8.5 20.5 7.5 19.5 7.5 18z";
-
 // PLACEHOLDER: copy is professionally-toned but invented — replace with client-approved copy before launch
 const services = [
   {
@@ -38,12 +35,7 @@ export function SupportSection() {
     <>
       {/* Page hero */}
       <div className="page-hero">
-        <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.04)" width={150} height={150}
-          className="page-hero-paw" style={{ top: "-10px", right: "50px", transform: "rotate(18deg)" }}
-          aria-hidden="true">
-          <path d={PAW_PATH} />
-        </svg>
-        <div className="page-hero-inner">
+<div className="page-hero-inner">
           <div className="page-hero-divider" />
           <h1>Support &amp; Services</h1>
           <p className="page-hero-sub">

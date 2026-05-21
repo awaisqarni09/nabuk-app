@@ -1,8 +1,5 @@
 import Link from "next/link";
 
-const PAW_PATH =
-  "M11.35 3.836c-.065.21-.1.433-.1.664 0 1.21.847 2.193 1.892 2.193.025 0 .05 0 .074-.002.297.165.534.405.708.682.49.802.81 1.825.61 2.7-.205.91-.864 1.4-1.62 1.4-.756 0-1.418-.49-1.62-1.4-.2-.875.12-1.898.61-2.7.174-.277.41-.517.708-.682.025.002.05.002.074.002 1.045 0 1.892-.983 1.892-2.193 0-.23-.035-.453-.1-.664-.165-.55-.5-.997-.93-1.27a2.06 2.06 0 0 0-2.092 0c-.43.273-.766.72-.93 1.27zM4.5 8.5c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm12 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm-9 4c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm6 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zM7.5 18a4.5 4.5 0 0 1 9 0c0 1.5-1 2.5-2.5 2.5h-4C8.5 20.5 7.5 19.5 7.5 18z";
-
 const footerLinks = [
   { href: "/who-we-are", label: "Who We Are" },
   { href: "/about", label: "About Us" },
@@ -48,11 +45,7 @@ export function Footer() {
             <p className="footer-tagline">
               Equipping veterinary professionals with the tools they need to provide the best care.
             </p>
-            {/* Paw decoration */}
-            <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.06)" width={80} height={80}
-              className="footer-paw-deco" aria-hidden="true">
-              <path d={PAW_PATH} />
-            </svg>
+
           </div>
 
           {/* Navigation column */}
@@ -99,11 +92,6 @@ export function Footer() {
             © {new Date().getFullYear()} Nabuk Distributors Ltd. All rights reserved.
           </p>
           <p className="footer-bottom-note">
-            <svg viewBox="0 0 24 24" fill="var(--teal)" width={14} height={14}
-              style={{ display: "inline-block", verticalAlign: "middle", marginRight: "5px" }}
-              aria-hidden="true">
-              <path d={PAW_PATH} />
-            </svg>
             Serving veterinary clinics across Malta &amp; Gozo since 1996.
           </p>
         </div>
@@ -154,12 +142,6 @@ export function Footer() {
           line-height: 1.6;
           color: rgba(255,255,255,0.6);
           max-width: 280px;
-        }
-        .footer-paw-deco {
-          position: absolute;
-          bottom: -20px;
-          right: 0;
-          pointer-events: none;
         }
         .footer-col-title {
           font-size: 11px;

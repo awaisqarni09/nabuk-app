@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Headphones, Truck, PawPrint, Phone, MapPin, Mail } from "lucide-react";
-
-const PAW_PATH =
-  "M11.35 3.836c-.065.21-.1.433-.1.664 0 1.21.847 2.193 1.892 2.193.025 0 .05 0 .074-.002.297.165.534.405.708.682.49.802.81 1.825.61 2.7-.205.91-.864 1.4-1.62 1.4-.756 0-1.418-.49-1.62-1.4-.2-.875.12-1.898.61-2.7.174-.277.41-.517.708-.682.025.002.05.002.074.002 1.045 0 1.892-.983 1.892-2.193 0-.23-.035-.453-.1-.664-.165-.55-.5-.997-.93-1.27a2.06 2.06 0 0 0-2.092 0c-.43.273-.766.72-.93 1.27zM4.5 8.5c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm12 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm-9 4c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zm6 0c0 1.105.672 2 1.5 2s1.5-.895 1.5-2-.672-2-1.5-2-1.5.895-1.5 2zM7.5 18a4.5 4.5 0 0 1 9 0c0 1.5-1 2.5-2.5 2.5h-4C8.5 20.5 7.5 19.5 7.5 18z";
+import { ShieldCheck, Headphones, Users, Phone, MapPin, Mail } from "lucide-react";
 
 const features = [
   {
@@ -14,15 +11,10 @@ const features = [
   {
     icon: Headphones,
     title: "CLINICAL EXPERTISE",
-    body: "Specialists in diagnostics, imaging and surgical infrastructure — not a general supplier.",
+    body: "Specialists in diagnostics, imaging and surgical infrastructure — not a general distributor.",
   },
   {
-    icon: Truck,
-    title: "GLOBAL MANUFACTURERS",
-    body: "Partnered with Eickemeyer, Antech, Melag, Covetrus and Veterinary Instrumentation.",
-  },
-  {
-    icon: PawPrint,
+    icon: Users,
     title: "LOCAL PARTNERSHIP",
     body: "On-island support, installation and servicing for clinics across Malta and Gozo.",
   },
@@ -31,28 +23,6 @@ const features = [
 export function HeroSection() {
   return (
     <div className="nabuk-page">
-      {/* Decorative paw watermarks — exact positions from reference */}
-      <svg viewBox="0 0 24 24" fill="rgba(43,107,107,0.07)" width="60" height="60"
-        className="paw-bg" style={{ top: "60px", left: "-10px" }} aria-hidden="true">
-        <path d={PAW_PATH} />
-      </svg>
-      <svg viewBox="0 0 24 24" fill="rgba(43,107,107,0.07)" width="50" height="50"
-        className="paw-bg" style={{ top: "320px", left: "30px", transform: "rotate(-15deg)" }} aria-hidden="true">
-        <path d={PAW_PATH} />
-      </svg>
-      <svg viewBox="0 0 24 24" fill="rgba(43,107,107,0.07)" width="70" height="70"
-        className="paw-bg" style={{ bottom: "280px", left: "-20px", transform: "rotate(20deg)" }} aria-hidden="true">
-        <path d={PAW_PATH} />
-      </svg>
-      <svg viewBox="0 0 24 24" fill="rgba(43,107,107,0.07)" width="55" height="55"
-        className="paw-bg" style={{ top: "100px", right: "20px", transform: "rotate(25deg)" }} aria-hidden="true">
-        <path d={PAW_PATH} />
-      </svg>
-      <svg viewBox="0 0 24 24" fill="rgba(43,107,107,0.07)" width="65" height="65"
-        className="paw-bg" style={{ top: "380px", right: "-10px", transform: "rotate(-10deg)" }} aria-hidden="true">
-        <path d={PAW_PATH} />
-      </svg>
-
       {/* ── HERO ── */}
       <section className="nabuk-hero" aria-label="Nabuk Distributors introduction">
         {/* LEFT column */}
@@ -90,21 +60,25 @@ export function HeroSection() {
           {/* Teal divider */}
           <div className="nabuk-divider" />
 
-          {/* Lead — professional tone, replacing retail wording */}
+          {/* Lead */}
           <p className="nabuk-lead">
-            Advanced veterinary equipment and diagnostics for the clinics of
-            Malta and Gozo — backed by nearly three decades of partnership with
-            the profession.
+            Supplying Malta&apos;s veterinary profession with advanced equipment,
+            diagnostics and clinical solutions for nearly three decades.
           </p>
 
-          {/* CTA — navigates to the /products page */}
-          <Link href="/products" className="explore-btn">
-            EXPLORE OUR PRODUCTS
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-              width={16} height={16} aria-hidden="true">
-              <path d="M5 12h14M13 6l6 6-6 6"/>
-            </svg>
-          </Link>
+          {/* CTAs */}
+          <div className="hero-ctas">
+            <Link href="/solutions" className="explore-btn">
+              EXPLORE SOLUTIONS
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                width={16} height={16} aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </Link>
+            <Link href="/contact" className="explore-btn explore-btn--ghost">
+              CONTACT US
+            </Link>
+          </div>
         </div>
 
         {/* RIGHT column — product card showcase */}
@@ -200,11 +174,6 @@ export function HeroSection() {
       {/* ── CONTACT BAR ── */}
       {/* PLACEHOLDER: +356 2100 0000 and info@nabukmalta.com are dummy — replace before launch */}
       <section className="nabuk-contact" aria-label="Contact information">
-        <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.08)" width={60} height={60}
-          className="contact-paw-deco" aria-hidden="true">
-          <path d={PAW_PATH} />
-        </svg>
-
         <div className="contact-item">
           <div className="contact-icon" aria-hidden="true"><Phone size={20} /></div>
           <div>
@@ -232,11 +201,7 @@ export function HeroSection() {
 
       {/* ── FOOTER TAGLINE ── */}
       <div className="footer-tag">
-        <svg viewBox="0 0 24 24" fill="var(--teal)" width={18} height={18}
-          className="footer-paw" aria-hidden="true">
-          <path d={PAW_PATH} />
-        </svg>
-        Equipping veterinary professionals with the tools and supplies they need
+        Equipping veterinary professionals with the tools they need
         to provide the{" "}
         <span className="footer-best">best care.</span>
       </div>
@@ -258,13 +223,6 @@ export function HeroSection() {
           margin: 0 auto;
           padding: 40px 20px;
           position: relative;
-        }
-
-        /* Paw watermarks */
-        .paw-bg {
-          position: absolute;
-          pointer-events: none;
-          z-index: 0;
         }
 
         /* Hero */
@@ -343,12 +301,20 @@ export function HeroSection() {
           text-transform: uppercase;
         }
 
-        /* Explore CTA — pill shaped, teal */
+        /* CTA row */
+        .hero-ctas {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 28px;
+          flex-wrap: wrap;
+        }
+
+        /* Primary CTA — filled pill */
         .explore-btn {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          margin-top: 28px;
           background: var(--teal);
           color: #fff;
           font-weight: 700;
@@ -372,6 +338,19 @@ export function HeroSection() {
           outline-offset: 3px;
         }
         .explore-btn:active { transform: translateY(0); }
+
+        /* Ghost CTA — outlined pill */
+        .explore-btn--ghost {
+          background: transparent;
+          color: var(--teal);
+          border: 2px solid var(--teal);
+          box-shadow: none;
+        }
+        .explore-btn--ghost:hover {
+          background: var(--teal);
+          color: #fff;
+          box-shadow: 0 8px 24px -8px rgba(31,78,78,0.4);
+        }
 
         /* Product showcase */
         .nabuk-products {
@@ -451,7 +430,7 @@ export function HeroSection() {
           padding: 32px 40px;
           margin-top: 40px;
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 30px;
           box-shadow: 0 10px 40px -20px rgba(15,39,48,0.15);
           position: relative;
@@ -490,11 +469,6 @@ export function HeroSection() {
           position: relative;
           overflow: hidden;
         }
-        .contact-paw-deco {
-          position: absolute;
-          right: 30px;
-          bottom: -10px;
-        }
         .contact-item {
           display: flex;
           align-items: center;
@@ -530,11 +504,6 @@ export function HeroSection() {
           font-size: 14px;
           color: var(--navy);
           font-weight: 500;
-        }
-        .footer-paw {
-          display: inline-block;
-          margin-right: 6px;
-          vertical-align: middle;
         }
         .footer-best { color: var(--red); font-weight: 700; }
 
@@ -602,7 +571,7 @@ export function HeroSection() {
           .product.p3 { width: 110px; height: 146px; top: 262px; left: 5%; }
           .product.p4 { width: 134px; height: 142px; bottom: 8px; left: 58%; }
           .nabuk-features {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             padding: 24px;
           }
           .nabuk-contact {
