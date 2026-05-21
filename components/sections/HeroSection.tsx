@@ -75,6 +75,9 @@ export function HeroSection() {
             <span className="logo-tag">Vet Supplies Specialists</span>
           </div>
 
+          {/* Eyebrow */}
+          <div className="hero-eyebrow">WELCOME TO</div>
+
           {/* Heading */}
           <h1 className="nabuk-title">
             NABUK
@@ -93,57 +96,89 @@ export function HeroSection() {
             Malta and Gozo — backed by nearly three decades of partnership with
             the profession.
           </p>
+
+          {/* CTA — navigates to the /products page */}
+          <Link href="/products" className="explore-btn">
+            EXPLORE OUR PRODUCTS
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+              width={16} height={16} aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </Link>
         </div>
 
         {/* RIGHT column — product card showcase */}
         <div className="nabuk-products" aria-label="Product showcase">
+          {/* Pale-teal circular disc — the backdrop behind floating product images */}
+          <div className="product-circle" aria-hidden="true" />
+
           {/* Swap each next/image src for a real product photo when assets are ready */}
 
           {/* p1 — G100 DEVICE */}
-          <div className="product p1">
-            <div className="product-inner">
-              <Image src="https://placehold.co/200x220/9aa5ab/ffffff?text=G100+DEVICE"
-                alt="G100 Device — veterinary equipment placeholder" fill
-                style={{ objectFit: "cover" }} sizes="200px" />
-            </div>
-          </div>
+<div className="product p1">
+  <div className="product-inner">
+    <Image 
+      src="/images/G100-Device.png" // Point directly to your local file here
+      alt="G100 Device — veterinary equipment"
+      fill
+      style={{ objectFit: "contain" }} // Pro tip: 'contain' ensures the equipment doesn't get cropped
+      sizes="200px" 
+    />
+  </div>
+</div>
 
           {/* p2 — WISAP UNIT */}
-          <div className="product p2">
-            <div className="product-inner">
-              <Image src="https://placehold.co/240x160/e63946/ffffff?text=WISAP+UNIT"
-                alt="WISAP Unit — veterinary equipment placeholder" fill
-                style={{ objectFit: "cover" }} sizes="240px" />
-            </div>
-          </div>
+<div className="product p2">
+  <div className="product-inner">
+    <Image 
+      src="/images/WISAP-UNIT.png" // Change this filename to match your file
+      alt="WISAP Unit — veterinary equipment" 
+      fill
+      style={{ objectFit: "contain" }} // Ensures the equipment doesn't get cropped
+      sizes="240px" 
+    />
+  </div>
+</div>
 
           {/* p3 — MICROSCOPE */}
-          <div className="product p3">
-            <div className="product-inner">
-              <Image src="https://placehold.co/180x240/dbe7e7/1a3a4a?text=MICROSCOPE"
-                alt="Microscope — veterinary equipment placeholder" fill
-                style={{ objectFit: "cover" }} sizes="180px" />
-            </div>
-          </div>
+<div className="product p3">
+  <div className="product-inner">
+    <Image 
+      src="/images/MICROSCOPE.png" // Change this filename to match your file
+      alt="Microscope — veterinary equipment" 
+      fill
+      style={{ objectFit: "contain" }} // Ensures the equipment doesn't get cropped
+      sizes="180px" 
+    />
+  </div>
+</div>
 
           {/* p4 — ELEMENT i+ */}
-          <div className="product p4">
-            <div className="product-inner">
-              <Image src="https://placehold.co/200x220/2db5c4/ffffff?text=ELEMENT+i%2B"
-                alt="Element i+ — veterinary analyser placeholder" fill
-                style={{ objectFit: "cover" }} sizes="200px" />
-            </div>
-          </div>
+<div className="product p4">
+  <div className="product-inner">
+    <Image 
+      src="/images/element-i-plus.png" // Make sure this matches your filename and extension (e.g., .png or .jpg)
+      alt="Element i+ — veterinary analyser" 
+      fill
+      style={{ objectFit: "contain" }} // Ensures the entire analyzer graphic stays fully visible
+      sizes="200px" 
+    />
+  </div>
+</div>
 
           {/* p5 — ELEMENT HT5 */}
           <div className="product p5">
-            <div className="product-inner">
-              <Image src="https://placehold.co/260x200/2c3e50/ffffff?text=ELEMENT+HT5"
-                alt="Element HT5 — veterinary analyser placeholder" fill
-                style={{ objectFit: "cover" }} sizes="260px" />
-            </div>
-          </div>
-        </div>
+  <div className="product-inner">
+    <Image 
+      src="/images/element-ht5.png" // Make sure this matches your filename and extension
+      alt="Element HT5 — veterinary analyser" 
+      fill
+      style={{ objectFit: "contain" }} // Keeps the whole analyser unit perfectly framed
+      sizes="260px" 
+    />
+  </div>
+</div>
+</div>
       </section>
 
       {/* ── FEATURES PANEL ── */}
@@ -298,28 +333,117 @@ export function HeroSection() {
           font-weight: 500;
         }
 
+        /* Eyebrow */
+        .hero-eyebrow {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 2.5px;
+          color: var(--teal);
+          margin-bottom: 14px;
+          text-transform: uppercase;
+        }
+
+        /* Explore CTA — pill shaped, teal */
+        .explore-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 28px;
+          background: var(--teal);
+          color: #fff;
+          font-weight: 700;
+          font-size: 13px;
+          padding: 13px 26px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.8px;
+          box-shadow: 0 8px 24px -8px rgba(31,78,78,0.5),
+                      0 2px 8px -2px rgba(31,78,78,0.2);
+          transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .explore-btn:hover {
+          background: var(--teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px -8px rgba(31,78,78,0.55),
+                      0 4px 12px -2px rgba(31,78,78,0.25);
+        }
+        .explore-btn:focus-visible {
+          outline: 3px solid var(--teal);
+          outline-offset: 3px;
+        }
+        .explore-btn:active { transform: translateY(0); }
+
         /* Product showcase */
         .nabuk-products {
           position: relative;
-          height: 540px;
+          height: 580px;
+          overflow: visible;
         }
+
+        /* Pale-teal circular backdrop */
+        .product-circle {
+          position: absolute;
+          width: 490px;
+          height: 490px;
+          border-radius: 50%;
+          background: radial-gradient(circle at 45% 45%,
+            rgba(155,205,205,0.82) 0%,
+            rgba(175,218,218,0.68) 40%,
+            rgba(195,228,228,0.42) 68%,
+            rgba(210,236,236,0.15) 88%,
+            transparent 100%);
+          top: 50%;
+          left: 58%;
+          transform: translate(-50%, -50%);
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        /* Product images — floating, no white boxes */
         .product {
           position: absolute;
-          border-radius: 12px;
-          box-shadow: 0 25px 50px -15px rgba(15,39,48,0.25);
-          background: #fff;
-          overflow: hidden;
+          z-index: 1;
+          filter: drop-shadow(0 14px 32px rgba(15,39,48,0.17))
+                  drop-shadow(0 4px 10px rgba(15,39,48,0.09));
         }
         .product-inner {
           position: relative;
           width: 100%;
           height: 100%;
         }
-        .product.p1 { width: 200px; height: 220px; top: 20px; left: 35%; transform: rotate(-4deg); }
-        .product.p2 { width: 240px; height: 160px; top: 0; right: 0; transform: rotate(3deg); }
-        .product.p3 { width: 180px; height: 240px; top: 180px; left: 10%; transform: rotate(2deg); }
-        .product.p4 { width: 200px; height: 220px; top: 240px; left: 40%; }
-        .product.p5 { width: 260px; height: 200px; top: 200px; right: -20px; transform: rotate(-3deg); }
+        /* Blend white image backgrounds away over the teal circle */
+        .product-inner img {
+          mix-blend-mode: multiply;
+        }
+        /*
+         * Desktop 5-product layout — editorial "star" composition.
+         * 2 satellites top  |  1 hero centre  |  2 anchors bottom.
+         * Container ~600 × 580px. All pairs verified — no x+y overlap:
+         *
+         *   p1 (48–208,15–155)  ↔ p5 (410–595,10–145)   x-gap 202px ✓
+         *   p1 (48–208,15–155)  ↔ p2 (228–428,215–345)  x-gap 20px / y-gap 60px ✓
+         *   p5 (410–595,10–145) ↔ p2 (228–428,215–345)  x-ovlp 18px / y-gap 70px ✓
+         *   p2 (228–428,215–345)↔ p3 (24–164,330–515)   x-gap 64px ✓
+         *   p2 (228–428,215–345)↔ p4 (400–570,392–572)  x-ovlp 28px / y-gap 47px ✓
+         *   p3 (24–164,330–515) ↔ p4 (400–570,392–572)  x-gap 236px ✓
+         *   p1 (48–208,15–155)  ↔ p3 (24–164,330–515)   y-gap 175px ✓
+         *   p5 (410–595,10–145) ↔ p4 (400–570,392–572)  y-gap 247px ✓
+         */
+
+        /* G100 — top-left satellite    x(48–208)  y(15–155) */
+        .product.p1 { width: 160px; height: 140px; top: 15px;   left: 8%;    transform: rotate(-3deg); z-index: 2; }
+
+        /* Element HT5 — top-right satellite x(410–595) y(10–145) */
+        .product.p5 { width: 185px; height: 135px; top: 10px;   right: 5px;  transform: rotate(2deg);  z-index: 2; }
+
+        /* WISAP — centre hero          x(228–428) y(215–345) */
+        .product.p2 { width: 200px; height: 130px; top: 215px;  left: 38%;   transform: rotate(-1deg); z-index: 4; }
+
+        /* Microscope — lower-left anchor x(24–164) y(330–515) */
+        .product.p3 { width: 140px; height: 185px; top: 330px;  left: 4%;    transform: rotate(1deg);  z-index: 2; }
+
+        /* Element i+ — lower-right anchor x(400–570) y(392–572) */
+        .product.p4 { width: 170px; height: 180px; bottom: 8px; right: 30px; transform: rotate(-2deg); z-index: 3; }
 
         /* Features panel */
         .nabuk-features {
@@ -468,10 +592,18 @@ export function HeroSection() {
           transform: translateY(0);
         }
 
-        /* Responsive breakpoints — matching reference exactly */
+        /* ── Responsive breakpoints ── */
         @media (max-width: 900px) {
           .nabuk-hero { grid-template-columns: 1fr; }
-          .nabuk-products { height: 420px; }
+          .nabuk-products { height: 440px; }
+          /* 1-col at 900px: full page width (~860px), circle centred at 50%.
+             Mirror the star composition with left-% anchored around 50%. */
+          .product-circle { width: 380px; height: 380px; left: 50%; }
+          .product.p1 { width: 125px; height: 110px; top: 12px;  left: 26%; }
+          .product.p5 { width: 145px; height: 106px; top: 8px;   left: 58%; }
+          .product.p2 { width: 158px; height: 103px; top: 175px; left: 38%; }
+          .product.p3 { width: 110px; height: 146px; top: 262px; left: 5%; }
+          .product.p4 { width: 134px; height: 142px; bottom: 8px; left: 58%; }
           .nabuk-features {
             grid-template-columns: repeat(2, 1fr);
             padding: 24px;
@@ -482,13 +614,20 @@ export function HeroSection() {
           }
         }
         @media (max-width: 520px) {
+          .nabuk-page { padding: 32px 16px; overflow-x: hidden; }
           .nabuk-features { grid-template-columns: 1fr; }
-          .nabuk-title { font-size: 52px; }
-          .product.p1 { width: 130px; height: 150px; }
-          .product.p2 { width: 150px; height: 110px; }
-          .product.p3 { width: 120px; height: 160px; }
-          .product.p4 { width: 140px; height: 150px; }
-          .product.p5 { width: 160px; height: 130px; }
+          .nabuk-title { font-size: 40px; word-break: break-word; }
+          .nabuk-lead { font-size: 15px; }
+          .nabuk-products { height: 320px; }
+          .product-circle { width: 270px; height: 270px; left: 50%; }
+          .product.p1 { width: 105px; height: 116px; top: 10px; left: 8%; }
+          .product.p2 { width: 125px; height: 84px; top: 5px; right: 2px; }
+          .product.p3 { width: 98px; height: 128px; top: 130px; left: 5%; }
+          .product.p4 { width: 110px; height: 116px; bottom: 5px; left: 36%; }
+          .product.p5 { width: 135px; height: 102px; top: 148px; right: 2px; }
+        }
+        @media (max-width: 380px) {
+          .nabuk-title { font-size: 36px; }
         }
       `}</style>
     </div>

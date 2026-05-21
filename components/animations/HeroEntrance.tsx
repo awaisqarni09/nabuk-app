@@ -2,15 +2,24 @@
 
 import { useEffect } from "react";
 
+const SESSION_KEY = "nabuk-hero-played";
+
 export function HeroEntrance() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Animation already played this session — skip entirely so the page
+    // renders at full opacity immediately on back-navigation.
+    if (sessionStorage.getItem(SESSION_KEY)) return;
 
     let cleanup: (() => void) | null = null;
 
     import("gsap").then(({ default: gsap }) => {
       const ctx = gsap.context(() => {
-        const tl = gsap.timeline({ delay: 0.05 });
+        const tl = gsap.timeline({
+          delay: 0.05,
+          onComplete: () => sessionStorage.setItem(SESSION_KEY, "1"),
+        });
 
         // Logo: drop in from above
         tl.from(".logo", {
