@@ -131,7 +131,7 @@ export function HeroSection() {
 <div className="product p2">
   <div className="product-inner">
     <Image 
-      src="/images/WISAP-UNIT.png" // Change this filename to match your file
+      src="/images/WISAF-UNIT.png" // Change this filename to match your file
       alt="WISAP Unit — veterinary equipment" 
       fill
       style={{ objectFit: "contain" }} // Ensures the equipment doesn't get cropped
@@ -144,7 +144,7 @@ export function HeroSection() {
 <div className="product p3">
   <div className="product-inner">
     <Image 
-      src="/images/MICROSCOPE.png" // Change this filename to match your file
+      src="/images/microscope.png" // Change this filename to match your file
       alt="Microscope — veterinary equipment" 
       fill
       style={{ objectFit: "contain" }} // Ensures the equipment doesn't get cropped
@@ -170,7 +170,7 @@ export function HeroSection() {
           <div className="product p5">
   <div className="product-inner">
     <Image 
-      src="/images/element-ht5.png" // Make sure this matches your filename and extension
+      src="/images/element-ht5.png" // lowercase — matches the filename git tracks
       alt="Element HT5 — veterinary analyser" 
       fill
       style={{ objectFit: "contain" }} // Keeps the whole analyser unit perfectly framed
@@ -411,10 +411,7 @@ export function HeroSection() {
           width: 100%;
           height: 100%;
         }
-        /* Blend white image backgrounds away over the teal circle */
-        .product-inner img {
-          mix-blend-mode: multiply;
-        }
+        /* Images are transparent PNGs — no blend mode needed */
         /*
          * Desktop 5-product layout — editorial "star" composition.
          * 2 satellites top  |  1 hero centre  |  2 anchors bottom.
