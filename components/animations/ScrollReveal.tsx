@@ -2,8 +2,6 @@
 
 import { useRef, useEffect, type ReactNode } from "react";
 
-const SESSION_KEY = "nabuk-hero-played";
-
 interface ScrollRevealProps {
   children: ReactNode;
   id?: string;
@@ -16,10 +14,6 @@ export function ScrollReveal({ children, id, className }: ScrollRevealProps) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!ref.current) return;
-
-    // Hero already played this session — render sections at full opacity
-    // immediately instead of snapping them invisible while GSAP loads.
-    if (sessionStorage.getItem(SESSION_KEY)) return;
 
     let cleanup: (() => void) | null = null;
 

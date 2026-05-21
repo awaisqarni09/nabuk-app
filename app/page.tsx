@@ -1,8 +1,7 @@
 import { HeroSection } from "@/components/sections/HeroSection";
-import { WhoWeAreSection } from "@/components/sections/WhoWeAreSection";
-import { AboutSection } from "@/components/sections/AboutSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { SupportSection } from "@/components/sections/SupportSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroEntrance } from "@/components/animations/HeroEntrance";
@@ -22,20 +21,16 @@ export default function HomePage() {
           <HeroSection />
         </div>
 
-        <ScrollReveal id="who-we-are">
-          <WhoWeAreSection />
-        </ScrollReveal>
-
-        <ScrollReveal id="about">
-          <AboutSection />
-        </ScrollReveal>
-
         <ScrollReveal id="solutions">
           <SolutionsSection />
         </ScrollReveal>
 
         <ScrollReveal id="partners">
           <PartnersSection />
+        </ScrollReveal>
+
+        <ScrollReveal id="about">
+          <AboutSection />
         </ScrollReveal>
 
         <ScrollReveal id="support">
