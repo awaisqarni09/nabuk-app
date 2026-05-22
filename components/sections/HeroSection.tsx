@@ -144,7 +144,7 @@ export function HeroSection() {
           <div className="product p5">
   <div className="product-inner">
     <Image 
-      src="/images/element-ht5.png" // lowercase — matches the filename git tracks
+      src="/images/Element-ht5.png" // lowercase — matches the filename git tracks
       alt="Element HT5 — veterinary analyser" 
       fill
       style={{ objectFit: "contain" }} // Keeps the whole analyser unit perfectly framed

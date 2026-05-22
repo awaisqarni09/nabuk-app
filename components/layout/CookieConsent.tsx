@@ -8,18 +8,17 @@ const STORAGE_KEY = "nabuk_cookie_consent";
 type Consent = "accepted" | "declined" | null;
 
 export function CookieConsent() {
-  const [consent, setConsent] = useState<Consent>(null);
+  const [consent, setConsent] = useState<Consent>(() => {
+    if (typeof window === "undefined") return null;
+    return (localStorage.getItem(STORAGE_KEY) as Consent) ?? null;
+  });
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Consent;
-    if (stored) {
-      setConsent(stored);
-    } else {
-      // Slight delay so the banner doesn't flash on first paint
-      const t = setTimeout(() => setVisible(true), 800);
-      return () => clearTimeout(t);
-    }
+    if (localStorage.getItem(STORAGE_KEY)) return;
+    // Slight delay so the banner doesn't flash on first paint
+    const t = setTimeout(() => setVisible(true), 800);
+    return () => clearTimeout(t);
   }, []);
 
   const handleAccept = () => {
