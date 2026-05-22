@@ -3,7 +3,6 @@ import { Manrope, Archivo_Black } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
-import { LenisProvider } from "@/components/providers/LenisProvider";
 import { organizationSchema, webSiteSchema } from "@/lib/seo/schema";
 import "./globals.css";
 
@@ -60,11 +59,9 @@ export default function RootLayout({
             __html: JSON.stringify([organizationSchema(), webSiteSchema()]),
           }}
         />
-        <LenisProvider>
-          <Navbar />
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </LenisProvider>
+        <Navbar />
+        <div className="flex-1">{children}</div>
+        <Footer />
         <CookieConsent />
       </body>
     </html>
