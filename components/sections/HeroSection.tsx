@@ -571,7 +571,7 @@ export function HeroSection() {
           .product.p3 { width: 110px; height: 146px; top: 262px; left: 5%; }
           .product.p4 { width: 134px; height: 142px; bottom: 8px; left: 58%; }
           .nabuk-features {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr;
             padding: 24px;
           }
           .nabuk-contact {

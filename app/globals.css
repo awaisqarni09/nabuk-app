@@ -29,6 +29,7 @@
 
   html {
     scroll-padding-top: 68px;
+    overflow-x: hidden;
   }
 
   body {
