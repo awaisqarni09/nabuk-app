@@ -14,7 +14,7 @@ export function organizationSchema() {
     areaServed: ["Malta", "Gozo"],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+356-2100-0000", // PLACEHOLDER
+      telephone: "+356-9947-2220",
       contactType: "customer service",
       email: "info@nabukmalta.com", // PLACEHOLDER
       availableLanguage: "English",
@@ -42,7 +42,7 @@ export function localBusinessSchema() {
     description:
       "Specialist veterinary equipment and diagnostics distributor serving Malta and Gozo since 1996.",
     url: SITE_URL,
-    telephone: "+356-2100-0000", // PLACEHOLDER
+    telephone: "+356-9947-2220",
     email: "info@nabukmalta.com", // PLACEHOLDER
     address: {
       "@type": "PostalAddress",

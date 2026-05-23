@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Phone, MapPin, Mail } from "lucide-react";
 import { ContactForm } from "@/app/(pages)/contact/ContactForm";
 
@@ -49,7 +48,7 @@ export function ContactSection() {
           </section>
 
           {/* RIGHT — Contact details */}
-          {/* PLACEHOLDER: phone +356 2100 0000 and email info@nabukmalta.com are dummy — replace before launch */}
+          {/* PLACEHOLDER: email info@nabukmalta.com — replace before launch */}
           <aside aria-label="Contact details">
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
 
@@ -58,9 +57,9 @@ export function ContactSection() {
                 {
                   icon: Phone,
                   label: "Phone",
-                  value: "+356 2149 2190",
+                  value: "+356 9947 2220",
                   sub: "Call us today",
-                  href: "tel:+35621492190",
+                  href: "tel:+35699472220",
                 },
                 {
                   icon: Mail,

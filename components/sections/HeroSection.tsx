@@ -172,7 +172,7 @@ export function HeroSection() {
       </section>
 
       {/* ── CONTACT BAR ── */}
-      {/* PLACEHOLDER: +356 2100 0000 and info@nabukmalta.com are dummy — replace before launch */}
+      {/* PLACEHOLDER: info@nabukmalta.com — replace before launch */}
       <section className="nabuk-contact" aria-label="Contact information">
         <div className="contact-item">
           <div className="contact-icon" aria-hidden="true"><Phone size={20} /></div>

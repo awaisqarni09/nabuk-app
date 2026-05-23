@@ -68,7 +68,7 @@ export function Footer() {
             <address className="footer-address">
               <p className="footer-contact-item">
                 <span className="footer-contact-label">Phone</span>
-                <a href="tel:+35621000000" className="footer-link">+356 2100 0000</a>
+                <a href="tel:+35699472220" className="footer-link">+356 9947 2220</a>
               </p>
               <p className="footer-contact-item">
                 <span className="footer-contact-label">Email</span>

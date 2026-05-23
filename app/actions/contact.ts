@@ -32,6 +32,15 @@ function getRatelimit(): Ratelimit {
   return _ratelimit;
 }
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 async function verifyTurnstile(token: string): Promise<boolean> {
   if (!process.env.TURNSTILE_SECRET_KEY) return false;
   try {
@@ -86,7 +95,7 @@ export async function submitContactForm(
   const { name, clinic, email, phone, message } = parsed.data;
 
   // 4. Insert into Supabase (service-role key bypasses RLS; table has no public policies)
-  const supabase = await createServerSupabaseClient();
+  const supabase = createServerSupabaseClient();
   const { error: dbError } = await supabase.from("contact_messages").insert({
     name,
     clinic: clinic ?? null,
@@ -111,11 +120,11 @@ export async function submitContactForm(
     subject: `New consultation request — ${name}`,
     html: `
       <table style="font-family:sans-serif;font-size:15px;color:#1a3a4a;max-width:580px;">
-        <tr><td style="padding:0 0 8px"><strong>Name:</strong> ${name}</td></tr>
-        <tr><td style="padding:0 0 8px"><strong>Clinic:</strong> ${clinic ?? "—"}</td></tr>
-        <tr><td style="padding:0 0 8px"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></td></tr>
-        <tr><td style="padding:0 0 16px"><strong>Phone:</strong> ${phone ?? "—"}</td></tr>
-        <tr><td style="border-top:1px solid #d5ebeb;padding:16px 0 0;white-space:pre-wrap">${message}</td></tr>
+        <tr><td style="padding:0 0 8px"><strong>Name:</strong> ${escapeHtml(name)}</td></tr>
+        <tr><td style="padding:0 0 8px"><strong>Clinic:</strong> ${clinic ? escapeHtml(clinic) : "—"}</td></tr>
+        <tr><td style="padding:0 0 8px"><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+        <tr><td style="padding:0 0 16px"><strong>Phone:</strong> ${phone ? escapeHtml(phone) : "—"}</td></tr>
+        <tr><td style="border-top:1px solid #d5ebeb;padding:16px 0 0;white-space:pre-wrap">${escapeHtml(message)}</td></tr>
       </table>
     `,
   });

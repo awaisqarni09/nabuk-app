@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["192.168.100.70"],
   async redirects() {
     return [
       {
@@ -17,6 +18,8 @@ const nextConfig: NextConfig = {
         hostname: "placehold.co",
       },
     ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
   },
   async headers() {
     return [

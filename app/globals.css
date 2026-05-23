@@ -37,7 +37,6 @@
     background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
     color: var(--navy);
     min-height: 100vh;
-    overflow-x: hidden;
     line-height: 1.7;
   }
 

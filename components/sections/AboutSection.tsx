@@ -304,7 +304,6 @@ export function AboutSection() {
           font-size: 16px;
           color: var(--muted);
           line-height: 1.7;
-          padding-left: 4px;
           border-left: 3px solid var(--teal);
           padding-left: 20px;
         }
