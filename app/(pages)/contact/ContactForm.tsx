@@ -6,11 +6,14 @@ import { contactSchema, type ContactFormData } from "@/lib/schemas/contact";
 import { useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { submitContactForm } from "@/app/actions/contact";
+import { getTurnstileSiteKey, shouldUseTestTurnstileKeys } from "@/lib/turnstile";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileSiteKey = getTurnstileSiteKey();
+  const turnstileTestMode = shouldUseTestTurnstileKeys();
 
   const {
     register,
@@ -164,12 +167,26 @@ export function ContactForm() {
       </div>
 
       {/* Cloudflare Turnstile */}
-      <Turnstile
-        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-        onSuccess={setTurnstileToken}
-        onError={() => setTurnstileToken(null)}
-        onExpire={() => setTurnstileToken(null)}
-      />
+      {turnstileSiteKey ? (
+        <Turnstile
+          siteKey={turnstileSiteKey}
+          onSuccess={setTurnstileToken}
+          onError={() => {
+            setTurnstileToken(null);
+            setServerError(
+              turnstileTestMode
+                ? "Security verification could not load in local development. Use the Turnstile test keys or check your local env file."
+                : "Security verification could not load. Check that the Turnstile site key is allowed for this domain in Cloudflare."
+            );
+            setStatus("error");
+          }}
+          onExpire={() => setTurnstileToken(null)}
+        />
+      ) : (
+        <div className="form-server-error" role="alert">
+          Turnstile is not configured. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to your environment variables.
+        </div>
+      )}
 
       {/* Server error */}
       {status === "error" && serverError && (
