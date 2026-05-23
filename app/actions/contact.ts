@@ -57,7 +57,9 @@ async function verifyTurnstile(token: string): Promise<boolean> {
     );
     const data = (await res.json()) as { success: boolean };
     return data.success === true;
-  } catch {
+  } catch (err) {
+    // Cloudflare siteverify unreachable — fail closed (block submission)
+    console.error("[contact] Turnstile verification error:", err);
     return false;
   }
 }
@@ -84,8 +86,15 @@ export async function submitContactForm(
   const headersList = await headers();
   const ip =
     headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
-  const { success: allowed } = await getRatelimit().limit(ip);
-  if (!allowed) {
+  let rateLimitAllowed = true;
+  try {
+    const { success } = await getRatelimit().limit(ip);
+    rateLimitAllowed = success;
+  } catch (err) {
+    // Upstash unreachable — fail open so a Redis outage never blocks all submissions
+    console.error("[contact] Rate-limit check failed (failing open):", err);
+  }
+  if (!rateLimitAllowed) {
     return {
       success: false,
       error: "Too many enquiries from your connection. Please try again later.",
@@ -104,7 +113,7 @@ export async function submitContactForm(
     message,
   });
   if (dbError) {
-    console.error("[contact] Supabase insert error:", dbError.message);
+    console.error("[contact] Supabase insert error:", dbError.code, dbError.message, dbError.hint ?? "");
     return {
       success: false,
       error: "We couldn't save your enquiry. Please email us directly.",
