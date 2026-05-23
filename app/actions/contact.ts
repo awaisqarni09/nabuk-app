@@ -2,6 +2,7 @@
 
 import { contactSchema, type ContactFormData } from "@/lib/schemas/contact";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getTurnstileSecretKey } from "@/lib/turnstile";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { Resend } from "resend";
@@ -42,7 +43,8 @@ function escapeHtml(str: string): string {
 }
 
 async function verifyTurnstile(token: string): Promise<boolean> {
-  if (!process.env.TURNSTILE_SECRET_KEY) return false;
+  const secret = getTurnstileSecretKey();
+  if (!secret) return false;
   try {
     const res = await fetch(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
@@ -50,7 +52,7 @@ async function verifyTurnstile(token: string): Promise<boolean> {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          secret: process.env.TURNSTILE_SECRET_KEY,
+          secret,
           response: token,
         }),
       }
@@ -114,6 +116,13 @@ export async function submitContactForm(
   });
   if (dbError) {
     console.error("[contact] Supabase insert error:", dbError.code, dbError.message, dbError.hint ?? "");
+    if (dbError.code === "PGRST205") {
+      return {
+        success: false,
+        error:
+          "Database setup is incomplete: the public.contact_messages table is missing. Run the SQL from database-schema.md in Supabase, then refresh the project cache.",
+      };
+    }
     return {
       success: false,
       error: "We couldn't save your enquiry. Please email us directly.",
