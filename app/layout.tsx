@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { organizationSchema, webSiteSchema } from "@/lib/seo/schema";
+import { PageTransition } from "@/components/animations/PageTransition";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -60,7 +61,9 @@ export default function RootLayout({
           }}
         />
         <Navbar />
-        <div className="flex-1">{children}</div>
+        <PageTransition>
+          <div className="flex-1">{children}</div>
+        </PageTransition>
         <Footer />
         <CookieConsent />
       </body>

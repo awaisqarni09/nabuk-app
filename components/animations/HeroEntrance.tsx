@@ -6,9 +6,18 @@ export function HeroEntrance() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    let cleanup: (() => void) | null = null;
+    // `cancelled` prevents a stale import callback from starting a GSAP
+    // context on already-unmounted DOM nodes.  Without this flag the async
+    // import can resolve *after* the component unmounts, creating an orphaned
+    // GSAP context whose delayed timeline later fires on the *newly* mounted
+    // elements — overwriting the fresh animation with opacity:0 at the wrong
+    // moment and leaving the title invisible.
+    let cancelled = false;
+    let revert: (() => void) | null = null;
 
     import("gsap").then(({ default: gsap }) => {
+      if (cancelled) return;
+
       const ctx = gsap.context(() => {
         const tl = gsap.timeline({ delay: 0.05 });
 
@@ -61,11 +70,12 @@ export function HeroEntrance() {
         );
       }, "#hero");
 
-      cleanup = () => ctx.revert();
+      revert = () => ctx.revert();
     });
 
     return () => {
-      cleanup?.();
+      cancelled = true;
+      revert?.();
     };
   }, []);
 

@@ -6,32 +6,26 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/", anchor: "#hero", label: "Home" },
-  { href: "/solutions", anchor: "#solutions", label: "Solutions" },
-  { href: "/partners", anchor: "#partners", label: "Partners" },
-  { href: "/about", anchor: "#about", label: "About" },
-  { href: "/support", anchor: "#support", label: "Support" },
+  { href: "/",          label: "Home"      },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/partners",  label: "Partners"  },
+  { href: "/about",     label: "About"     },
+  { href: "/support",   label: "Support"   },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
-
-  const getLinkHref = (link: { href: string; anchor: string }) =>
-    isHome ? link.anchor : link.href;
-
-  const ctaHref = isHome ? "#contact" : "/contact";
 
   return (
     <>
       <header className="nabuk-nav">
         <div className="nav-inner">
           {/* Logo */}
-          <Link href={isHome ? "#hero" : "/"} className="nav-logo" aria-label="Nabuk Distributors Malta — home">
+          <Link href="/" className="nav-logo" aria-label="Nabuk Distributors Malta — home">
             <svg
               viewBox="0 0 64 64"
               fill="none"
@@ -63,8 +57,8 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={getLinkHref(link)}
-                className={`nav-link ${!isHome && isActive(link.href) ? "nav-link--active" : ""}`}
+                href={link.href}
+                className={`nav-link ${isActive(link.href) ? "nav-link--active" : ""}`}
               >
                 {link.label}
               </Link>
@@ -72,7 +66,7 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <Link href={ctaHref} className="nav-cta">
+          <Link href="/contact" className="nav-cta">
             Request a Consultation
           </Link>
 
@@ -96,15 +90,15 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={getLinkHref(link)}
-                className={`nav-mobile-link ${!isHome && isActive(link.href) ? "nav-mobile-link--active" : ""}`}
+                href={link.href}
+                className={`nav-mobile-link ${isActive(link.href) ? "nav-mobile-link--active" : ""}`}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href={ctaHref}
+              href="/contact"
               className="nav-mobile-cta"
               onClick={() => setOpen(false)}
             >

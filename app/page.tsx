@@ -1,11 +1,14 @@
 import { HeroSection } from "@/components/sections/HeroSection";
-import { SolutionsSection } from "@/components/sections/SolutionsSection";
-import { PartnersSection } from "@/components/sections/PartnersSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { SupportSection } from "@/components/sections/SupportSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroEntrance } from "@/components/animations/HeroEntrance";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import {
+  PVStyles,
+  PVDivider,
+  SolutionsPreview,
+  PartnersPreview,
+  AboutPreview,
+  SupportPreview,
+  ContactPreview,
+} from "@/components/sections/SectionPreviews";
 
 export default function HomePage() {
   return (
@@ -14,32 +17,37 @@ export default function HomePage() {
         Skip to main content
       </a>
 
-      <main id="main-content">
-        {/* Hero — has its own entrance animation, no ScrollReveal */}
+      {/* Shared preview styles rendered once */}
+      <PVStyles />
+
+      {/*
+        tabindex="-1" is required for skip links to work correctly.
+        Without it, browsers cannot programmatically move focus here,
+        causing WebKit/Safari to apply native :target rendering on hash
+        reload (#main-content in URL), which bleeds a white layer over
+        the hero section and washes out text. The outline:none rule
+        below suppresses the browser's native focus ring on this element
+        since it's focused programmatically, not by keyboard navigation.
+      */}
+      <main id="main-content" tabIndex={-1}>
         <div id="hero">
           <HeroEntrance />
           <HeroSection />
         </div>
 
-        <ScrollReveal id="solutions">
-          <SolutionsSection />
-        </ScrollReveal>
+        <SolutionsPreview />
+        <PVDivider />
 
-        <ScrollReveal id="partners">
-          <PartnersSection />
-        </ScrollReveal>
+        <PartnersPreview />
+        <PVDivider />
 
-        <ScrollReveal id="about">
-          <AboutSection />
-        </ScrollReveal>
+        <AboutPreview />
+        <PVDivider />
 
-        <ScrollReveal id="support">
-          <SupportSection />
-        </ScrollReveal>
+        <SupportPreview />
+        <PVDivider />
 
-        <ScrollReveal id="contact">
-          <ContactSection />
-        </ScrollReveal>
+        <ContactPreview />
       </main>
 
       <style>{`
@@ -64,6 +72,12 @@ export default function HomePage() {
           width: auto;
           height: auto;
           overflow: visible;
+        }
+        /* Suppress browser-native focus ring on the programmatically-focused
+           main element. It receives tabindex="-1" purely for skip-link
+           compatibility — keyboard users never tab to it directly. */
+        #main-content:focus {
+          outline: none;
         }
       `}</style>
     </>
