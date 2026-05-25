@@ -14,37 +14,43 @@ export function AnimatedStatsCard() {
   const countersRef = useRef<Record<string, HTMLSpanElement | null>>({});
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!cardRef.current) return;
 
-    if (prefersReducedMotion || !cardRef.current) return;
+    let cancelled = false;
+    let revert: (() => void) | null = null;
 
-    let cleanup: (() => void) | null = null;
+    // Capture synchronously before the async gap.
+    const el = cardRef.current;
+
+    // Pre-set initial state to prevent flash before GSAP resolves.
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
 
     Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(
       ([{ default: gsap }, { ScrollTrigger }]) => {
+        if (cancelled) return;
+
         gsap.registerPlugin(ScrollTrigger);
 
         const ctx = gsap.context(() => {
-          // Card entrance
-          gsap.from(cardRef.current!, {
-            opacity: 0,
-            y: 20,
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
             duration: 0.6,
             ease: "power2.out",
+            clearProps: "all",
             scrollTrigger: {
-              trigger: cardRef.current,
+              trigger: el,
               start: "top 80%",
               once: true,
             },
           });
 
-          // Numeric counters
           stats.forEach((stat) => {
             if (!stat.isNumeric) return;
-            const el = countersRef.current[stat.label];
-            if (!el) return;
+            const counterEl = countersRef.current[stat.label];
+            if (!counterEl) return;
 
             const counter = { val: stat.from };
             gsap.to(counter, {
@@ -53,23 +59,26 @@ export function AnimatedStatsCard() {
               ease: "power2.out",
               snap: { val: 1 },
               scrollTrigger: {
-                trigger: cardRef.current,
+                trigger: el,
                 start: "top 80%",
                 once: true,
               },
               onUpdate: () => {
-                el.textContent = Math.round(counter.val).toString() + stat.suffix;
+                counterEl.textContent = Math.round(counter.val).toString() + stat.suffix;
               },
             });
           });
         });
 
-        cleanup = () => ctx.revert();
+        revert = () => ctx.revert();
       }
     );
 
     return () => {
-      cleanup?.();
+      cancelled = true;
+      el.style.opacity = "";
+      el.style.transform = "";
+      revert?.();
     };
   }, []);
 

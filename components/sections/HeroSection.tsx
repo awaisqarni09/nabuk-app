@@ -89,69 +89,72 @@ export function HeroSection() {
           {/* Swap each next/image src for a real product photo when assets are ready */}
 
           {/* p1 — G100 DEVICE */}
-<div className="product p1">
-  <div className="product-inner">
-    <Image 
-      src="/images/G100-Device.png" // Point directly to your local file here
-      alt="G100 Device — veterinary equipment"
-      fill
-      style={{ objectFit: "contain" }} // Pro tip: 'contain' ensures the equipment doesn't get cropped
-      sizes="200px" 
-    />
-  </div>
-</div>
+          <div className="product p1">
+            <div className="product-inner">
+              <Image
+                src="/images/G100-Device.png"
+                alt="G100 Device — veterinary equipment"
+                fill
+                priority
+                style={{ objectFit: "contain" }}
+                sizes="200px"
+              />
+            </div>
+          </div>
 
           {/* p2 — WISAP UNIT */}
-<div className="product p2">
-  <div className="product-inner">
-    <Image 
-      src="/images/WISAF-UNIT.png" // Change this filename to match your file
-      alt="WISAP Unit — veterinary equipment" 
-      fill
-      style={{ objectFit: "contain" }} // Ensures the equipment doesn't get cropped
-      sizes="240px" 
-    />
-  </div>
-</div>
+          <div className="product p2">
+            <div className="product-inner">
+              <Image
+                src="/images/WISAF-UNIT.png"
+                alt="WISAP Unit — veterinary equipment"
+                fill
+                priority
+                style={{ objectFit: "contain" }}
+                sizes="240px"
+              />
+            </div>
+          </div>
 
           {/* p3 — MICROSCOPE */}
-<div className="product p3">
-  <div className="product-inner">
-    <Image 
-      src="/images/microscope.png" // Change this filename to match your file
-      alt="Microscope — veterinary equipment" 
-      fill
-      style={{ objectFit: "contain" }} // Ensures the equipment doesn't get cropped
-      sizes="180px" 
-    />
-  </div>
-</div>
+          <div className="product p3">
+            <div className="product-inner">
+              <Image
+                src="/images/microscope.png"
+                alt="Microscope — veterinary equipment"
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="180px"
+              />
+            </div>
+          </div>
 
           {/* p4 — ELEMENT i+ */}
-<div className="product p4">
-  <div className="product-inner">
-    <Image 
-      src="/images/element-i-plus.png" // Make sure this matches your filename and extension (e.g., .png or .jpg)
-      alt="Element i+ — veterinary analyser" 
-      fill
-      style={{ objectFit: "contain" }} // Ensures the entire analyzer graphic stays fully visible
-      sizes="200px" 
-    />
-  </div>
-</div>
+          <div className="product p4">
+            <div className="product-inner">
+              <Image
+                src="/images/element-i-plus.png"
+                alt="Element i+ — veterinary analyser"
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="200px"
+              />
+            </div>
+          </div>
 
           {/* p5 — ELEMENT HT5 */}
           <div className="product p5">
-  <div className="product-inner">
-    <Image 
-      src="/images/element-ht5.png" // lowercase — matches the filename git tracks
-      alt="Element HT5 — veterinary analyser" 
-      fill
-      style={{ objectFit: "contain" }} // Keeps the whole analyser unit perfectly framed
-      sizes="260px" 
-    />
-  </div>
-</div>
+            <div className="product-inner">
+              <Image
+                src="/images/element-ht5.png"
+                alt="Element HT5 — veterinary analyser"
+                fill
+                priority
+                style={{ objectFit: "contain" }}
+                sizes="260px"
+              />
+            </div>
+          </div>
 </div>
       </section>
 

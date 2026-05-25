@@ -186,6 +186,14 @@ export function PVStyles() {
       @media (max-width: 768px) {
         .pv-inner { padding: 56px 20px 64px; }
         .pv-bg-num { font-size: 100px; }
+        /* Remove backdrop-filter on mobile: multiple simultaneous blur()
+           elements exhaust Mobile Safari's GPU compositor, making the page
+           appear frozen or blank. Solid background is visually equivalent. */
+        .pv-item {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          background: rgba(255,255,255,0.97);
+        }
       }
       @media (max-width: 640px) {
         .pv-head-main { flex-direction: column; gap: 20px; }

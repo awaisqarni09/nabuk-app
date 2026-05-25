@@ -8,15 +8,29 @@ export function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = ref.current;
+    if (!el) return;
+
+    // For reduced-motion: make content visible immediately and skip animation.
+    // Without this the JSX style={{ opacity:0 }} stays, leaving content
+    // invisible forever on devices/browsers with reduced-motion enabled.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.style.opacity = "1";
+      return;
+    }
 
     let cancelled = false;
     let revert: (() => void) | null = null;
 
-    const el = ref.current;
-    if (!el) return;
+    // Safety net: show content within 1.5 s even if the GSAP bundle is slow
+    // to arrive (common on mobile on a weak connection). Without this the page
+    // appears completely blank until JS loads.
+    const fallback = setTimeout(() => {
+      if (el) el.style.opacity = "1";
+    }, 1500);
 
     import("gsap").then(({ default: gsap }) => {
+      clearTimeout(fallback);
       if (cancelled) return;
 
       const ctx = gsap.context(() => {
@@ -92,6 +106,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
     });
 
     return () => {
+      clearTimeout(fallback);
       cancelled = true;
       revert?.();
     };
