@@ -608,7 +608,6 @@ export function PartnersPreview() {
           inset: 0;
           z-index: 0;
         }
-        /* Teal-tinted overlay — keeps brand colours, ensures readability */
         .prt-bg-overlay {
           position: absolute;
           inset: 0;
@@ -1082,12 +1081,14 @@ export function SupportPreview() {
             </div>
 
             <div className="sup-img-wrap">
+              {/* Soft teal glow cloud sits behind the animals */}
+              <div className="sup-img-glow" aria-hidden="true" />
               <div className="sup-img">
                 <Image
-                  src="/images/who-we-are.webp"
-                  alt="Veterinary support and clinical services"
+                  src="/images/support-services.webp"
+                  alt="A dog and cat representing the veterinary care Nabuk supports"
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", objectPosition: "center top" }}
                   sizes="(max-width: 900px) 100vw, 44vw"
                 />
               </div>
@@ -1160,14 +1161,27 @@ export function SupportPreview() {
 
         /* ── Hero image ── */
         .sup-img-wrap { position: relative; }
+        /* Soft teal radial cloud behind the animals — blends into the section bg */
+        .sup-img-glow {
+          position: absolute;
+          inset: -28% -12% -18% -8%;
+          background: radial-gradient(ellipse at 62% 38%,
+            rgba(43,107,107,0.14) 0%,
+            rgba(43,107,107,0.05) 46%,
+            transparent 70%
+          );
+          pointer-events: none;
+          z-index: 0;
+        }
         .sup-img {
           position: relative;
           height: 340px;
-          border-radius: 32px;
+          border-radius: 16px;
           overflow: hidden;
+          z-index: 1;
           box-shadow:
-            0 24px 64px -20px rgba(15,39,48,0.26),
-            0 8px 20px -8px rgba(15,39,48,0.1);
+            0 8px 32px -10px rgba(15,39,48,0.14),
+            0 2px 8px -3px rgba(15,39,48,0.07);
         }
 
         /* ── Floating badge (top-right) ── */
@@ -1306,7 +1320,8 @@ export function SupportPreview() {
         /* ── Responsive ── */
         @media (max-width: 900px) {
           .sup-layout { grid-template-columns: 1fr; gap: 28px; }
-          .sup-img { height: 260px; }
+          .sup-img { height: 280px; }
+          .sup-img-glow { display: none; }
           .sup-badge { right: 4px; }
           .sup-grid { grid-template-columns: repeat(2, 1fr); }
           .sup-trust { grid-template-columns: repeat(2, 1fr); }

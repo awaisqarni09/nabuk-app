@@ -21,7 +21,7 @@ const archivoBlack = Archivo_Black({
   weight: "400",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nabukmalta.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
