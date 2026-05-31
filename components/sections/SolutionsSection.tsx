@@ -68,7 +68,7 @@ export function SolutionsSection() {
     <>
       {/* Page hero */}
       <div className="page-hero">
-<div className="page-hero-inner">
+        <div className="page-hero-inner">
           <div className="page-hero-divider" />
           <h1>Solutions</h1>
           <p className="page-hero-sub">
@@ -135,6 +135,54 @@ export function SolutionsSection() {
           </div>
         </section>
 
+        {/* How we work — 4-step process */}
+        <section aria-label="How we work" style={{ margin: "64px 0 0" }}>
+          <div className="process-header">
+            <span className="process-eyebrow">Our process</span>
+            <h2 className="process-title">From enquiry to after-sales — we&apos;re with you at every step</h2>
+          </div>
+          <div className="process-steps">
+            {[
+              {
+                num: "01",
+                title: "Consultation",
+                body: "We start by understanding your clinic — caseload, infrastructure, team size and goals — so every recommendation is built around your specific situation.",
+                color: "var(--teal)",
+              },
+              {
+                num: "02",
+                title: "Selection",
+                body: "We recommend the right equipment from the manufacturers we represent, matched to your clinical needs and budget — without a catalogue or list prices.",
+                color: "#2a7a7a",
+              },
+              {
+                num: "03",
+                title: "Installation",
+                body: "Where applicable, we manage full installation and commissioning of systems — from digital X-ray rooms to in-house laboratory stations.",
+                color: "#1f5e5e",
+              },
+              {
+                num: "04",
+                title: "After-Sales",
+                body: "On-island technical support and servicing keeps your equipment running. We don't disappear after delivery — we're your long-term partner.",
+                color: "var(--navy)",
+              },
+            ].map((step, i) => (
+              <div key={step.num} className="process-step">
+                <div className="process-step-num" style={{ color: step.color }}>{step.num}</div>
+                {i < 3 && <div className="process-connector" aria-hidden="true" />}
+                <div className="process-step-icon" style={{ background: step.color }} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M8 3l5 5-5 5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3 className="process-step-title">{step.title}</h3>
+                <p className="process-step-body">{step.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Note on approach */}
         <section aria-label="Our approach" style={{ margin: "56px 0" }}>
           <div style={{
@@ -197,16 +245,102 @@ export function SolutionsSection() {
         .solution-card { }
         .approach-grid { }
 
+        /* ── Process section ── */
+        .process-header {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          margin-bottom: 40px;
+        }
+        .process-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          background: rgba(43,107,107,0.08);
+          color: var(--teal);
+          font-size: 10.5px;
+          font-weight: 800;
+          letter-spacing: 2.2px;
+          padding: 5px 13px;
+          border-radius: 999px;
+          text-transform: uppercase;
+        }
+        .process-title {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(20px, 2.4vw, 28px);
+          color: var(--navy);
+          letter-spacing: -0.4px;
+          line-height: 1.15;
+          max-width: 560px;
+          margin: 0;
+        }
+        .process-steps {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          position: relative;
+        }
+        .process-step {
+          background: rgba(255,255,255,0.75);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(43,107,107,0.09);
+          border-radius: 18px;
+          padding: 28px 24px 24px;
+          position: relative;
+          box-shadow: 0 2px 12px -4px rgba(15,39,48,0.08);
+        }
+        .process-step-num {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: 38px;
+          letter-spacing: -2px;
+          line-height: 1;
+          margin-bottom: 16px;
+          opacity: 0.22;
+        }
+        .process-step-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 16px;
+        }
+        .process-step-title {
+          font-size: 15px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.2px;
+          margin-bottom: 10px;
+        }
+        .process-step-body {
+          font-size: 13px;
+          color: var(--muted);
+          line-height: 1.65;
+          margin: 0;
+        }
+        .process-connector { display: none; }
+
         @media (max-width: 1100px) {
           .solutions-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 900px) {
           .solutions-grid { grid-template-columns: repeat(2, 1fr); }
           .approach-grid { grid-template-columns: 1fr !important; }
+          .process-steps { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 520px) {
           .solutions-grid { grid-template-columns: 1fr; }
+          .process-steps { grid-template-columns: 1fr; }
           .page-cta-band { padding: 32px 24px !important; }
+        }
+        @media (max-width: 768px) {
+          .process-step {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(255,255,255,0.95);
+          }
         }
       `}</style>
     </>
