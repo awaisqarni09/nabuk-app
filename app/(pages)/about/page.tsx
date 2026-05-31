@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "The history of Nabuk Distributors — from 1996 to a full-service veterinary equipment and diagnostics partner for Malta and Gozo.",
     type: "website",
+    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — About Us" }],
   },
 };
 

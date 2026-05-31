@@ -19,7 +19,9 @@ export function organizationSchema() {
       email: "info@nabukmalta.com", // PLACEHOLDER
       availableLanguage: "English",
     },
-    sameAs: [],
+    sameAs: [
+      "https://www.nabukmalta.com",
+    ],
   };
 }
 
@@ -46,9 +48,11 @@ export function localBusinessSchema() {
     email: "info@nabukmalta.com", // PLACEHOLDER
     address: {
       "@type": "PostalAddress",
-      addressCountry: "MT",
+      addressLocality: "Malta",
       addressRegion: "Malta",
+      addressCountry: "MT",
     },
+    image: `${SITE_URL}/Nabuk-logo.png`,
     areaServed: [
       { "@type": "Country", name: "Malta" },
       { "@type": "AdministrativeArea", name: "Gozo" },

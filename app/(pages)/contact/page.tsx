@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "Tell us about your clinic and what you're looking to achieve. We'll get back to you with expert advice on veterinary equipment and diagnostics.",
     type: "website",
+    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Contact Us" }],
   },
 };
 

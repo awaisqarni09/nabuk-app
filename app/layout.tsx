@@ -36,6 +36,14 @@ export const metadata: Metadata = {
     siteName: "Nabuk Distributors Malta",
     locale: "en_MT",
     type: "website",
+    images: [
+      {
+        url: "/Nabuk-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nabuk Distributors Malta — Veterinary Equipment & Diagnostics",
+      },
+    ],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },

@@ -123,6 +123,7 @@ export function HeroSection() {
                 src="/images/microscope.png"
                 alt="Microscope — veterinary equipment"
                 fill
+                priority
                 style={{ objectFit: "contain" }}
                 sizes="180px"
               />
@@ -136,6 +137,7 @@ export function HeroSection() {
                 src="/images/element-i-plus.png"
                 alt="Element i+ — veterinary analyser"
                 fill
+                priority
                 style={{ objectFit: "contain" }}
                 sizes="200px"
               />

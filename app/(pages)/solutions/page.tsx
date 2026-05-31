@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Veterinary clinical technologies for Malta — from diagnostics to the surgical suite. No prices, no catalogue — consultation-driven.",
     type: "website",
+    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Solutions" }],
   },
 };
 

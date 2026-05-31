@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "On-island consultation, installation, training and after-sales support for veterinary clinics across Malta and Gozo.",
     type: "website",
+    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Support & Services" }],
   },
 };
 

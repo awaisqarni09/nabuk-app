@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "International veterinary equipment manufacturers represented in Malta by Nabuk Distributors — including Eickemeyer, Antech, Melag, Covetrus and Veterinary Instrumentation.",
     type: "website",
+    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Our Partners" }],
   },
 };
 
