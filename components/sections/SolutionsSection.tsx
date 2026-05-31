@@ -67,7 +67,7 @@ export function SolutionsSection() {
   return (
     <>
       {/* Page hero */}
-      <div className="page-hero">
+      <div className="page-hero sol-page-hero">
         <div className="page-hero-inner">
           <div className="page-hero-divider" />
           <h1>Solutions</h1>
@@ -82,13 +82,17 @@ export function SolutionsSection() {
 
         {/* Capability cards grid */}
         <section aria-label="Capability areas">
+          <div className="sol-section-header">
+            <span className="sol-eyebrow">What we supply</span>
+            <h2 className="sol-section-title">Clinical technology for every discipline</h2>
+          </div>
           <div className="solutions-grid">
             {capabilities.map((cap) => {
               const Icon = cap.icon;
               return (
                 <article key={cap.title} className="nabuk-card solution-card">
                   {/* Image */}
-                  <div style={{ position: "relative", height: "180px", overflow: "hidden" }}>
+                  <div style={{ position: "relative", height: "220px", overflow: "hidden" }}>
                     <Image
                       src={cap.img}
                       alt={`${cap.title} — placeholder image`}
@@ -115,7 +119,7 @@ export function SolutionsSection() {
                     </div>
                   </div>
                   {/* Text */}
-                  <div style={{ padding: "24px" }}>
+                  <div style={{ padding: "28px 28px 24px" }}>
                     <h3 style={{
                       fontFamily: "var(--font-archivo-black, 'Archivo Black')",
                       fontSize: "18px",
@@ -236,10 +240,44 @@ export function SolutionsSection() {
       </div>
 
       <style>{`
+        /* ── Hero: taller, more presence ── */
+        .sol-page-hero {
+          padding: 104px 20px 96px !important;
+        }
+
+        /* ── Section header ── */
+        .sol-section-header {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 36px;
+        }
+        .sol-eyebrow {
+          display: inline-flex;
+          background: rgba(43,107,107,0.08);
+          color: var(--teal);
+          font-size: 10.5px;
+          font-weight: 800;
+          letter-spacing: 2.2px;
+          padding: 5px 13px;
+          border-radius: 999px;
+          text-transform: uppercase;
+          width: fit-content;
+        }
+        .sol-section-title {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(22px, 2.6vw, 32px);
+          color: var(--navy);
+          letter-spacing: -0.4px;
+          line-height: 1.1;
+          margin: 0;
+        }
+
+        /* ── Capability grid: 3 columns, bigger cards ── */
         .solutions-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 28px;
           margin-bottom: 0;
         }
         .solution-card { }
@@ -323,17 +361,19 @@ export function SolutionsSection() {
         .process-connector { display: none; }
 
         @media (max-width: 1100px) {
-          .solutions-grid { grid-template-columns: repeat(3, 1fr); }
+          .solutions-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 900px) {
-          .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+          .sol-page-hero { padding: 80px 20px 72px !important; }
+          .solutions-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .approach-grid { grid-template-columns: 1fr !important; }
           .process-steps { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 520px) {
-          .solutions-grid { grid-template-columns: 1fr; }
+          .sol-page-hero { padding: 64px 20px 56px !important; }
+          .solutions-grid { grid-template-columns: 1fr; gap: 16px; }
           .process-steps { grid-template-columns: 1fr; }
-          .page-cta-band { padding: 32px 24px !important; }
+          .page-cta-band { padding: 40px 24px !important; }
         }
         @media (max-width: 768px) {
           .process-step {

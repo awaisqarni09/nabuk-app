@@ -41,7 +41,7 @@ export function PartnersSection() {
   return (
     <>
       {/* Page hero */}
-      <div className="page-hero">
+      <div className="page-hero prt-page-hero">
         <div className="page-hero-inner">
           <div className="page-hero-divider" />
           <h1>Our Partners</h1>
@@ -55,17 +55,17 @@ export function PartnersSection() {
       <div className="page-content">
 
         {/* Heritage note */}
-        <section aria-label="Our partnership heritage" style={{ marginBottom: "56px" }}>
+        <section aria-label="Our partnership heritage" style={{ marginBottom: "72px" }}>
           <div style={{
             background: "rgba(255,255,255,0.7)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            borderRadius: "20px",
-            padding: "36px 40px",
+            borderRadius: "24px",
+            padding: "48px 56px",
             boxShadow: "0 10px 40px -15px rgba(15,39,48,0.12)",
             display: "grid",
             gridTemplateColumns: "auto 1fr",
-            gap: "24px",
+            gap: "32px",
             alignItems: "center",
           }} className="heritage-grid">
             <div style={{
@@ -82,7 +82,7 @@ export function PartnersSection() {
         </section>
 
         {/* What our partnerships deliver */}
-        <section aria-label="Partnership benefits" style={{ marginBottom: "56px" }}>
+        <section aria-label="Partnership benefits" style={{ marginBottom: "72px" }}>
           <div className="prt-benefits-grid">
             {[
               {
@@ -135,7 +135,7 @@ export function PartnersSection() {
                 key={p.name}
                 className="nabuk-card partner-card"
                 style={{
-                  padding: "32px 24px",
+                  padding: "48px 36px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -150,7 +150,7 @@ export function PartnersSection() {
                 }}
               >
                 {p.logoSrc ? (
-                  <div style={{ position: "relative", width: "180px", height: "72px" }}>
+                  <div style={{ position: "relative", width: "200px", height: "88px" }}>
                     <Image
                       src={p.logoSrc}
                       alt={`${p.name} logo — placeholder`}
@@ -197,14 +197,19 @@ export function PartnersSection() {
       </div>
 
       <style>{`
-        /* ── Benefits grid ── */
+        /* ── Hero: taller ── */
+        .prt-page-hero {
+          padding: 104px 20px 96px !important;
+        }
+
+        /* ── Benefits grid: 2×2, bigger cards ── */
         .prt-benefits-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
         }
         .prt-benefit-card {
-          padding: 28px 22px;
+          padding: 40px 36px;
           display: flex;
           flex-direction: column;
           gap: 0;
@@ -235,24 +240,31 @@ export function PartnersSection() {
           margin: 0;
         }
 
+        .prt-benefit-icon {
+          width: 52px;
+          height: 52px;
+          margin-bottom: 20px;
+        }
+        .prt-benefit-title { font-size: 16px; margin-bottom: 12px; }
+        .prt-benefit-body  { font-size: 14px; line-height: 1.7; }
+
         /* ── Partner logo grid ── */
         .partners-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          gap: 28px;
         }
         .heritage-grid { }
 
-        @media (max-width: 1100px) {
-          .prt-benefits-grid { grid-template-columns: repeat(2, 1fr); }
-        }
         @media (max-width: 900px) {
-          .partners-grid { grid-template-columns: repeat(2, 1fr); }
+          .prt-page-hero { padding: 80px 20px 72px !important; }
+          .prt-benefits-grid { grid-template-columns: 1fr; }
+          .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .heritage-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 520px) {
-          .prt-benefits-grid { grid-template-columns: 1fr; }
-          .partners-grid { grid-template-columns: 1fr; }
+          .prt-page-hero { padding: 64px 20px 56px !important; }
+          .partners-grid { grid-template-columns: 1fr; gap: 16px; }
         }
       `}</style>
     </>
