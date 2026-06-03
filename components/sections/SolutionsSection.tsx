@@ -68,7 +68,20 @@ export function SolutionsSection() {
     <>
       {/* Page hero */}
       <div className="page-hero sol-page-hero">
-        <div className="page-hero-inner">
+        {/* Banner illustration — full-bleed hero background */}
+        <div className="sol-hero-img" aria-hidden="true">
+          <Image
+            src="/images/solution-banner.png"
+            alt=""
+            fill
+            priority
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            sizes="100vw"
+          />
+        </div>
+        {/* Gradient fade — dark on text side, reveals illustration on right */}
+        <div className="sol-hero-overlay" aria-hidden="true" />
+        <div className="page-hero-inner sol-hero-inner">
           <div className="page-hero-divider" />
           <h1>Solutions</h1>
           <p className="page-hero-sub">
@@ -240,9 +253,32 @@ export function SolutionsSection() {
       </div>
 
       <style>{`
-        /* ── Hero: taller, more presence ── */
+        /* ── Hero banner ── */
         .sol-page-hero {
+          overflow: hidden;
           padding: 104px 20px 96px !important;
+        }
+        .sol-hero-img {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+        .sol-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to right,
+            rgba(10,28,40,0.82) 0%,
+            rgba(10,28,40,0.65) 40%,
+            rgba(10,28,40,0.22) 75%,
+            rgba(10,28,40,0.05) 100%
+          );
+          pointer-events: none;
+          z-index: 1;
+        }
+        .sol-hero-inner {
+          position: relative;
+          z-index: 2;
         }
 
         /* ── Section header ── */
