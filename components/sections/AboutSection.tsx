@@ -73,21 +73,8 @@ export function AboutSection() {
   return (
     <>
       {/* ── PAGE HERO ── */}
-      <div className="page-hero abt-page-hero">
-        {/* Banner illustration — fills the hero as a background */}
-        <div className="abt-hero-img" aria-hidden="true">
-          <Image
-            src="/images/about-us-banner.png"
-            alt=""
-            fill
-            priority
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            sizes="100vw"
-          />
-        </div>
-        {/* Subtle dark overlay so white text stays readable */}
-        <div className="abt-hero-overlay" aria-hidden="true" />
-        <div className="page-hero-inner abt-hero-inner">
+      <div className="page-hero">
+        <div className="page-hero-inner">
           <div className="page-hero-divider" />
           <h1>About Us</h1>
           <p className="page-hero-sub">
@@ -232,37 +219,6 @@ export function AboutSection() {
       </div>
 
       <style>{`
-        /* ── HERO BANNER ── */
-        .abt-page-hero {
-          overflow: hidden;
-          padding: 104px 20px 96px !important;
-        }
-        /* Absolutely-positioned image layer */
-        .abt-hero-img {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-        }
-        /* Dark overlay — banner is already navy/teal so keep it light */
-        .abt-hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to right,
-            rgba(10,28,40,0.82) 0%,
-            rgba(10,28,40,0.65) 40%,
-            rgba(10,28,40,0.22) 75%,
-            rgba(10,28,40,0.05) 100%
-          );
-          pointer-events: none;
-          z-index: 1;
-        }
-        /* Text sits above both the image and the overlay */
-        .abt-hero-inner {
-          position: relative;
-          z-index: 2;
-        }
-
         /* ── LEAD ── */
         .about-lead-section {
           margin-bottom: 56px;

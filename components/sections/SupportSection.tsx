@@ -34,21 +34,8 @@ export function SupportSection() {
   return (
     <>
       {/* Page hero */}
-      <div className="page-hero sup-page-hero">
-        {/* Banner illustration — full-bleed hero background */}
-        <div className="sup-hero-img" aria-hidden="true">
-          <Image
-            src="/images/support-banner.png"
-            alt=""
-            fill
-            priority
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            sizes="100vw"
-          />
-        </div>
-        {/* Overlay for text readability */}
-        <div className="sup-hero-overlay" aria-hidden="true" />
-        <div className="page-hero-inner sup-hero-inner">
+      <div className="page-hero">
+<div className="page-hero-inner">
           <div className="page-hero-divider" />
           <h1>Support &amp; Services</h1>
           <p className="page-hero-sub">
@@ -163,34 +150,6 @@ export function SupportSection() {
       </div>
 
       <style>{`
-        /* ── HERO BANNER ── */
-        .sup-page-hero {
-          overflow: hidden;
-          padding: 104px 20px 96px !important;
-        }
-        .sup-hero-img {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-        }
-        .sup-hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to right,
-            rgba(10,28,40,0.82) 0%,
-            rgba(10,28,40,0.65) 40%,
-            rgba(10,28,40,0.22) 75%,
-            rgba(10,28,40,0.05) 100%
-          );
-          pointer-events: none;
-          z-index: 1;
-        }
-        .sup-hero-inner {
-          position: relative;
-          z-index: 2;
-        }
-
         .services-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
