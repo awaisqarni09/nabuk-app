@@ -4,10 +4,11 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "Nabuk Distributors Ltd.",
     alternateName: "VSS — Vet Supplies Specialists",
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/Nabuk-logo.png`,
     description:
       "Malta's specialist partner for advanced veterinary equipment and diagnostics, serving clinics across Malta and Gozo since 1996.",
     foundingDate: "1996",
@@ -29,10 +30,12 @@ export function webSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: "Nabuk Distributors Malta",
     url: SITE_URL,
     description:
       "Advanced veterinary equipment and diagnostics for the clinics of Malta and Gozo.",
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
 

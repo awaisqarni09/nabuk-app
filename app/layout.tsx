@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { organizationSchema, webSiteSchema } from "@/lib/seo/schema";
 import { PageTransition } from "@/components/animations/PageTransition";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -20,8 +21,6 @@ const archivoBlack = Archivo_Black({
   display: "swap",
   weight: "400",
 });
-
-import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
