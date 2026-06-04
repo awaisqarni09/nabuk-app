@@ -27,23 +27,6 @@ export function HeroSection() {
       <section className="nabuk-hero" aria-label="Nabuk Distributors introduction">
         {/* LEFT column */}
         <div className="hero-left">
-          {/* Logo lockup */}
-          <div className="logo">
-            <svg viewBox="0 0 64 64" fill="none" stroke="var(--navy)"
-              strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
-              width={60} height={60} className="logo-mark" aria-hidden="true">
-              <path d="M18 8v18c0 7 4 12 10 14" />
-              <path d="M40 8v18c0 7-4 12-10 14" />
-              <circle cx="18" cy="6" r="2.5" fill="var(--navy)" stroke="none" />
-              <circle cx="40" cy="6" r="2.5" fill="var(--navy)" stroke="none" />
-              <line x1="30" y1="40" x2="30" y2="50" />
-              <circle cx="30" cy="54" r="5" />
-              <line x1="30" y1="42" x2="44" y2="42" />
-              <circle cx="46" cy="42" r="3" fill="var(--navy)" stroke="none" />
-            </svg>
-            <span className="logo-vss">VSS</span>
-            <span className="logo-tag">Vet Supplies Specialists</span>
-          </div>
 
           {/* Eyebrow */}
           <div className="hero-eyebrow">WELCOME TO</div>

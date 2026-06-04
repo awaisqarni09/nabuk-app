@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -26,29 +27,18 @@ export function Navbar() {
         <div className="nav-inner">
           {/* Logo */}
           <Link href="/" className="nav-logo" aria-label="Nabuk Distributors Malta — home">
-            <svg
-              viewBox="0 0 64 64"
-              fill="none"
-              stroke="var(--navy)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              width={36}
+            <Image
+              src="/images/nabuk-logo-icon.png"
+              alt=""
               height={36}
+              width={36}
+              priority
+              style={{ objectFit: "contain", height: "36px", width: "auto", mixBlendMode: "multiply" }}
               aria-hidden="true"
-            >
-              <path d="M18 8v18c0 7 4 12 10 14" />
-              <path d="M40 8v18c0 7-4 12-10 14" />
-              <circle cx="18" cy="6" r="2.5" fill="var(--navy)" stroke="none" />
-              <circle cx="40" cy="6" r="2.5" fill="var(--navy)" stroke="none" />
-              <line x1="30" y1="40" x2="30" y2="50" />
-              <circle cx="30" cy="54" r="5" />
-              <line x1="30" y1="42" x2="44" y2="42" />
-              <circle cx="46" cy="42" r="3" fill="var(--navy)" stroke="none" />
-            </svg>
+            />
             <div className="nav-logo-text">
               <span className="nav-vss">VSS</span>
-              <span className="nav-company">Nabuk Distributors</span>
+              <span className="nav-company">Vet Supplies Specialists</span>
             </div>
           </Link>
 

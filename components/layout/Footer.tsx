@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = [
   { href: "/solutions", label: "Solutions" },
@@ -16,29 +17,16 @@ export function Footer() {
           {/* Brand column */}
           <div className="footer-brand">
             <Link href="/" className="footer-logo" aria-label="Nabuk Distributors Malta — home">
-              <svg
-                viewBox="0 0 64 64"
-                fill="none"
-                stroke="rgba(255,255,255,0.9)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                width={40}
-                height={40}
-                aria-hidden="true"
-              >
-                <path d="M18 8v18c0 7 4 12 10 14" />
-                <path d="M40 8v18c0 7-4 12-10 14" />
-                <circle cx="18" cy="6" r="2.5" fill="rgba(255,255,255,0.9)" stroke="none" />
-                <circle cx="40" cy="6" r="2.5" fill="rgba(255,255,255,0.9)" stroke="none" />
-                <line x1="30" y1="40" x2="30" y2="50" />
-                <circle cx="30" cy="54" r="5" />
-                <line x1="30" y1="42" x2="44" y2="42" />
-                <circle cx="46" cy="42" r="3" fill="rgba(255,255,255,0.9)" stroke="none" />
-              </svg>
+              <Image
+                src="/images/nabuk-logo-icon.png"
+                alt=""
+                height={44}
+                width={44}
+                style={{ objectFit: "contain", height: "44px", width: "auto", filter: "brightness(0) invert(1)" }}
+              />
               <div>
                 <span className="footer-vss">VSS</span>
-                <span className="footer-company">Nabuk Distributors Malta</span>
+                <span className="footer-company">Vet Supplies Specialists</span>
               </div>
             </Link>
             <p className="footer-tagline">

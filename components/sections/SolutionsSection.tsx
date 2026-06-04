@@ -66,14 +66,42 @@ const capabilities = [
 export function SolutionsSection() {
   return (
     <>
-      {/* Page hero */}
-      <div className="page-hero sol-page-hero">
-        <div className="page-hero-inner">
-          <div className="page-hero-divider" />
-          <h1>Solutions</h1>
-          <p className="page-hero-sub">
-            We source and supply the clinical technologies that modern veterinary practice depends on — from diagnostics to the surgical suite.
-          </p>
+      {/* ── SOLUTIONS HERO — home-hero-style layout ── */}
+      <div className="sol-hero-section">
+        <div className="sol-hero-wrap">
+
+          {/* LEFT: text */}
+          <div className="sol-hero-left">
+            <div className="sol-hero-eyebrow">What We Supply</div>
+            <h1 className="sol-hero-title">Solutions</h1>
+            <div className="sol-hero-bar" />
+            <p className="sol-hero-lead">
+              We source and supply the clinical technologies that modern veterinary practice depends on — from diagnostics to the surgical suite.
+            </p>
+            <Link href="/contact" className="sol-hero-cta">
+              Request a Consultation
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                width={15} height={15} aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+
+          {/* RIGHT: single clean equipment image */}
+          <div className="sol-hero-img-col">
+            <div className="sol-hero-img-glow" aria-hidden="true" />
+            <div className="sol-hero-img-frame">
+              <Image
+                src="/images/diagnostic-system.webp"
+                alt="Veterinary diagnostic equipment supplied by Nabuk Distributors"
+                fill
+                priority
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="(max-width: 900px) 0px, 50vw"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -240,9 +268,113 @@ export function SolutionsSection() {
       </div>
 
       <style>{`
-        /* ── Hero: taller, more presence ── */
-        .sol-page-hero {
-          padding: 104px 20px 96px !important;
+        /* ── Solutions hero — home-style two-column layout ── */
+        .sol-hero-section {
+          background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+          overflow: hidden;
+        }
+        .sol-hero-wrap {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 72px 20px 64px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          align-items: center;
+          min-height: 540px;
+        }
+        .sol-hero-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .sol-hero-eyebrow {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 2.5px;
+          color: var(--teal);
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        }
+        .sol-hero-title {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(52px, 7vw, 92px);
+          line-height: 0.95;
+          color: var(--navy);
+          letter-spacing: -1.5px;
+          margin-bottom: 24px;
+        }
+        .sol-hero-bar {
+          width: 56px;
+          height: 3px;
+          background: var(--teal);
+          border-radius: 2px;
+          margin-bottom: 22px;
+        }
+        .sol-hero-lead {
+          font-size: 17px;
+          color: var(--navy);
+          max-width: 440px;
+          line-height: 1.6;
+          font-weight: 500;
+          margin-bottom: 32px;
+        }
+        .sol-hero-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: var(--teal);
+          color: #fff;
+          font-weight: 700;
+          font-size: 13px;
+          padding: 13px 26px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.5px;
+          box-shadow:
+            0 8px 24px -8px rgba(31,78,78,0.5),
+            0 2px 8px -2px rgba(31,78,78,0.2);
+          transition:
+            background 0.2s ease,
+            transform 0.22s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.2s ease;
+        }
+        .sol-hero-cta:hover {
+          background: var(--teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px -8px rgba(31,78,78,0.55), 0 4px 12px -2px rgba(31,78,78,0.25);
+        }
+        .sol-hero-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .sol-hero-cta:active { transform: translateY(0); }
+
+        /* ── Right: image column ── */
+        .sol-hero-img-col {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .sol-hero-img-glow {
+          position: absolute;
+          inset: -15%;
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 50%,
+            rgba(155,205,205,0.55) 0%,
+            rgba(195,228,228,0.25) 50%,
+            transparent 75%);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .sol-hero-img-frame {
+          position: relative;
+          width: 100%;
+          height: 420px;
+          border-radius: 20px;
+          overflow: hidden;
+          z-index: 1;
+          box-shadow:
+            0 20px 60px -16px rgba(15,39,48,0.22),
+            0 6px 20px -6px rgba(15,39,48,0.1);
         }
 
         /* ── Section header ── */
@@ -364,13 +496,14 @@ export function SolutionsSection() {
           .solutions-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 900px) {
-          .sol-page-hero { padding: 80px 20px 72px !important; }
+          .sol-hero-wrap { grid-template-columns: 1fr; min-height: unset; padding: 56px 20px 48px; }
+          .sol-hero-img-col { display: none; }
           .solutions-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .approach-grid { grid-template-columns: 1fr !important; }
           .process-steps { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 520px) {
-          .sol-page-hero { padding: 64px 20px 56px !important; }
+          .sol-hero-title { font-size: clamp(44px, 12vw, 64px); }
           .solutions-grid { grid-template-columns: 1fr; gap: 16px; }
           .process-steps { grid-template-columns: 1fr; }
           .page-cta-band { padding: 40px 24px !important; }
