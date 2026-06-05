@@ -34,13 +34,41 @@ export function SupportSection() {
   return (
     <>
       {/* Page hero */}
-      <div className="page-hero">
-<div className="page-hero-inner">
-          <div className="page-hero-divider" />
-          <h1>Support &amp; Services</h1>
-          <p className="page-hero-sub">
-            Our relationship with a clinic doesn&apos;t end at delivery.
-          </p>
+      <div className="page-hero visual-page-hero">
+        <div className="page-hero-inner">
+          <div className="visual-page-hero-text">
+            <div className="visual-page-hero-eyebrow">How We Help</div>
+            <h1>Support &amp; Services</h1>
+            <div className="page-hero-divider" />
+            <p className="page-hero-sub">
+              From specification to installation, training and after-sales care — our relationship with a clinic doesn&apos;t end at delivery.
+            </p>
+            <Link href="/contact" className="visual-page-hero-cta">
+              Request Support
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                width={15} height={15} aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="visual-page-hero-media">
+            <div className="visual-page-hero-glow" aria-hidden="true" />
+            <div className="visual-page-hero-frame" style={{ position: "relative", height: "420px" }}>
+              <Image
+                src="/images/support-banner.png"
+                alt="Veterinary support and services from Nabuk Distributors"
+                fill
+                priority
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="(max-width: 900px) 0px, 50vw"
+              />
+            </div>
+            <div className="visual-page-hero-badge">
+              <span className="visual-page-hero-badge-dot">04</span>
+              <span className="visual-page-hero-badge-text">Consultation, installation, training and after-sales</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -155,7 +183,13 @@ export function SupportSection() {
           grid-template-columns: repeat(2, 1fr);
           gap: 24px;
         }
-        .service-card { padding: 32px; }
+        .service-card {
+          padding: 32px;
+          background: rgba(255,255,255,0.82);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(43,107,107,0.09);
+        }
         .heritage-support-grid { }
 
         @media (max-width: 900px) {

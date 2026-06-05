@@ -73,13 +73,41 @@ export function AboutSection() {
   return (
     <>
       {/* ── PAGE HERO ── */}
-      <div className="page-hero">
+      <div className="page-hero visual-page-hero">
         <div className="page-hero-inner">
-          <div className="page-hero-divider" />
-          <h1>About Us</h1>
-          <p className="page-hero-sub">
-            A specialist partner to Malta&apos;s veterinary profession since 1996 — built on competence, trust, and longevity.
-          </p>
+          <div className="visual-page-hero-text">
+            <div className="visual-page-hero-eyebrow">Our Identity</div>
+            <h1>About Us</h1>
+            <div className="page-hero-divider" />
+            <p className="page-hero-sub">
+              A specialist partner to Malta&apos;s veterinary profession since 1996 — built on competence, trust, and longevity.
+            </p>
+            <Link href="/contact" className="visual-page-hero-cta">
+              Speak to Nabuk
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                width={15} height={15} aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="visual-page-hero-media">
+            <div className="visual-page-hero-glow" aria-hidden="true" />
+            <div className="visual-page-hero-frame" style={{ position: "relative", height: "420px" }}>
+              <Image
+                src="/images/about-us-banner.png"
+                alt="Nabuk Distributors supporting Malta's veterinary profession"
+                fill
+                priority
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="(max-width: 900px) 0px, 50vw"
+              />
+            </div>
+            <div className="visual-page-hero-badge">
+              <span className="visual-page-hero-badge-dot">96</span>
+              <span className="visual-page-hero-badge-text">Serving veterinary clinics since 1996</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -310,10 +338,14 @@ export function AboutSection() {
 
         /* ── PILLARS BAND ── */
         .about-pillars-band {
-          background: var(--bg-2);
-          border-radius: 24px;
+          background: rgba(255,255,255,0.64);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(43,107,107,0.09);
+          border-radius: 20px;
           padding: 56px 48px;
           margin: 56px 0 0;
+          box-shadow: 0 10px 40px -15px rgba(15,39,48,0.12);
         }
         .about-pillars-header {
           margin-bottom: 40px;
@@ -331,10 +363,11 @@ export function AboutSection() {
           gap: 20px;
         }
         .about-pillar-card {
-          background: var(--card);
-          border-radius: 16px;
+          background: rgba(255,255,255,0.86);
+          border: 1.5px solid rgba(43,107,107,0.08);
+          border-radius: 18px;
           padding: 32px 28px;
-          box-shadow: 0 4px 20px -8px rgba(15,39,48,0.12);
+          box-shadow: 0 2px 12px -4px rgba(15,39,48,0.08);
           display: flex;
           flex-direction: column;
           gap: 0;

@@ -40,14 +40,41 @@ const partners = [
 export function PartnersSection() {
   return (
     <>
-      {/* Page hero */}
-      <div className="page-hero prt-page-hero">
+      {/* ── HERO ── */}
+      <div className="page-hero visual-page-hero">
         <div className="page-hero-inner">
-          <div className="page-hero-divider" />
-          <h1>Our Partners</h1>
-          <p className="page-hero-sub">
-            We represent globally respected manufacturers, bringing their technologies to Maltese veterinary clinics.
-          </p>
+          <div className="visual-page-hero-text">
+            <div className="visual-page-hero-eyebrow">Who We Represent</div>
+            <h1>Our Partners</h1>
+            <div className="page-hero-divider" />
+            <p className="page-hero-sub">
+              We represent globally respected manufacturers, bringing their technologies directly to veterinary clinics across Malta and Gozo.
+            </p>
+            <Link href="/contact" className="visual-page-hero-cta">
+              Request a Consultation
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                width={15} height={15} aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+          <div className="visual-page-hero-media">
+            <div className="visual-page-hero-glow" aria-hidden="true" />
+            <div className="visual-page-hero-frame" style={{ position: "relative", height: "420px" }}>
+              <Image
+                src="/images/solution-banner.png"
+                alt="Veterinary diagnostic equipment from our manufacturing partners"
+                fill
+                priority
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="(max-width: 900px) 0px, 50vw"
+              />
+            </div>
+            <div className="visual-page-hero-badge">
+              <span className="visual-page-hero-badge-dot">EU</span>
+              <span className="visual-page-hero-badge-text">Global manufacturers, local Maltese support</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -269,6 +296,10 @@ export function PartnersSection() {
           display: flex;
           flex-direction: column;
           gap: 0;
+          background: rgba(255,255,255,0.82);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(43,107,107,0.09);
         }
         .prt-benefit-icon {
           width: 44px;
@@ -435,6 +466,9 @@ export function PartnersSection() {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 28px;
+        }
+        .partner-card {
+          border: 1.5px solid rgba(43,107,107,0.08);
         }
         .heritage-grid { }
 
