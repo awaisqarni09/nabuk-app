@@ -88,6 +88,62 @@ export function PageTransition({ children }: { children: ReactNode }) {
           }
         }
 
+        // ── 2b. Solutions hero ─────────────────────────────────────────
+        //    The Solutions page uses custom .sol-hero-* markup with no
+        //    .page-hero class, so the block above skips it. Give it the
+        //    same entrance language: staggered text rise, divider wipe,
+        //    and a gentle image reveal.
+        const solHero = el.querySelector<HTMLElement>(".sol-hero-section");
+        if (solHero) {
+          const items = solHero.querySelectorAll<HTMLElement>(
+            ".sol-hero-eyebrow, .sol-hero-title, .sol-hero-lead, .sol-hero-cta"
+          );
+          if (items.length) {
+            tl.from(
+              items,
+              {
+                y: 20,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: "power3.out",
+                clearProps: "all",
+              },
+              "-=0.3"
+            );
+          }
+
+          const bar = solHero.querySelector<HTMLElement>(".sol-hero-bar");
+          if (bar) {
+            tl.from(
+              bar,
+              {
+                scaleX: 0,
+                transformOrigin: "left center",
+                duration: 0.38,
+                ease: "power2.out",
+                clearProps: "all",
+              },
+              "-=0.5"
+            );
+          }
+
+          const img = solHero.querySelector<HTMLElement>(".sol-hero-img-col");
+          if (img) {
+            tl.from(
+              img,
+              {
+                opacity: 0,
+                scale: 0.96,
+                duration: 0.6,
+                ease: "power3.out",
+                clearProps: "all",
+              },
+              "-=0.55"
+            );
+          }
+        }
+
         // ── 3. Content area: opacity fade only — no y, no child stagger.
         //    Adding y here or staggering children shifts cards relative to
         //    each other in the grid, causing the overlap on desktop and
