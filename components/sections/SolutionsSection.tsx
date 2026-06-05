@@ -9,7 +9,32 @@ import {
   Thermometer,
   Armchair,
   Wrench,
+  Boxes,
+  Wifi,
+  BadgeCheck,
+  Search,
 } from "lucide-react";
+
+// ── Hero constellation ──
+// Satellite cards orbiting the central workstation. `cx`/`cy` are the card's
+// centre as a % of the orbit box — they double as the SVG connector endpoints.
+const orbitItems = [
+  { title: "Ultrasound Imaging",   sub: "Advanced diagnostic imaging", img: "/images/ultrasound-imaging.webp",   icon: Activity,     cx: 20, cy: 20 },
+  { title: "Microscopy",           sub: "High precision microscopy",   img: "/images/microscopy.webp",           icon: Search,       cx: 85, cy: 17 },
+  { title: "Laboratory Analyzers", sub: "In-house diagnostics",        img: "/images/laboratory-analyzers.webp", icon: FlaskConical, cx: 19, cy: 81 },
+  { title: "Surgical Instrument",  sub: "Precision surgical tools",    img: "/images/surgical-instrument.webp",  icon: Scissors,     cx: 85, cy: 84 },
+];
+
+// Centre of the orbit (workstation card / connector origin).
+const ORBIT_CX = 53;
+const ORBIT_CY = 50;
+
+const heroFeatures = [
+  { icon: Boxes,      label: "Integrated Ecosystem" },
+  { icon: Wifi,       label: "Seamless Connectivity" },
+  { icon: Activity,   label: "Reliable Performance" },
+  { icon: BadgeCheck, label: "Clinical Standard" },
+];
 
 // PLACEHOLDER: descriptions are professionally-toned but invented — replace with client-approved copy before launch
 const capabilities = [
@@ -118,45 +143,107 @@ const enquiryReasons = [
 export function SolutionsSection() {
   return (
     <>
-      {/* ── HERO — home-hero-style layout ── */}
+      {/* ── HERO — constellation / orbital layout ── */}
       <div className="sol-hero-section">
         <div className="sol-hero-wrap">
-          {/* LEFT: text */}
-          <div className="sol-hero-left">
-            <div className="sol-hero-eyebrow">What We Supply</div>
-            <h1 className="sol-hero-title">Solutions</h1>
-            <div className="sol-hero-bar" />
-            <p className="sol-hero-lead">
-              We source and supply the clinical technologies that modern veterinary practice depends on — from diagnostics to the surgical suite.
-            </p>
-            <Link href="/contact" className="sol-hero-cta">
-              Request a Consultation
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                width={15} height={15} aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </Link>
+          <div className="sol-hero-grid">
+            {/* LEFT: text */}
+            <div className="sol-hero-left">
+              <div className="sol-hero-eyebrow">What We Supply</div>
+              <h1 className="sol-hero-title">Solutions for Modern Veterinary Practice</h1>
+              <p className="sol-hero-lead">
+                We source and supply the clinical technologies that modern veterinary practice depends on — from diagnostics to the surgical suite.
+              </p>
+              <a href="#capabilities" className="sol-hero-cta">View All Solutions</a>
+            </div>
+
+            {/* RIGHT: orbit constellation */}
+            <div className="sol-hero-img-col">
+              <div className="sol-orbit">
+                <div className="sol-orbit-ring" aria-hidden="true" />
+                <div className="sol-orbit-ring sol-orbit-ring-2" aria-hidden="true" />
+                <div className="sol-orbit-glow" aria-hidden="true" />
+                <div className="sol-orbit-glow-core" aria-hidden="true" />
+
+                {/* dashed connectors + node dots from centre to each satellite */}
+                <svg className="sol-orbit-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  {orbitItems.map((item) => (
+                    <line
+                      key={item.title}
+                      x1={ORBIT_CX} y1={ORBIT_CY} x2={item.cx} y2={item.cy}
+                      stroke="rgba(43,120,116,0.55)"
+                      strokeWidth={1.6}
+                      strokeDasharray="1.5 7"
+                      strokeLinecap="round"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  ))}
+                </svg>
+                {/* glowing connector dots (kept out of the stretched SVG so they stay round) */}
+                {orbitItems.map((item) => (
+                  <span
+                    key={`dot-${item.title}`}
+                    className="sol-orbit-dot"
+                    style={{ left: `${item.cx}%`, top: `${item.cy}%` }}
+                    aria-hidden="true"
+                  />
+                ))}
+
+                {/* central workstation — transparent image floating on the glow */}
+                <div className="sol-orbit-node sol-orbit-center" style={{ left: `${ORBIT_CX}%`, top: `${ORBIT_CY}%` }}>
+                  <div className="sol-orbit-center-img">
+                    <Image
+                      src="/images/veterinary-workstation.webp"
+                      alt="Veterinary anesthesia and monitoring workstation"
+                      fill
+                      priority
+                      style={{ objectFit: "contain" }}
+                      sizes="280px"
+                    />
+                  </div>
+                  <div className="sol-orbit-center-label">
+                    <div className="sol-orbit-center-title">Veterinary Workstation</div>
+                    <div className="sol-orbit-center-sub">Anesthesia &amp; Monitoring</div>
+                  </div>
+                </div>
+
+                {/* satellite glass cards */}
+                {orbitItems.map(({ title, sub, img, icon: Icon, cx, cy }) => (
+                  <div
+                    key={title}
+                    className="sol-orbit-node sol-orbit-sat"
+                    style={{ left: `${cx}%`, top: `${cy}%` }}
+                  >
+                    <div className="sol-orbit-sat-img">
+                      <Image src={img} alt={title} fill style={{ objectFit: "contain" }} sizes="150px" />
+                    </div>
+                    <div className="sol-orbit-sat-badge">
+                      <Icon size={17} strokeWidth={1.9} aria-hidden="true" />
+                    </div>
+                    <div className="sol-orbit-sat-title">{title}</div>
+                    <div className="sol-orbit-sat-sub">{sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* RIGHT: single clean equipment image */}
-          <div className="sol-hero-img-col">
-            <div className="sol-hero-img-glow" aria-hidden="true" />
-            <div className="sol-hero-img-frame">
-              <Image
-                src="/images/diagnostic-system.webp"
-                alt="Veterinary diagnostic equipment supplied by Nabuk Distributors"
-                fill
-                priority
-                style={{ objectFit: "cover", objectPosition: "center" }}
-                sizes="(max-width: 900px) 0px, 50vw"
-              />
-            </div>
+          {/* feature row */}
+          <div className="sol-hero-features">
+            {heroFeatures.map(({ icon: Icon, label }) => (
+              <div key={label} className="sol-hero-feature">
+                <div className="sol-hero-feature-icon">
+                  <Icon size={18} strokeWidth={1.7} aria-hidden="true" />
+                </div>
+                <span className="sol-hero-feature-label">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* ── BAND 1 · Capabilities — dark navy, white cards ── */}
-      <section className="section section--dark" aria-label="Capability areas">
+      <section id="capabilities" className="section section--dark" aria-label="Capability areas">
         <div className="section-inner">
           <div className="sec-header">
             <span className="sec-eyebrow">What we supply</span>
@@ -310,7 +397,7 @@ export function SolutionsSection() {
       </section>
 
       <style>{`
-        /* ── Solutions hero — home-style two-column layout ── */
+        /* ── Solutions hero — constellation layout ── */
         .sol-hero-section {
           background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
           overflow: hidden;
@@ -318,48 +405,46 @@ export function SolutionsSection() {
         .sol-hero-wrap {
           max-width: 1280px;
           margin: 0 auto;
-          padding: 72px 20px 64px;
+          padding: 64px 20px 56px;
+        }
+        .sol-hero-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 0.92fr 1.08fr;
           gap: 40px;
           align-items: center;
-          min-height: 540px;
+          min-height: 480px;
         }
         .sol-hero-left {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          padding-right: 12px;
         }
+        /* Plain uppercase eyebrow to match reference */
         .sol-hero-eyebrow {
           font-size: 11px;
           font-weight: 800;
-          letter-spacing: 2.5px;
-          color: var(--teal);
+          letter-spacing: 2.6px;
+          color: var(--muted);
           text-transform: uppercase;
-          margin-bottom: 16px;
+          margin-bottom: 18px;
         }
         .sol-hero-title {
           font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
-          font-size: clamp(52px, 7vw, 92px);
-          line-height: 0.95;
+          font-size: clamp(30px, 3.3vw, 44px);
+          line-height: 1.08;
           color: var(--navy);
-          letter-spacing: -1.5px;
-          margin-bottom: 24px;
-        }
-        .sol-hero-bar {
-          width: 56px;
-          height: 3px;
-          background: var(--teal);
-          border-radius: 2px;
-          margin-bottom: 22px;
+          letter-spacing: -1.2px;
+          margin-bottom: 20px;
+          max-width: 460px;
         }
         .sol-hero-lead {
-          font-size: 17px;
-          color: var(--navy);
-          max-width: 440px;
-          line-height: 1.6;
+          font-size: 16px;
+          color: var(--muted);
+          max-width: 430px;
+          line-height: 1.65;
           font-weight: 500;
-          margin-bottom: 32px;
+          margin-bottom: 30px;
         }
         .sol-hero-cta {
           display: inline-flex;
@@ -368,11 +453,11 @@ export function SolutionsSection() {
           background: var(--teal);
           color: #fff;
           font-weight: 700;
-          font-size: 13px;
-          padding: 13px 26px;
+          font-size: 13.5px;
+          padding: 14px 28px;
           border-radius: 999px;
           text-decoration: none;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.4px;
           box-shadow:
             0 8px 24px -8px rgba(31,78,78,0.5),
             0 2px 8px -2px rgba(31,78,78,0.2);
@@ -389,33 +474,211 @@ export function SolutionsSection() {
         .sol-hero-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
         .sol-hero-cta:active { transform: translateY(0); }
 
+        /* ── Orbit column ── */
         .sol-hero-img-col {
           position: relative;
+        }
+        .sol-orbit {
+          position: relative;
+          width: 100%;
+          min-height: 580px;
+        }
+        /* faint concentric guide rings */
+        .sol-orbit-ring {
+          position: absolute;
+          left: 53%;
+          top: 50%;
+          width: 80%;
+          aspect-ratio: 1;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          border: 1px solid rgba(43,107,107,0.14);
+          pointer-events: none;
+        }
+        .sol-orbit-ring-2 { width: 58%; border-color: rgba(43,107,107,0.10); }
+
+        /* vivid teal glow behind the workstation */
+        .sol-orbit-glow {
+          position: absolute;
+          left: 53%;
+          top: 49%;
+          width: 66%;
+          aspect-ratio: 1;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 48%,
+            rgba(140,228,216,0.85) 0%,
+            rgba(86,198,188,0.62) 30%,
+            rgba(43,140,132,0.30) 52%,
+            rgba(43,120,116,0.10) 66%,
+            transparent 74%);
+          filter: blur(4px);
+          pointer-events: none;
+        }
+        /* brighter inner core for extra pop */
+        .sol-orbit-glow-core {
+          position: absolute;
+          left: 53%;
+          top: 49%;
+          width: 38%;
+          aspect-ratio: 1;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 50%,
+            rgba(205,248,242,0.9) 0%,
+            rgba(150,230,220,0.45) 42%,
+            transparent 70%);
+          filter: blur(8px);
+          pointer-events: none;
+        }
+        .sol-orbit-links {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 1;
+        }
+        /* glowing dots at each connector endpoint */
+        .sol-orbit-dot {
+          position: absolute;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          background: var(--teal);
+          box-shadow:
+            0 0 0 4px rgba(43,107,107,0.14),
+            0 0 12px 2px rgba(96,200,190,0.7);
+          z-index: 1;
+          pointer-events: none;
+        }
+        .sol-orbit-node {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+        }
+
+        /* ── central workstation: transparent image floating on the glow ── */
+        .sol-orbit-center {
+          width: 300px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .sol-orbit-center-img {
+          position: relative;
+          width: 250px;
+          height: 350px;
+          filter: drop-shadow(0 26px 30px rgba(15,39,48,0.28));
+        }
+        .sol-orbit-center-label {
+          margin-top: -6px;
+          text-align: center;
+          padding: 9px 20px;
+          border-radius: 14px;
+          background: rgba(255,255,255,0.45);
+          backdrop-filter: blur(10px) saturate(1.3);
+          -webkit-backdrop-filter: blur(10px) saturate(1.3);
+          border: 1px solid rgba(255,255,255,0.65);
+          box-shadow: 0 10px 26px -14px rgba(15,39,48,0.25);
+        }
+        .sol-orbit-center-title {
+          font-size: 14.5px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.2px;
+          margin-bottom: 2px;
+        }
+        .sol-orbit-center-sub { font-size: 11.5px; color: var(--teal-dark); font-weight: 600; }
+
+        /* ── satellite glass cards ── */
+        .sol-orbit-sat {
+          width: 178px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          background: linear-gradient(155deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.30) 100%);
+          backdrop-filter: blur(16px) saturate(1.4);
+          -webkit-backdrop-filter: blur(16px) saturate(1.4);
+          border: 1px solid rgba(255,255,255,0.7);
+          border-radius: 22px;
+          padding: 16px 18px 18px;
+          box-shadow:
+            0 20px 44px -20px rgba(15,39,48,0.30),
+            inset 0 1px 0 rgba(255,255,255,0.65);
+          transition:
+            transform 0.24s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.22s ease,
+            border-color 0.22s ease;
+        }
+        .sol-orbit-sat:hover {
+          transform: translate(-50%, -50%) scale(1.04);
+          border-color: rgba(255,255,255,0.9);
+          box-shadow:
+            0 26px 52px -18px rgba(15,39,48,0.34),
+            inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        .sol-orbit-sat-img {
+          position: relative;
+          width: 100%;
+          height: 84px;
+          margin-bottom: 4px;
+        }
+        .sol-orbit-sat-badge {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: var(--teal);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 11px;
+          box-shadow: 0 8px 18px -6px rgba(43,107,107,0.65);
+        }
+        .sol-orbit-sat-title {
+          font-size: 13.5px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.1px;
+          line-height: 1.2;
+          margin-bottom: 4px;
+        }
+        .sol-orbit-sat-sub { font-size: 11px; color: var(--muted); line-height: 1.35; }
+
+        /* feature row */
+        .sol-hero-features {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+          margin-top: 28px;
+          padding-top: 30px;
+          border-top: 1px solid rgba(43,107,107,0.12);
+        }
+        .sol-hero-feature {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          text-align: center;
+        }
+        .sol-hero-feature-icon {
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: rgba(43,107,107,0.07);
+          border: 1px solid rgba(43,107,107,0.14);
+          color: var(--teal);
           display: flex;
           align-items: center;
           justify-content: center;
         }
-        .sol-hero-img-glow {
-          position: absolute;
-          inset: -15%;
-          border-radius: 50%;
-          background: radial-gradient(circle at 50% 50%,
-            rgba(155,205,205,0.55) 0%,
-            rgba(195,228,228,0.25) 50%,
-            transparent 75%);
-          pointer-events: none;
-          z-index: 0;
-        }
-        .sol-hero-img-frame {
-          position: relative;
-          width: 100%;
-          height: 420px;
-          border-radius: 20px;
-          overflow: hidden;
-          z-index: 1;
-          box-shadow:
-            0 20px 60px -16px rgba(15,39,48,0.22),
-            0 6px 20px -6px rgba(15,39,48,0.1);
+        .sol-hero-feature-label {
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--navy);
+          letter-spacing: -0.1px;
         }
 
         /* ── Capability grid: 4 → 2 → 1 columns ── */
@@ -629,14 +892,78 @@ export function SolutionsSection() {
           .solutions-grid { grid-template-columns: repeat(2, 1fr); }
           .process-steps { grid-template-columns: repeat(2, 1fr); }
         }
+        @media (max-width: 980px) {
+          .sol-hero-grid { grid-template-columns: 1fr; gap: 40px; min-height: 0; }
+          .sol-hero-left { align-items: center; text-align: center; padding-right: 0; }
+          .sol-hero-title { max-width: 18ch; }
+          .sol-hero-lead { margin-left: auto; margin-right: auto; }
+
+          /* Collapse the orbit into a clean centred stack. The decorative
+             positioning layers (rings / connectors / dots / orbit-level glow)
+             are display:none — on a stacked layout they have nothing to anchor
+             to. The glow is reattached to the workstation itself below. */
+          .sol-orbit {
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+          }
+          .sol-orbit-ring, .sol-orbit-ring-2, .sol-orbit-links,
+          .sol-orbit-dot, .sol-orbit-glow, .sol-orbit-glow-core { display: none; }
+
+          /* every card/centre becomes a normal, full-width stacked item.
+             Cards keep their vertical layout (image → badge → title → sub).
+             inset:auto !important neutralises the inline left/top percentages
+             used for absolute positioning on desktop (inline styles otherwise
+             win over the stylesheet). */
+          .sol-orbit-node { position: static; transform: none; inset: auto !important; }
+          .sol-orbit-sat { width: 100%; max-width: 380px; }
+          .sol-orbit-sat:hover { transform: scale(1.02); }
+          .sol-orbit-sat-img { height: 112px; }
+
+          /* workstation: centred, larger, with its own self-anchored glow */
+          .sol-orbit-center {
+            order: -1;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            isolation: isolate;
+          }
+          .sol-orbit-center::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 44%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+            height: 360px;
+            max-width: 96%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 48%,
+              rgba(140,228,216,0.7) 0%,
+              rgba(86,198,188,0.42) 32%,
+              rgba(43,140,132,0.15) 56%,
+              transparent 72%);
+            z-index: -1;
+            pointer-events: none;
+          }
+          .sol-orbit-center-img { width: 240px; height: 320px; }
+        }
         @media (max-width: 900px) {
-          .sol-hero-wrap { grid-template-columns: 1fr; min-height: unset; padding: 56px 20px 48px; }
-          .sol-hero-img-col { display: none; }
+          .sol-hero-wrap { padding: 56px 20px 48px; }
           .solutions-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .sol-enquiry-wrap { grid-template-columns: 1fr; gap: 36px; padding: 40px 32px 36px; }
         }
+        @media (max-width: 560px) {
+          .sol-hero-features { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+        }
+        @media (max-width: 400px) {
+          .sol-orbit-center-img { width: 200px; height: 280px; }
+          .sol-orbit-center::before { width: 290px; height: 290px; }
+        }
         @media (max-width: 520px) {
-          .sol-hero-title { font-size: clamp(44px, 12vw, 64px); }
           .solutions-grid { grid-template-columns: 1fr; gap: 16px; }
           .process-steps { grid-template-columns: 1fr; }
         }
