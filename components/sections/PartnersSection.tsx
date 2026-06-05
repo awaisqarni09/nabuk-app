@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Globe, ShieldCheck, MapPin, Clock, Award } from "lucide-react";
+import { Globe, ShieldCheck, MapPin, Clock, Award, Users, TrendingUp } from "lucide-react";
 
 // PLACEHOLDER: logo images are dummy placehold.co — replace with real partner logos before launch
 const partners = [
@@ -186,6 +186,62 @@ export function PartnersSection() {
           </div>
         </section>
 
+        {/* ── Open for Partnership ── */}
+        <section aria-label="Open for new partnerships" style={{ marginTop: "72px" }}>
+          <div className="prt-open-wrap">
+            <div className="prt-open-glow" aria-hidden="true" />
+
+            {/* Left — pitch text */}
+            <div className="prt-open-left">
+              <span className="prt-open-badge">Open for New Partnerships</span>
+              <h2 className="prt-open-title">
+                Looking to reach Malta&apos;s veterinary profession?
+              </h2>
+              <p className="prt-open-lead">
+                We represent a curated portfolio of internationally respected manufacturers. If your brand offers clinical-grade veterinary equipment, diagnostics or infrastructure — and you&apos;re looking for an established, dedicated partner in Malta — we&apos;d like to hear from you.
+              </p>
+              <Link href="/contact" className="prt-open-cta">
+                Enquire About a Partnership
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
+                  width={15} height={15} aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Right — 3 value points */}
+            <div className="prt-open-right">
+              {[
+                {
+                  Icon: Users,
+                  title: "Established Veterinary Relationships",
+                  body: "28+ years of direct relationships with clinics across Malta and Gozo — giving your products immediate credibility and trusted access to the profession.",
+                },
+                {
+                  Icon: MapPin,
+                  title: "Exclusive Local Representation",
+                  body: "We hold direct representation agreements with our partners. Your brand gets a single, accountable local contact who knows the market and the profession.",
+                },
+                {
+                  Icon: TrendingUp,
+                  title: "Full Market Support",
+                  body: "From product introduction and clinical education through to installation and after-sales servicing — we manage the complete relationship on your behalf.",
+                },
+              ].map(({ Icon, title, body }) => (
+                <div key={title} className="prt-open-point">
+                  <div className="prt-open-point-icon" aria-hidden="true">
+                    <Icon size={19} strokeWidth={1.6} />
+                  </div>
+                  <div>
+                    <h3 className="prt-open-point-title">{title}</h3>
+                    <p className="prt-open-point-body">{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section aria-label="Call to action" style={{ marginTop: "56px" }} className="page-cta-band">
           <h2>Interested in a specific product line or manufacturer?</h2>
@@ -248,6 +304,132 @@ export function PartnersSection() {
         .prt-benefit-title { font-size: 16px; margin-bottom: 12px; }
         .prt-benefit-body  { font-size: 14px; line-height: 1.7; }
 
+        /* ── Open for Partnership ── */
+        .prt-open-wrap {
+          background: var(--navy);
+          border-radius: 24px;
+          padding: 56px 56px 52px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 56px;
+          align-items: start;
+          position: relative;
+          overflow: hidden;
+        }
+        .prt-open-glow {
+          position: absolute;
+          top: -40%; right: -8%;
+          width: 50%; aspect-ratio: 1;
+          border-radius: 50%;
+          background: radial-gradient(ellipse at 60% 40%,
+            rgba(43,107,107,0.45) 0%,
+            rgba(43,107,107,0.15) 48%,
+            transparent 70%
+          );
+          filter: blur(40px);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .prt-open-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          position: relative;
+          z-index: 1;
+        }
+        .prt-open-badge {
+          display: inline-flex;
+          align-items: center;
+          background: rgba(43,107,107,0.35);
+          border: 1px solid rgba(43,107,107,0.55);
+          color: #7dd4d4;
+          font-size: 10.5px;
+          font-weight: 800;
+          letter-spacing: 1.6px;
+          text-transform: uppercase;
+          padding: 5px 14px;
+          border-radius: 999px;
+          margin-bottom: 20px;
+        }
+        .prt-open-title {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(22px, 2.6vw, 32px);
+          color: #fff;
+          letter-spacing: -0.5px;
+          line-height: 1.1;
+          margin-bottom: 18px;
+        }
+        .prt-open-lead {
+          font-size: 15px;
+          color: rgba(255,255,255,0.68);
+          line-height: 1.72;
+          margin-bottom: 36px;
+        }
+        .prt-open-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 9px;
+          background: var(--teal);
+          color: #fff;
+          font-weight: 700;
+          font-size: 13px;
+          padding: 12px 24px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.4px;
+          box-shadow: 0 8px 24px -8px rgba(43,107,107,0.6);
+          transition:
+            background 0.2s ease,
+            transform 0.22s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.2s ease;
+        }
+        .prt-open-cta:hover {
+          background: var(--teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 14px 32px -8px rgba(43,107,107,0.65);
+        }
+        .prt-open-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .prt-open-cta:active { transform: translateY(0); }
+        .prt-open-right {
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+          position: relative;
+          z-index: 1;
+          padding-top: 6px;
+        }
+        .prt-open-point {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+        }
+        .prt-open-point-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 11px;
+          background: rgba(43,107,107,0.35);
+          border: 1px solid rgba(43,107,107,0.55);
+          color: #7dd4d4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .prt-open-point-title {
+          font-size: 14px;
+          font-weight: 800;
+          color: #fff;
+          margin-bottom: 6px;
+          letter-spacing: -0.1px;
+        }
+        .prt-open-point-body {
+          font-size: 13px;
+          color: rgba(255,255,255,0.62);
+          line-height: 1.65;
+          margin: 0;
+        }
+
         /* ── Partner logo grid ── */
         .partners-grid {
           display: grid;
@@ -261,10 +443,12 @@ export function PartnersSection() {
           .prt-benefits-grid { grid-template-columns: 1fr; }
           .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .heritage-grid { grid-template-columns: 1fr !important; }
+          .prt-open-wrap { grid-template-columns: 1fr; gap: 36px; padding: 40px 32px 36px; }
         }
         @media (max-width: 520px) {
           .prt-page-hero { padding: 64px 20px 56px !important; }
           .partners-grid { grid-template-columns: 1fr; gap: 16px; }
+          .prt-open-wrap { padding: 32px 24px 28px; }
         }
       `}</style>
     </>
