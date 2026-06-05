@@ -31,8 +31,10 @@ export function AutoReveal() {
     // `.section-inner` column — reveal those. Older single-wrapper pages fall
     // back to the direct children of `.page-content`. (Home has neither and
     // keeps its own PreviewAnimator, so this is a no-op there.)
+    // `[data-no-reveal]` opts a band out of the reveal entirely — its content
+    // stays fully visible from first paint (no opacity flip / fade-in).
     const sectionInners = Array.from(
-      document.querySelectorAll<HTMLElement>(".section-inner")
+      document.querySelectorAll<HTMLElement>(".section-inner:not([data-no-reveal])")
     );
     const content = document.querySelector<HTMLElement>(".page-content");
     const blocks: HTMLElement[] = sectionInners.length
@@ -42,7 +44,8 @@ export function AutoReveal() {
             (node): node is HTMLElement =>
               node instanceof HTMLElement &&
               node.tagName !== "STYLE" &&
-              node.tagName !== "SCRIPT"
+              node.tagName !== "SCRIPT" &&
+              !node.hasAttribute("data-no-reveal")
           )
         : [];
     if (blocks.length === 0) return;

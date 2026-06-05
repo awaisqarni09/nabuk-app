@@ -162,13 +162,20 @@ export function PartnersSection() {
         </div>
       </section>
 
-      {/* ── BAND 3 · Partner logos — soft tint ── */}
-      <section className="section section--tint" aria-label="Partner organisations">
-        <div className="section-inner">
-          <div className="sec-header">
-            <span className="sec-eyebrow">Our network</span>
-            <h2 className="sec-title">Our Manufacturing Partners</h2>
-          </div>
+      {/* ── BAND 3 · Partner logos — old format ── */}
+      {/* data-no-reveal: opt this band out of the site-wide AutoReveal so the
+          partner cards stay fully visible (pic + text) and never fade/flip. */}
+      <section className="section section--light" aria-label="Partner organisations">
+        <div className="section-inner" data-no-reveal>
+          <h2 style={{
+            fontFamily: "var(--font-archivo-black, 'Archivo Black')",
+            fontSize: "clamp(22px, 2.5vw, 30px)",
+            color: "var(--navy)",
+            letterSpacing: "-0.3px",
+            marginBottom: "32px",
+          }}>
+            Our Manufacturing Partners
+          </h2>
           {/* PLACEHOLDER: logo images are dummy — replace with real partner logos before launch */}
           <div className="partners-grid">
             {partners.map((p) => (
@@ -194,6 +201,7 @@ export function PartnersSection() {
                       src={p.logoSrc}
                       alt={`${p.name} logo — placeholder`}
                       fill
+                      loading="eager"
                       style={{ objectFit: "contain" }}
                       sizes="180px"
                     />
