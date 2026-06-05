@@ -244,22 +244,63 @@
     padding: 60px 20px 80px;
   }
 
-  /* Shared card */
+  /* Shared card — layered shadow, hairline border, smooth lift on hover */
   .nabuk-card {
     background: var(--card);
+    border: 1px solid rgba(26,58,74,0.07);
     border-radius: 20px;
-    box-shadow: 0 10px 40px -15px rgba(15,39,48,0.18);
+    box-shadow:
+      0 1px 2px rgba(15,39,48,0.04),
+      0 12px 32px -16px rgba(15,39,48,0.18);
     overflow: hidden;
-    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.32s ease;
   }
   .nabuk-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 50px -15px rgba(15,39,48,0.26);
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(43,107,107,0.28);
+    box-shadow:
+      0 2px 4px rgba(15,39,48,0.05),
+      0 28px 60px -22px rgba(15,39,48,0.30);
   }
   @media (prefers-reduced-motion: reduce) {
     .nabuk-card { transition: none; }
     .nabuk-card:hover { transform: none; }
+  }
+  /* Glass variant — for cards sitting on dark bands */
+  .nabuk-card--glass {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 18px 48px -24px rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .nabuk-card--glass:hover {
+    border-color: rgba(125,212,212,0.45);
+    box-shadow: 0 28px 64px -24px rgba(0,0,0,0.7);
+  }
+
+  /* Card typography helpers — clean title vs body hierarchy */
+  .card-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+  .card-title {
+    font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+    color: var(--navy);
+  }
+  .card-body {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--muted);
   }
 
   /* CTA band (teal-dark, reused on multiple pages) */
@@ -329,4 +370,119 @@
   .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); }
   .btn-teal:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
   .btn-teal:active { transform: translateY(0); }
+
+  /* ════════════════════════════════════════════════════════
+     EDITORIAL BAND SYSTEM — full-bleed alternating sections
+     Each band is full-width; .section-inner re-constrains content
+     to the 1280px column. Surfaces alternate to break monotony.
+     ════════════════════════════════════════════════════════ */
+  .section {
+    width: 100%;
+    padding: clamp(56px, 8vw, 104px) 20px;
+    position: relative;
+  }
+  .section--sm { padding: clamp(40px, 5vw, 68px) 20px; }
+  .section--lg { padding: clamp(72px, 10vw, 132px) 20px; }
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .section-inner--narrow { max-width: 920px; }
+
+  /* ── Surfaces ── */
+  .section--light { background: transparent; }
+  .section--paper {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.62) 100%);
+  }
+  .section--tint {
+    background:
+      radial-gradient(120% 110% at 100% 0%, rgba(43,107,107,0.12) 0%, transparent 56%),
+      linear-gradient(180deg, rgba(232,244,244,0.92) 0%, rgba(213,235,235,0.96) 100%);
+  }
+  .section--dark {
+    background:
+      radial-gradient(90% 130% at 86% -12%, rgba(43,107,107,0.5) 0%, transparent 56%),
+      linear-gradient(165deg, var(--navy) 0%, var(--navy-dark) 100%);
+    color: #fff;
+  }
+  .section--teal {
+    background:
+      radial-gradient(90% 130% at 14% -12%, rgba(43,107,107,0.55) 0%, transparent 56%),
+      linear-gradient(165deg, var(--teal-dark) 0%, var(--navy-dark) 100%);
+    color: #fff;
+  }
+
+  /* ── Shared section header ── */
+  .sec-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: clamp(32px, 4vw, 52px);
+    max-width: 660px;
+  }
+  .sec-header--center {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sec-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    background: rgba(43,107,107,0.09);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+  }
+  .sec-title {
+    font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.6px;
+    color: var(--navy);
+    margin: 0;
+  }
+  .sec-lead {
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0;
+  }
+  /* Dark-band text inversion */
+  .section--dark .sec-title,
+  .section--teal .sec-title { color: #fff; }
+  .section--dark .sec-lead,
+  .section--teal .sec-lead { color: rgba(255,255,255,0.72); }
+  .section--dark .sec-eyebrow,
+  .section--teal .sec-eyebrow {
+    background: rgba(43,107,107,0.35);
+    border-color: rgba(125,212,212,0.4);
+    color: #7dd4d4;
+  }
+
+  /* ── Split-screen layout (text | visual) ── */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .split--text-wide { grid-template-columns: 1.12fr 0.88fr; }
+  .split--reverse > :nth-child(1) { order: 2; }
+  .split--reverse > :nth-child(2) { order: 1; }
+  @media (max-width: 900px) {
+    .split,
+    .split--text-wide { grid-template-columns: 1fr; gap: 36px; }
+    .split--reverse > :nth-child(1),
+    .split--reverse > :nth-child(2) { order: 0; }
+  }
 }

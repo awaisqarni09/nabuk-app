@@ -63,13 +63,64 @@ const capabilities = [
   },
 ];
 
+const processSteps = [
+  {
+    num: "01",
+    title: "Consultation",
+    body: "We start by understanding your clinic — caseload, infrastructure, team size and goals — so every recommendation is built around your specific situation.",
+    color: "var(--teal)",
+  },
+  {
+    num: "02",
+    title: "Selection",
+    body: "We recommend the right equipment from the manufacturers we represent, matched to your clinical needs and budget — without a catalogue or list prices.",
+    color: "#2a7a7a",
+  },
+  {
+    num: "03",
+    title: "Installation",
+    body: "Where applicable, we manage full installation and commissioning of systems — from digital X-ray rooms to in-house laboratory stations.",
+    color: "#1f5e5e",
+  },
+  {
+    num: "04",
+    title: "After-Sales",
+    body: "On-island technical support and servicing keeps your equipment running. We don't disappear after delivery — we're your long-term partner.",
+    color: "var(--navy)",
+  },
+];
+
+const approachPoints = [
+  "No catalogue pricing — we advise on the right fit for your clinic.",
+  "Specification support before any commitment.",
+  "Installation and training included where applicable.",
+  "On-island after-sales and servicing.",
+];
+
+const enquiryReasons = [
+  {
+    num: "01",
+    title: "Consultation First",
+    body: "We understand your clinic before recommending anything. Caseload, team size, infrastructure and growth plans all shape what we propose.",
+  },
+  {
+    num: "02",
+    title: "No Commitment to Browse",
+    body: "Talk to us, ask questions, get expert input — with no obligation to purchase. We'd rather give you the right advice than the wrong sale.",
+  },
+  {
+    num: "03",
+    title: "On-Island Support for Life",
+    body: "Installation, training, and after-sales servicing are part of the relationship — not extras. We're in Malta, and we're here when you need us.",
+  },
+];
+
 export function SolutionsSection() {
   return (
     <>
-      {/* ── SOLUTIONS HERO — home-hero-style layout ── */}
+      {/* ── HERO — home-hero-style layout ── */}
       <div className="sol-hero-section">
         <div className="sol-hero-wrap">
-
           {/* LEFT: text */}
           <div className="sol-hero-left">
             <div className="sol-hero-eyebrow">What We Supply</div>
@@ -101,25 +152,24 @@ export function SolutionsSection() {
               />
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* Content */}
-      <div className="page-content">
-
-        {/* Capability cards grid */}
-        <section aria-label="Capability areas">
-          <div className="sol-section-header">
-            <span className="sol-eyebrow">What we supply</span>
-            <h2 className="sol-section-title">Clinical technology for every discipline</h2>
+      {/* ── BAND 1 · Capabilities — dark navy, white cards ── */}
+      <section className="section section--dark" aria-label="Capability areas">
+        <div className="section-inner">
+          <div className="sec-header">
+            <span className="sec-eyebrow">What we supply</span>
+            <h2 className="sec-title">Clinical technology for every discipline</h2>
+            <p className="sec-lead">
+              A curated portfolio of veterinary-grade systems — specified, supplied and supported for clinics across Malta and Gozo.
+            </p>
           </div>
           <div className="solutions-grid">
             {capabilities.map((cap) => {
               const Icon = cap.icon;
               return (
                 <article key={cap.title} className="nabuk-card solution-card">
-                  {/* Image */}
                   <div style={{ position: "relative", height: "220px", overflow: "hidden" }}>
                     <Image
                       src={cap.img}
@@ -128,12 +178,10 @@ export function SolutionsSection() {
                       style={{ objectFit: "cover" }}
                       sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 25vw"
                     />
-                    {/* Gradient overlay */}
                     <div style={{
                       position: "absolute", inset: 0,
                       background: "linear-gradient(to top, rgba(15,39,48,0.5) 0%, transparent 60%)",
                     }} aria-hidden="true" />
-                    {/* Icon chip */}
                     <div style={{
                       position: "absolute", bottom: "12px", left: "16px",
                       background: "rgba(255,255,255,0.15)",
@@ -146,60 +194,26 @@ export function SolutionsSection() {
                       <Icon size={22} strokeWidth={1.5} />
                     </div>
                   </div>
-                  {/* Text */}
-                  <div style={{ padding: "28px 28px 24px" }}>
-                    <h3 style={{
-                      fontFamily: "var(--font-archivo-black, 'Archivo Black')",
-                      fontSize: "18px",
-                      color: "var(--navy)",
-                      marginBottom: "10px",
-                      letterSpacing: "-0.2px",
-                    }}>
-                      {cap.title}
-                    </h3>
-                    <p style={{ fontSize: "14px", color: "var(--muted)", lineHeight: 1.6 }}>
-                      {cap.body}
-                    </p>
+                  <div style={{ padding: "26px 28px 26px" }}>
+                    <h3 className="card-title" style={{ marginBottom: "10px" }}>{cap.title}</h3>
+                    <p className="card-body">{cap.body}</p>
                   </div>
                 </article>
               );
             })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* How we work — 4-step process */}
-        <section aria-label="How we work" style={{ margin: "64px 0 0" }}>
-          <div className="process-header">
-            <span className="process-eyebrow">Our process</span>
-            <h2 className="process-title">From enquiry to after-sales — we&apos;re with you at every step</h2>
+      {/* ── BAND 2 · Process — soft tint ── */}
+      <section className="section section--tint" aria-label="How we work">
+        <div className="section-inner">
+          <div className="sec-header">
+            <span className="sec-eyebrow">Our process</span>
+            <h2 className="sec-title">From enquiry to after-sales — we&apos;re with you at every step</h2>
           </div>
           <div className="process-steps">
-            {[
-              {
-                num: "01",
-                title: "Consultation",
-                body: "We start by understanding your clinic — caseload, infrastructure, team size and goals — so every recommendation is built around your specific situation.",
-                color: "var(--teal)",
-              },
-              {
-                num: "02",
-                title: "Selection",
-                body: "We recommend the right equipment from the manufacturers we represent, matched to your clinical needs and budget — without a catalogue or list prices.",
-                color: "#2a7a7a",
-              },
-              {
-                num: "03",
-                title: "Installation",
-                body: "Where applicable, we manage full installation and commissioning of systems — from digital X-ray rooms to in-house laboratory stations.",
-                color: "#1f5e5e",
-              },
-              {
-                num: "04",
-                title: "After-Sales",
-                body: "On-island technical support and servicing keeps your equipment running. We don't disappear after delivery — we're your long-term partner.",
-                color: "var(--navy)",
-              },
-            ].map((step, i) => (
+            {processSteps.map((step, i) => (
               <div key={step.num} className="process-step">
                 <div className="process-step-num" style={{ color: step.color }}>{step.num}</div>
                 {i < 3 && <div className="process-connector" aria-hidden="true" />}
@@ -213,57 +227,44 @@ export function SolutionsSection() {
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Note on approach */}
-        <section aria-label="Our approach" style={{ margin: "56px 0" }}>
-          <div style={{
-            background: "rgba(255,255,255,0.7)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            borderRadius: "20px",
-            padding: "40px 48px",
-            boxShadow: "0 10px 40px -15px rgba(15,39,48,0.12)",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "48px",
-            alignItems: "center",
-          }} className="approach-grid">
+      {/* ── BAND 3 · Approach — light split-screen ── */}
+      <section className="section section--light" aria-label="Our approach">
+        <div className="section-inner">
+          <div className="split split--text-wide">
             <div>
-              <h2 style={{
-                fontFamily: "var(--font-archivo-black, 'Archivo Black')",
-                fontSize: "clamp(22px, 2.5vw, 30px)",
-                color: "var(--navy)",
-                letterSpacing: "-0.3px",
-                marginBottom: "16px",
-              }}>
+              <span className="sec-eyebrow">Our approach</span>
+              <h2 className="sec-title" style={{ margin: "16px 0 16px" }}>
                 We advise. We don&apos;t catalogue.
               </h2>
-              <p style={{ fontSize: "16px", color: "var(--muted)", lineHeight: 1.7 }}>
+              <p className="sec-lead">
                 We do not publish a product catalogue or list prices. Every clinic is different — in caseload, infrastructure, team size and growth plans. Our job is to understand your situation and recommend the right solution for it.
               </p>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              {["No catalogue pricing — we advise on the right fit for your clinic.", "Specification support before any commitment.", "Installation and training included where applicable.", "On-island after-sales and servicing."].map((point) => (
-                <div key={point} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--teal)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: "2px" }} aria-hidden="true">
+            <div className="sol-checklist">
+              {approachPoints.map((point) => (
+                <div key={point} className="sol-check-item">
+                  <div className="sol-check-dot" aria-hidden="true">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                       <path d="M2 5l2.5 2.5L8 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <p style={{ fontSize: "15px", color: "var(--navy)", lineHeight: 1.6 }}>{point}</p>
+                  <p>{point}</p>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ── Looking for equipment? ── */}
-        <section aria-label="Clinic equipment enquiry" style={{ marginBottom: "56px" }}>
+      {/* ── BAND 4 · Clinic enquiry — navy feature box on paper ── */}
+      <section className="section section--paper" aria-label="Clinic equipment enquiry">
+        <div className="section-inner">
           <div className="sol-enquiry-wrap">
             <div className="sol-enquiry-glow" aria-hidden="true" />
 
-            {/* Left — pitch */}
             <div className="sol-enquiry-left">
               <span className="sol-enquiry-badge">For Veterinary Clinics</span>
               <h2 className="sol-enquiry-title">
@@ -281,25 +282,8 @@ export function SolutionsSection() {
               </Link>
             </div>
 
-            {/* Right — 3 reasons */}
             <div className="sol-enquiry-right">
-              {[
-                {
-                  num: "01",
-                  title: "Consultation First",
-                  body: "We understand your clinic before recommending anything. Caseload, team size, infrastructure and growth plans all shape what we propose.",
-                },
-                {
-                  num: "02",
-                  title: "No Commitment to Browse",
-                  body: "Talk to us, ask questions, get expert input — with no obligation to purchase. We'd rather give you the right advice than the wrong sale.",
-                },
-                {
-                  num: "03",
-                  title: "On-Island Support for Life",
-                  body: "Installation, training, and after-sales servicing are part of the relationship — not extras. We're in Malta, and we're here when you need us.",
-                },
-              ].map(({ num, title, body }) => (
+              {enquiryReasons.map(({ num, title, body }) => (
                 <div key={num} className="sol-enquiry-point">
                   <span className="sol-enquiry-num">{num}</span>
                   <div>
@@ -310,16 +294,20 @@ export function SolutionsSection() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <section aria-label="Call to action" className="page-cta-band">
-          <h2>Tell us what your clinic needs — we&apos;ll advise on the right solution.</h2>
-          <Link href="/contact" className="btn-primary">
-            Request a Consultation
-          </Link>
-        </section>
-      </div>
+      {/* ── BAND 5 · CTA — full-bleed teal ── */}
+      <section className="section section--teal section--sm" aria-label="Call to action">
+        <div className="section-inner">
+          <div className="sec-header sec-header--center">
+            <h2 className="sec-title">Tell us what your clinic needs — we&apos;ll advise on the right solution.</h2>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Link href="/contact" className="btn-primary">Request a Consultation</Link>
+          </div>
+        </div>
+      </section>
 
       <style>{`
         /* ── Solutions hero — home-style two-column layout ── */
@@ -401,7 +389,6 @@ export function SolutionsSection() {
         .sol-hero-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
         .sol-hero-cta:active { transform: translateY(0); }
 
-        /* ── Right: image column ── */
         .sol-hero-img-col {
           position: relative;
           display: flex;
@@ -431,88 +418,58 @@ export function SolutionsSection() {
             0 6px 20px -6px rgba(15,39,48,0.1);
         }
 
-        /* ── Section header ── */
-        .sol-section-header {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          margin-bottom: 36px;
-        }
-        .sol-eyebrow {
-          display: inline-flex;
-          background: rgba(43,107,107,0.08);
-          color: var(--teal);
-          font-size: 10.5px;
-          font-weight: 800;
-          letter-spacing: 2.2px;
-          padding: 5px 13px;
-          border-radius: 999px;
-          text-transform: uppercase;
-          width: fit-content;
-        }
-        .sol-section-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
-          font-size: clamp(22px, 2.6vw, 32px);
-          color: var(--navy);
-          letter-spacing: -0.4px;
-          line-height: 1.1;
-          margin: 0;
-        }
-
-        /* ── Capability grid: 3 columns, bigger cards ── */
+        /* ── Capability grid: 4 → 2 → 1 columns ── */
         .solutions-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 28px;
-          margin-bottom: 0;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
         }
-        .solution-card { }
-        .approach-grid { }
 
-        /* ── Process section ── */
-        .process-header {
+        /* ── Approach checklist ── */
+        .sol-checklist {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          gap: 10px;
-          margin-bottom: 40px;
+          gap: 16px;
+          background: rgba(255,255,255,0.7);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(43,107,107,0.1);
+          border-radius: 20px;
+          padding: 32px;
+          box-shadow: 0 12px 40px -20px rgba(15,39,48,0.16);
         }
-        .process-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          background: rgba(43,107,107,0.08);
-          color: var(--teal);
-          font-size: 10.5px;
-          font-weight: 800;
-          letter-spacing: 2.2px;
-          padding: 5px 13px;
-          border-radius: 999px;
-          text-transform: uppercase;
+        .sol-check-item { display: flex; gap: 14px; align-items: flex-start; }
+        .sol-check-dot {
+          width: 22px; height: 22px;
+          border-radius: 50%;
+          background: var(--teal);
+          flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          margin-top: 2px;
         }
-        .process-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
-          font-size: clamp(20px, 2.4vw, 28px);
+        .sol-check-item p {
+          font-size: 15px;
           color: var(--navy);
-          letter-spacing: -0.4px;
-          line-height: 1.15;
-          max-width: 560px;
+          line-height: 1.6;
           margin: 0;
+          font-weight: 500;
         }
+
+        /* ── Process steps ── */
         .process-steps {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 24px;
-          position: relative;
         }
         .process-step {
-          background: rgba(255,255,255,0.75);
+          background: rgba(255,255,255,0.78);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          border: 1.5px solid rgba(43,107,107,0.09);
+          border: 1.5px solid rgba(43,107,107,0.1);
           border-radius: 18px;
           padding: 28px 24px 24px;
           position: relative;
-          box-shadow: 0 2px 12px -4px rgba(15,39,48,0.08);
+          box-shadow: 0 4px 18px -10px rgba(15,39,48,0.14);
         }
         .process-step-num {
           font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
@@ -546,7 +503,7 @@ export function SolutionsSection() {
         }
         .process-connector { display: none; }
 
-        /* ── Clinic enquiry section ── */
+        /* ── Clinic enquiry feature box ── */
         .sol-enquiry-wrap {
           background: var(--navy);
           border-radius: 24px;
@@ -670,20 +627,18 @@ export function SolutionsSection() {
 
         @media (max-width: 1100px) {
           .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+          .process-steps { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 900px) {
           .sol-hero-wrap { grid-template-columns: 1fr; min-height: unset; padding: 56px 20px 48px; }
           .sol-hero-img-col { display: none; }
           .solutions-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-          .approach-grid { grid-template-columns: 1fr !important; }
-          .process-steps { grid-template-columns: repeat(2, 1fr); }
           .sol-enquiry-wrap { grid-template-columns: 1fr; gap: 36px; padding: 40px 32px 36px; }
         }
         @media (max-width: 520px) {
           .sol-hero-title { font-size: clamp(44px, 12vw, 64px); }
           .solutions-grid { grid-template-columns: 1fr; gap: 16px; }
           .process-steps { grid-template-columns: 1fr; }
-          .page-cta-band { padding: 40px 24px !important; }
         }
         @media (max-width: 768px) {
           .process-step {

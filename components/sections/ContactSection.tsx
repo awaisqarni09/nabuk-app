@@ -16,7 +16,8 @@ export function ContactSection() {
       </div>
 
       {/* Content */}
-      <div className="page-content">
+      <section className="section section--tint">
+        <div className="section-inner">
         <div className="contact-layout">
 
           {/* LEFT — Form */}
@@ -76,13 +77,11 @@ export function ContactSection() {
                   href: null,
                 },
               ].map(({ icon: Icon, label, value, sub, href }) => (
-                <div key={label} style={{
-                  background: "rgba(255,255,255,0.8)",
+                <div key={label} className="nabuk-card" style={{
+                  background: "rgba(255,255,255,0.86)",
                   backdropFilter: "blur(10px)",
                   WebkitBackdropFilter: "blur(10px)",
-                  borderRadius: "16px",
                   padding: "24px",
-                  boxShadow: "0 6px 24px -10px rgba(15,39,48,0.14)",
                   display: "flex",
                   alignItems: "flex-start",
                   gap: "16px",
@@ -157,7 +156,8 @@ export function ContactSection() {
             </div>
           </aside>
         </div>
-      </div>
+        </div>
+      </section>
 
       <style>{`
         .contact-layout {
@@ -166,6 +166,9 @@ export function ContactSection() {
           gap: 40px;
           align-items: start;
         }
+        /* Allow grid columns to shrink below their content's min-content
+           width so long values (e.g. email) never force horizontal overflow. */
+        .contact-layout > * { min-width: 0; }
         @media (max-width: 900px) {
           .contact-layout { grid-template-columns: 1fr; }
         }

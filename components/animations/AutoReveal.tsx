@@ -27,16 +27,24 @@ export function AutoReveal() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const content = document.querySelector<HTMLElement>(".page-content");
-    if (!content) return;
-
-    // Top-level content blocks (skip non-visual nodes like <style>/<script>).
-    const blocks = Array.from(content.children).filter(
-      (node): node is HTMLElement =>
-        node instanceof HTMLElement &&
-        node.tagName !== "STYLE" &&
-        node.tagName !== "SCRIPT"
+    // Inner pages use full-bleed bands, each constraining its content to a
+    // `.section-inner` column — reveal those. Older single-wrapper pages fall
+    // back to the direct children of `.page-content`. (Home has neither and
+    // keeps its own PreviewAnimator, so this is a no-op there.)
+    const sectionInners = Array.from(
+      document.querySelectorAll<HTMLElement>(".section-inner")
     );
+    const content = document.querySelector<HTMLElement>(".page-content");
+    const blocks: HTMLElement[] = sectionInners.length
+      ? sectionInners
+      : content
+        ? Array.from(content.children).filter(
+            (node): node is HTMLElement =>
+              node instanceof HTMLElement &&
+              node.tagName !== "STYLE" &&
+              node.tagName !== "SCRIPT"
+          )
+        : [];
     if (blocks.length === 0) return;
 
     let cancelled = false;

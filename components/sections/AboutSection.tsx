@@ -72,7 +72,7 @@ const timeline = [
 export function AboutSection() {
   return (
     <>
-      {/* ── PAGE HERO ── */}
+      {/* ── HERO ── */}
       <div className="page-hero visual-page-hero">
         <div className="page-hero-inner">
           <div className="visual-page-hero-text">
@@ -111,58 +111,58 @@ export function AboutSection() {
         </div>
       </div>
 
-      <div className="page-content">
-
-        {/* ══════════════════════════════════════
-            ACT 1 — IDENTITY
-            Who we are, our philosophy, our values
-            ══════════════════════════════════════ */}
-
-        {/* Opening lead */}
-        <section aria-label="Who we are" className="about-lead-section">
-          <div className="about-eyebrow">Our Identity</div>
+      {/* ── BAND 1 · Lead — light ── */}
+      <section className="section section--light section--lg" aria-label="Who we are">
+        <div className="section-inner section-inner--narrow">
+          <span className="sec-eyebrow">Our Identity</span>
           <p className="about-lead-text">
             Nabuk Distributors Ltd. is a specialist partner to the veterinary profession in Malta,
             focused exclusively on advanced clinical equipment, diagnostics and infrastructure for
             modern veterinary practice.
           </p>
-        </section>
+        </div>
+      </section>
 
-        {/* Image + philosophy quote — side by side */}
-        <section aria-label="Our philosophy" className="about-philosophy-grid">
-          {/* PLACEHOLDER: swap for real clinic/team photo */}
-          <div className="about-image-wrap">
-            <Image
-              src="/images/nabuk-team.webp"
-              alt="Nabuk Distributors team and clinic — placeholder image"
-              fill
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 900px) 100vw, 50vw"
-            />
-            <div className="about-image-overlay" aria-hidden="true" />
-          </div>
+      {/* ── BAND 2 · Philosophy — tint split (image | quote) ── */}
+      <section className="section section--tint" aria-label="Our philosophy">
+        <div className="section-inner">
+          <div className="split">
+            {/* PLACEHOLDER: swap for real clinic/team photo */}
+            <div className="about-image-wrap">
+              <Image
+                src="/images/nabuk-team.webp"
+                alt="Nabuk Distributors team and clinic — placeholder image"
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+              <div className="about-image-overlay" aria-hidden="true" />
+            </div>
 
-          <div className="about-quote-col">
-            <blockquote className="about-blockquote">
-              <span className="about-quote-mark">&ldquo;</span>
-              <p>
-                We measure our success by the standard of care our partner clinics are able to provide.
+            <div className="about-quote-col">
+              <blockquote className="about-blockquote">
+                <span className="about-quote-mark">&ldquo;</span>
+                <p>
+                  We measure our success by the standard of care our partner clinics are able to provide.
+                </p>
+                <span className="about-quote-mark about-quote-mark--close">&rdquo;</span>
+              </blockquote>
+              <p className="about-conviction">
+                Our work is shaped by a simple conviction: that veterinary professionals in Malta deserve
+                access to the same clinical technologies as their counterparts anywhere in Europe — and
+                the support to use them well.
               </p>
-              <span className="about-quote-mark about-quote-mark--close">&rdquo;</span>
-            </blockquote>
-            <p className="about-conviction">
-              Our work is shaped by a simple conviction: that veterinary professionals in Malta deserve
-              access to the same clinical technologies as their counterparts anywhere in Europe — and
-              the support to use them well.
-            </p>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Three philosophy pillars — full-width tinted band */}
-        <section aria-label="How we work" className="about-pillars-band">
-          <div className="about-pillars-header">
-            <div className="about-eyebrow">Our Foundation</div>
-            <h2 className="about-section-h2">Three principles that guide everything we do</h2>
+      {/* ── BAND 3 · Pillars — dark navy, white cards ── */}
+      <section className="section section--dark" aria-label="How we work">
+        <div className="section-inner">
+          <div className="sec-header">
+            <span className="sec-eyebrow">Our Foundation</span>
+            <h2 className="sec-title">Three principles that guide everything we do</h2>
           </div>
           <div className="about-pillars-grid">
             {pillars.map((p) => (
@@ -176,45 +176,43 @@ export function AboutSection() {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* ══════════════════════════════════════
-            ACT 2 — LEGACY
-            Our story, our history, our timeline
-            ══════════════════════════════════════ */}
-
-        <div className="about-act-divider" aria-hidden="true">
-          <div className="about-act-divider-line" />
-          <div className="about-act-divider-label">Our Story</div>
-          <div className="about-act-divider-line" />
         </div>
+      </section>
 
-        {/* Story intro + stats */}
-        <section aria-label="Our story" className="about-story-intro">
-          <div className="about-story-text">
-            <h2 className="about-section-h2" style={{ marginBottom: "24px" }}>
-              Nearly three decades at the centre of Maltese veterinary medicine
-            </h2>
-            <p className="about-story-lead">
-              For nearly three decades, Nabuk Distributors has been a constant in Maltese veterinary
-              medicine — present through the profession&apos;s growth, its technological evolution, and
-              its increasing demands on clinical infrastructure.
-            </p>
-            <p className="about-story-body">
-              Our history is not a straight line from products to profit. It is a story of deepening
-              specialisation — of a business that chose to understand veterinary medicine rather than
-              simply supply it.
-            </p>
+      {/* ── BAND 4 · Story intro + stats — light split ── */}
+      <section className="section section--light" aria-label="Our story">
+        <div className="section-inner">
+          <div className="split">
+            <div className="about-story-text">
+              <span className="sec-eyebrow">Our Story</span>
+              <h2 className="about-section-h2" style={{ margin: "16px 0 24px" }}>
+                Nearly three decades at the centre of Maltese veterinary medicine
+              </h2>
+              <p className="about-story-lead">
+                For nearly three decades, Nabuk Distributors has been a constant in Maltese veterinary
+                medicine — present through the profession&apos;s growth, its technological evolution, and
+                its increasing demands on clinical infrastructure.
+              </p>
+              <p className="about-story-body">
+                Our history is not a straight line from products to profit. It is a story of deepening
+                specialisation — of a business that chose to understand veterinary medicine rather than
+                simply supply it.
+              </p>
+            </div>
+            <div className="about-stats-col">
+              <AnimatedStatsCard />
+            </div>
           </div>
-          <div className="about-stats-col">
-            <AnimatedStatsCard />
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Timeline */}
-        <section aria-label="Our history" className="about-timeline-section">
-          <div className="about-eyebrow" style={{ marginBottom: "16px" }}>Milestones</div>
-          <h2 className="about-section-h2" style={{ marginBottom: "48px" }}>Our History</h2>
+      {/* ── BAND 5 · Timeline — paper ── */}
+      <section className="section section--paper" aria-label="Our history">
+        <div className="section-inner">
+          <div className="sec-header">
+            <span className="sec-eyebrow">Milestones</span>
+            <h2 className="sec-title">Our History</h2>
+          </div>
           <div className="timeline">
             {timeline.map((entry) => (
               <div
@@ -234,53 +232,39 @@ export function AboutSection() {
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <section aria-label="Call to action" style={{ marginTop: "64px" }} className="page-cta-band">
-          <h2>A legacy built on partnership. A team that understands your clinic&apos;s needs.</h2>
-          <p>Speak to us about what your clinic needs — today and in the future.</p>
-          <Link href="/contact" className="btn-primary">
-            Request a Consultation
-          </Link>
-        </section>
-      </div>
+      {/* ── BAND 6 · CTA — full-bleed teal ── */}
+      <section className="section section--teal section--sm" aria-label="Call to action">
+        <div className="section-inner">
+          <div className="sec-header sec-header--center">
+            <h2 className="sec-title">A legacy built on partnership. A team that understands your clinic&apos;s needs.</h2>
+            <p className="sec-lead">Speak to us about what your clinic needs — today and in the future.</p>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Link href="/contact" className="btn-primary">Request a Consultation</Link>
+          </div>
+        </div>
+      </section>
 
       <style>{`
         /* ── LEAD ── */
-        .about-lead-section {
-          margin-bottom: 56px;
-          max-width: 820px;
-        }
-        .about-eyebrow {
-          font-size: 11px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          color: var(--teal);
-          margin-bottom: 14px;
-        }
         .about-lead-text {
-          font-size: clamp(18px, 2vw, 22px);
+          font-size: clamp(20px, 2.2vw, 26px);
           color: var(--navy);
-          line-height: 1.65;
+          line-height: 1.6;
           font-weight: 500;
+          margin-top: 18px;
         }
 
-        /* ── PHILOSOPHY GRID ── */
-        .about-philosophy-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 56px;
-          align-items: center;
-          margin-bottom: 0;
-        }
+        /* ── PHILOSOPHY SPLIT ── */
         .about-image-wrap {
-          border-radius: 20px;
+          border-radius: 22px;
           overflow: hidden;
           box-shadow:
             0 4px 12px -4px rgba(15,39,48,0.10),
-            0 25px 50px -15px rgba(15,39,48,0.22);
+            0 25px 56px -16px rgba(15,39,48,0.24);
           position: relative;
           height: 440px;
         }
@@ -336,20 +320,7 @@ export function AboutSection() {
           padding-left: 20px;
         }
 
-        /* ── PILLARS BAND ── */
-        .about-pillars-band {
-          background: rgba(255,255,255,0.64);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1.5px solid rgba(43,107,107,0.09);
-          border-radius: 20px;
-          padding: 56px 48px;
-          margin: 56px 0 0;
-          box-shadow: 0 10px 40px -15px rgba(15,39,48,0.12);
-        }
-        .about-pillars-header {
-          margin-bottom: 40px;
-        }
+        /* ── PILLARS (white cards on dark band) ── */
         .about-section-h2 {
           font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
           font-size: clamp(22px, 2.8vw, 34px);
@@ -360,31 +331,29 @@ export function AboutSection() {
         .about-pillars-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          gap: 24px;
         }
         .about-pillar-card {
-          background: rgba(255,255,255,0.86);
-          border: 1.5px solid rgba(43,107,107,0.08);
+          background: var(--card);
+          border: 1px solid rgba(26,58,74,0.06);
           border-radius: 18px;
-          padding: 32px 28px;
-          box-shadow: 0 2px 12px -4px rgba(15,39,48,0.08);
+          padding: 34px 30px;
+          box-shadow: 0 14px 40px -18px rgba(0,0,0,0.4);
           display: flex;
           flex-direction: column;
           gap: 0;
-          transition: transform 0.22s cubic-bezier(0.22,1,0.36,1),
-                      box-shadow 0.22s cubic-bezier(0.22,1,0.36,1);
+          transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
+                      box-shadow 0.28s cubic-bezier(0.22,1,0.36,1);
         }
         .about-pillar-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 40px -10px rgba(15,39,48,0.2);
+          transform: translateY(-5px);
+          box-shadow: 0 26px 56px -18px rgba(0,0,0,0.5);
         }
         @media (prefers-reduced-motion: reduce) {
           .about-pillar-card { transition: none; }
           .about-pillar-card:hover { transform: none; }
         }
-        .about-pillar-icon {
-          margin-bottom: 16px;
-        }
+        .about-pillar-icon { margin-bottom: 16px; }
         .about-pillar-accent {
           width: 32px;
           height: 3px;
@@ -404,35 +373,7 @@ export function AboutSection() {
           line-height: 1.65;
         }
 
-        /* ── ACT DIVIDER ── */
-        .about-act-divider {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          margin: 72px 0 56px;
-        }
-        .about-act-divider-line {
-          flex: 1;
-          height: 1px;
-          background: rgba(26,58,74,0.12);
-        }
-        .about-act-divider-label {
-          font-size: 11px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          color: var(--teal);
-          white-space: nowrap;
-        }
-
-        /* ── STORY INTRO ── */
-        .about-story-intro {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 56px;
-          align-items: start;
-          margin-bottom: 72px;
-        }
+        /* ── STORY SPLIT ── */
         .about-story-text { display: flex; flex-direction: column; gap: 0; }
         .about-story-lead {
           font-size: 18px;
@@ -446,12 +387,9 @@ export function AboutSection() {
           color: var(--muted);
           line-height: 1.7;
         }
-        .about-stats-col {
-          padding-top: 8px;
-        }
+        .about-stats-col { padding-top: 8px; }
 
-        /* ── TIMELINE SECTION ── */
-        .about-timeline-section { }
+        /* ── TIMELINE ── */
         .timeline {
           display: flex;
           flex-direction: column;
@@ -468,7 +406,7 @@ export function AboutSection() {
           background: rgba(43,107,107,0.06);
           border-radius: 16px;
           padding: 24px;
-          margin: -24px;
+          margin: -12px -16px;
         }
         .timeline-year-col {
           display: flex;
@@ -510,21 +448,11 @@ export function AboutSection() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-          .about-philosophy-grid {
-            grid-template-columns: 1fr;
-            gap: 36px;
-          }
           .about-image-wrap { height: 300px; }
-          .about-pillars-band { padding: 40px 24px; }
           .about-pillars-grid { grid-template-columns: 1fr; gap: 16px; }
-          .about-story-intro {
-            grid-template-columns: 1fr;
-            gap: 36px;
-          }
           .timeline-entry { grid-template-columns: 80px 1fr; gap: 20px; }
         }
         @media (max-width: 520px) {
-          .about-pillars-band { padding: 32px 16px; }
           .timeline-entry { grid-template-columns: 1fr; }
           .timeline-year-col { flex-direction: row; align-items: center; gap: 12px; }
           .timeline-line { display: none; }
