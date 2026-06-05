@@ -258,6 +258,60 @@ export function SolutionsSection() {
           </div>
         </section>
 
+        {/* ── Looking for equipment? ── */}
+        <section aria-label="Clinic equipment enquiry" style={{ marginBottom: "56px" }}>
+          <div className="sol-enquiry-wrap">
+            <div className="sol-enquiry-glow" aria-hidden="true" />
+
+            {/* Left — pitch */}
+            <div className="sol-enquiry-left">
+              <span className="sol-enquiry-badge">For Veterinary Clinics</span>
+              <h2 className="sol-enquiry-title">
+                Need clinical equipment for your practice?
+              </h2>
+              <p className="sol-enquiry-lead">
+                We don&apos;t publish a catalogue or list prices. Every clinic is different — so we start with a conversation. Tell us about your caseload, your team, and your goals, and we&apos;ll advise on the right clinical technology for your situation.
+              </p>
+              <Link href="/contact" className="sol-enquiry-cta">
+                Request a Consultation
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
+                  width={15} height={15} aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Right — 3 reasons */}
+            <div className="sol-enquiry-right">
+              {[
+                {
+                  num: "01",
+                  title: "Consultation First",
+                  body: "We understand your clinic before recommending anything. Caseload, team size, infrastructure and growth plans all shape what we propose.",
+                },
+                {
+                  num: "02",
+                  title: "No Commitment to Browse",
+                  body: "Talk to us, ask questions, get expert input — with no obligation to purchase. We'd rather give you the right advice than the wrong sale.",
+                },
+                {
+                  num: "03",
+                  title: "On-Island Support for Life",
+                  body: "Installation, training, and after-sales servicing are part of the relationship — not extras. We're in Malta, and we're here when you need us.",
+                },
+              ].map(({ num, title, body }) => (
+                <div key={num} className="sol-enquiry-point">
+                  <span className="sol-enquiry-num">{num}</span>
+                  <div>
+                    <h3 className="sol-enquiry-point-title">{title}</h3>
+                    <p className="sol-enquiry-point-body">{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section aria-label="Call to action" className="page-cta-band">
           <h2>Tell us what your clinic needs — we&apos;ll advise on the right solution.</h2>
@@ -492,6 +546,128 @@ export function SolutionsSection() {
         }
         .process-connector { display: none; }
 
+        /* ── Clinic enquiry section ── */
+        .sol-enquiry-wrap {
+          background: var(--navy);
+          border-radius: 24px;
+          padding: 56px 56px 52px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 56px;
+          align-items: start;
+          position: relative;
+          overflow: hidden;
+        }
+        .sol-enquiry-glow {
+          position: absolute;
+          top: -40%; right: -8%;
+          width: 50%; aspect-ratio: 1;
+          border-radius: 50%;
+          background: radial-gradient(ellipse at 60% 40%,
+            rgba(43,107,107,0.45) 0%,
+            rgba(43,107,107,0.15) 48%,
+            transparent 70%
+          );
+          filter: blur(40px);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .sol-enquiry-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          position: relative;
+          z-index: 1;
+        }
+        .sol-enquiry-badge {
+          display: inline-flex;
+          align-items: center;
+          background: rgba(43,107,107,0.35);
+          border: 1px solid rgba(43,107,107,0.55);
+          color: #7dd4d4;
+          font-size: 10.5px;
+          font-weight: 800;
+          letter-spacing: 1.6px;
+          text-transform: uppercase;
+          padding: 5px 14px;
+          border-radius: 999px;
+          margin-bottom: 20px;
+        }
+        .sol-enquiry-title {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(22px, 2.6vw, 32px);
+          color: #fff;
+          letter-spacing: -0.5px;
+          line-height: 1.1;
+          margin-bottom: 18px;
+        }
+        .sol-enquiry-lead {
+          font-size: 15px;
+          color: rgba(255,255,255,0.68);
+          line-height: 1.72;
+          margin-bottom: 36px;
+        }
+        .sol-enquiry-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 9px;
+          background: var(--teal);
+          color: #fff;
+          font-weight: 700;
+          font-size: 13px;
+          padding: 12px 24px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.4px;
+          box-shadow: 0 8px 24px -8px rgba(43,107,107,0.6);
+          transition:
+            background 0.2s ease,
+            transform 0.22s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.2s ease;
+        }
+        .sol-enquiry-cta:hover {
+          background: var(--teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 14px 32px -8px rgba(43,107,107,0.65);
+        }
+        .sol-enquiry-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .sol-enquiry-cta:active { transform: translateY(0); }
+        .sol-enquiry-right {
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+          position: relative;
+          z-index: 1;
+          padding-top: 4px;
+        }
+        .sol-enquiry-point {
+          display: flex;
+          align-items: flex-start;
+          gap: 18px;
+        }
+        .sol-enquiry-num {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: 28px;
+          color: rgba(43,107,107,0.7);
+          letter-spacing: -1px;
+          line-height: 1;
+          flex-shrink: 0;
+          padding-top: 2px;
+        }
+        .sol-enquiry-point-title {
+          font-size: 14px;
+          font-weight: 800;
+          color: #fff;
+          margin-bottom: 6px;
+          letter-spacing: -0.1px;
+        }
+        .sol-enquiry-point-body {
+          font-size: 13px;
+          color: rgba(255,255,255,0.62);
+          line-height: 1.65;
+          margin: 0;
+        }
+
         @media (max-width: 1100px) {
           .solutions-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -501,6 +677,7 @@ export function SolutionsSection() {
           .solutions-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .approach-grid { grid-template-columns: 1fr !important; }
           .process-steps { grid-template-columns: repeat(2, 1fr); }
+          .sol-enquiry-wrap { grid-template-columns: 1fr; gap: 36px; padding: 40px 32px 36px; }
         }
         @media (max-width: 520px) {
           .sol-hero-title { font-size: clamp(44px, 12vw, 64px); }
