@@ -16,8 +16,10 @@ export function ContactSection() {
       </div>
 
       {/* Content */}
+      {/* data-no-reveal: opt out of AutoReveal so the Phone/Email/Location
+          cards stay fully visible and never fade/flip after load. */}
       <section className="section section--tint">
-        <div className="section-inner">
+        <div className="section-inner" data-no-reveal>
         <div className="contact-layout">
 
           {/* LEFT — Form */}
