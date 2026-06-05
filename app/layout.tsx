@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { organizationSchema, webSiteSchema } from "@/lib/seo/schema";
 import { PageTransition } from "@/components/animations/PageTransition";
+import { AutoReveal } from "@/components/animations/AutoReveal";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
         <PageTransition>
           <div className="flex-1">{children}</div>
         </PageTransition>
+        <AutoReveal />
         <Footer />
         <CookieConsent />
       </body>
