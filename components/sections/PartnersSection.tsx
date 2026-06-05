@@ -1,6 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Globe, ShieldCheck, MapPin, Clock, Award, Users, TrendingUp } from "lucide-react";
+import { Globe, ShieldCheck, MapPin, Clock, Award, Users, TrendingUp, Calendar, BadgeCheck } from "lucide-react";
+
+// ── Hero orbit: partners revolving around the Malta hub ──
+// Positions are computed evenly around an ellipse; `cx`/`cy` (% of the orbit
+// box) double as the SVG connector endpoints. Real logo images can replace the
+// wordmark text once available.
+const orbitNames = [
+  "Eickemeyer",
+  "Antech",
+  "Melag",
+  "Covetrus",
+  "Veterinary Instrumentation",
+  "& more",
+];
+const orbitPartners = orbitNames.map((name, i, arr) => {
+  const a = (-90 + (i * 360) / arr.length) * (Math.PI / 180);
+  return {
+    name,
+    cx: Math.round((50 + 39 * Math.cos(a)) * 100) / 100,
+    cy: Math.round((50 + 43 * Math.sin(a)) * 100) / 100,
+    muted: name === "& more",
+  };
+});
+
+const heroStats = [
+  { icon: Globe,      value: "20+",  label: "Global Brands",          note: "Trusted manufacturers from around the world." },
+  { icon: Calendar,   value: "30+",  label: "Years Partnership",      note: "Decades of strong relationships built on trust and performance." },
+  { icon: BadgeCheck, value: "100%", label: "Authorized Distribution", note: "Official distributor of premium veterinary technologies." },
+];
 
 // PLACEHOLDER: logo images are dummy placehold.co — replace with real partner logos before launch
 const partners = [
@@ -81,40 +109,93 @@ const openReasons = [
 export function PartnersSection() {
   return (
     <>
-      {/* ── HERO ── */}
-      <div className="page-hero visual-page-hero">
-        <div className="page-hero-inner">
-          <div className="visual-page-hero-text">
-            <div className="visual-page-hero-eyebrow">Who We Represent</div>
-            <h1>Our Partners</h1>
-            <div className="page-hero-divider" />
-            <p className="page-hero-sub">
-              We represent globally respected manufacturers, bringing their technologies directly to veterinary clinics across Malta and Gozo.
-            </p>
-            <Link href="/contact" className="visual-page-hero-cta">
-              Request a Consultation
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                width={15} height={15} aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
+      {/* ── HERO — partner orbit on a world map ── */}
+      <div className="page-hero prt-hero">
+        <div className="prt-hero-inner">
+          <div className="prt-hero-grid">
+            {/* LEFT: text */}
+            <div className="prt-hero-text">
+              <div className="prt-hero-eyebrow">Who We Represent</div>
+              <h1 className="prt-hero-h1">
+                <span className="prt-hero-h1-dark">Global Technology Partners.</span>{" "}
+                <span className="prt-hero-h1-teal">Local Clinical Expertise.</span>
+              </h1>
+              <div className="page-hero-divider" />
+              <p className="page-hero-sub prt-hero-sub">
+                We partner with world-leading manufacturers to bring veterinary professionals in Malta and Gozo the most advanced clinical technologies and reliable solutions.
+              </p>
+              <a href="#partner-list" className="prt-hero-cta">
+                Meet Our Partners
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
+                  width={15} height={15} aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+            </div>
+
+            {/* RIGHT: orbit */}
+            <div className="prt-orbit">
+              <div className="prt-orbit-map" aria-hidden="true" />
+              <div className="prt-orbit-ring" aria-hidden="true" />
+              <div className="prt-orbit-ring prt-orbit-ring-2" aria-hidden="true" />
+
+              {/* connectors from hub to each partner */}
+              <svg className="prt-orbit-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                {orbitPartners.map((p) => (
+                  <line
+                    key={p.name}
+                    x1={50} y1={50} x2={p.cx} y2={p.cy}
+                    stroke="rgba(43,120,116,0.45)"
+                    strokeWidth={1.4}
+                    strokeDasharray="1.5 7"
+                    strokeLinecap="round"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                ))}
               </svg>
-            </Link>
+              {orbitPartners.map((p) => (
+                <span key={`dot-${p.name}`} className="prt-orbit-dot" style={{ left: `${p.cx}%`, top: `${p.cy}%` }} aria-hidden="true" />
+              ))}
+
+              {/* central Malta hub */}
+              <div className="prt-hub" style={{ left: "50%", top: "50%" }}>
+                <div className="prt-hub-glow" aria-hidden="true" />
+                <div className="prt-hub-inner">
+                  <div className="prt-hub-pin" aria-hidden="true">
+                    <MapPin size={20} strokeWidth={2} />
+                  </div>
+                  <div className="prt-hub-title">Malta Hub</div>
+                  <div className="prt-hub-sub">Our Commitment.<br />Your Advantage.</div>
+                </div>
+              </div>
+
+              {/* partner logo pills */}
+              {orbitPartners.map((p) => (
+                <div
+                  key={p.name}
+                  className={`prt-logo${p.muted ? " prt-logo-muted" : ""}`}
+                  style={{ left: `${p.cx}%`, top: `${p.cy}%` }}
+                >
+                  <span>{p.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="visual-page-hero-media">
-            <div className="visual-page-hero-glow" aria-hidden="true" />
-            <div className="visual-page-hero-frame" style={{ position: "relative", height: "420px" }}>
-              <Image
-                src="/images/solution-banner.png"
-                alt="Veterinary diagnostic equipment from our manufacturing partners"
-                fill
-                priority
-                style={{ objectFit: "cover", objectPosition: "center" }}
-                sizes="(max-width: 900px) 0px, 50vw"
-              />
-            </div>
-            <div className="visual-page-hero-badge">
-              <span className="visual-page-hero-badge-dot">EU</span>
-              <span className="visual-page-hero-badge-text">Global manufacturers, local Maltese support</span>
-            </div>
+
+          {/* stats */}
+          <div className="prt-stats">
+            {heroStats.map(({ icon: Icon, value, label, note }) => (
+              <div key={label} className="prt-stat">
+                <div className="prt-stat-icon">
+                  <Icon size={22} strokeWidth={1.7} aria-hidden="true" />
+                </div>
+                <div className="prt-stat-body">
+                  <div className="prt-stat-value">{value}</div>
+                  <div className="prt-stat-label">{label}</div>
+                  <p className="prt-stat-note">{note}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -165,7 +246,7 @@ export function PartnersSection() {
       {/* ── BAND 3 · Partner logos — old format ── */}
       {/* data-no-reveal: opt this band out of the site-wide AutoReveal so the
           partner cards stay fully visible (pic + text) and never fade/flip. */}
-      <section className="section section--light" aria-label="Partner organisations">
+      <section id="partner-list" className="section section--light" aria-label="Partner organisations">
         <div className="section-inner" data-no-reveal>
           <h2 style={{
             fontFamily: "var(--font-archivo-black, 'Archivo Black')",
@@ -283,6 +364,321 @@ export function PartnersSection() {
       </section>
 
       <style>{`
+        /* ── Partners hero (orbit + stats) ── */
+        .prt-hero {
+          background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+          padding: 0;
+          color: var(--navy);
+          overflow: hidden;
+        }
+        .prt-hero-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 64px 20px 56px;
+          position: relative;
+          z-index: 1;
+        }
+        .prt-hero-grid {
+          display: grid;
+          grid-template-columns: 0.92fr 1.08fr;
+          gap: 40px;
+          align-items: center;
+          min-height: 500px;
+        }
+        .prt-hero-text {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding-right: 12px;
+        }
+        .prt-hero-eyebrow {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 2.6px;
+          color: var(--muted);
+          text-transform: uppercase;
+          margin-bottom: 18px;
+        }
+        .prt-hero-h1 {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(30px, 3.6vw, 50px);
+          line-height: 1.05;
+          letter-spacing: -1.4px;
+          margin-bottom: 20px;
+          max-width: 12ch;
+        }
+        .prt-hero-h1-dark { color: var(--navy); }
+        .prt-hero-h1-teal { color: var(--teal); }
+        .prt-hero .page-hero-divider { width: 56px; margin: 0 0 22px; }
+        .prt-hero-sub {
+          font-size: 16px;
+          color: var(--muted) !important;
+          max-width: 430px;
+          line-height: 1.65;
+          font-weight: 500;
+          margin-bottom: 30px;
+        }
+        .prt-hero-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: var(--teal);
+          color: #fff;
+          font-weight: 700;
+          font-size: 13.5px;
+          padding: 14px 28px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.4px;
+          box-shadow: 0 8px 24px -8px rgba(31,78,78,0.5), 0 2px 8px -2px rgba(31,78,78,0.2);
+          transition:
+            background 0.2s ease,
+            transform 0.22s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.2s ease;
+        }
+        .prt-hero-cta:hover {
+          background: var(--teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px -8px rgba(31,78,78,0.55);
+        }
+        .prt-hero-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .prt-hero-cta:active { transform: translateY(0); }
+
+        /* ── Orbit ── */
+        .prt-orbit {
+          position: relative;
+          width: 100%;
+          min-height: 500px;
+        }
+        /* faint dotted "world map" backdrop, fading at the edges */
+        .prt-orbit-map {
+          position: absolute;
+          inset: -6% -4%;
+          background-image: radial-gradient(rgba(43,107,107,0.22) 1.3px, transparent 1.4px);
+          background-size: 13px 13px;
+          -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 50%, #000 50%, transparent 82%);
+          mask-image: radial-gradient(ellipse 72% 64% at 50% 50%, #000 50%, transparent 82%);
+          opacity: 0.75;
+          pointer-events: none;
+        }
+        .prt-orbit-ring {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 84%;
+          aspect-ratio: 1;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          border: 1px dashed rgba(43,107,107,0.18);
+          pointer-events: none;
+        }
+        .prt-orbit-ring-2 { width: 54%; border-style: solid; border-color: rgba(43,107,107,0.12); }
+        .prt-orbit-links {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 1;
+        }
+        .prt-orbit-dot {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          background: var(--teal);
+          box-shadow: 0 0 0 4px rgba(43,107,107,0.12), 0 0 10px 2px rgba(96,200,190,0.6);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        /* central Malta hub */
+        .prt-hub {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          width: 150px;
+          height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .prt-hub-glow {
+          position: absolute;
+          inset: -28%;
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 48%,
+            rgba(140,228,216,0.85) 0%,
+            rgba(86,198,188,0.5) 38%,
+            rgba(43,140,132,0.16) 62%,
+            transparent 75%);
+          filter: blur(4px);
+          pointer-events: none;
+        }
+        .prt-hub-inner {
+          position: relative;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          background: radial-gradient(circle at 50% 38%, rgba(255,255,255,0.9) 0%, rgba(228,248,246,0.82) 100%);
+          border: 1.5px solid rgba(43,107,107,0.25);
+          box-shadow: 0 18px 40px -16px rgba(15,39,48,0.3), inset 0 1px 0 rgba(255,255,255,0.8);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 0 14px;
+        }
+        .prt-hub-pin {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: var(--teal);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 8px;
+          box-shadow: 0 8px 18px -6px rgba(43,107,107,0.7);
+        }
+        .prt-hub-title {
+          font-size: 14px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.2px;
+          margin-bottom: 3px;
+        }
+        .prt-hub-sub {
+          font-size: 9.5px;
+          color: var(--teal-dark);
+          font-weight: 600;
+          line-height: 1.35;
+        }
+
+        /* partner logo pills */
+        .prt-logo {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+          max-width: 150px;
+          padding: 12px 18px;
+          border-radius: 14px;
+          background: rgba(255,255,255,0.88);
+          backdrop-filter: blur(12px) saturate(1.3);
+          -webkit-backdrop-filter: blur(12px) saturate(1.3);
+          border: 1px solid rgba(255,255,255,0.8);
+          box-shadow: 0 14px 34px -16px rgba(15,39,48,0.28), inset 0 1px 0 rgba(255,255,255,0.7);
+          text-align: center;
+          transition:
+            transform 0.24s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.22s ease;
+        }
+        .prt-logo:hover {
+          transform: translate(-50%, -50%) scale(1.06);
+          box-shadow: 0 20px 42px -16px rgba(15,39,48,0.34);
+        }
+        .prt-logo span {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: 13px;
+          color: var(--navy);
+          letter-spacing: -0.3px;
+          line-height: 1.15;
+          display: block;
+        }
+        .prt-logo-muted span { color: var(--teal); font-size: 12px; }
+
+        /* ── Stats row ── */
+        .prt-stats {
+          margin-top: 30px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          background: rgba(255,255,255,0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(43,107,107,0.12);
+          border-radius: 20px;
+          box-shadow: 0 16px 44px -24px rgba(15,39,48,0.2);
+          overflow: hidden;
+        }
+        .prt-stat {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          padding: 26px 28px;
+        }
+        .prt-stat + .prt-stat { border-left: 1px solid rgba(43,107,107,0.12); }
+        .prt-stat-icon {
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: rgba(43,107,107,0.09);
+          color: var(--teal);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .prt-stat-value {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: 30px;
+          color: var(--teal);
+          letter-spacing: -1px;
+          line-height: 1;
+          margin-bottom: 6px;
+        }
+        .prt-stat-label {
+          font-size: 14px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.1px;
+          margin-bottom: 6px;
+        }
+        .prt-stat-note {
+          font-size: 12.5px;
+          color: var(--muted);
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        @media (max-width: 980px) {
+          .prt-hero-grid { grid-template-columns: 1fr; gap: 36px; min-height: 0; }
+          .prt-hero-text { align-items: center; text-align: center; padding-right: 0; }
+          .prt-hero-h1 { max-width: 20ch; }
+          .prt-hero-sub { margin-left: auto; margin-right: auto; }
+          .prt-hero .page-hero-divider { align-self: center; }
+
+          /* collapse the orbit into a centred stack */
+          .prt-orbit { min-height: 0; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+          .prt-orbit-ring, .prt-orbit-ring-2, .prt-orbit-links, .prt-orbit-dot { display: none; }
+          .prt-orbit-map { position: absolute; inset: 0; }
+          .prt-hub {
+            position: relative !important;
+            inset: auto !important;
+            transform: none;
+          }
+          .prt-logo {
+            position: static !important;
+            inset: auto !important;
+            transform: none;
+            max-width: none;
+          }
+          .prt-logo:hover { transform: scale(1.03); }
+          /* lay the partner pills out in a centred wrap row */
+          .prt-orbit-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+          }
+        }
+        @media (max-width: 720px) {
+          .prt-stats { grid-template-columns: 1fr; }
+          .prt-stat + .prt-stat { border-left: none; border-top: 1px solid rgba(43,107,107,0.12); }
+        }
+
         /* ── Heritage note (right side of split) ── */
         .prt-heritage-note {
           display: grid;
