@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { HeroEntrance } from "@/components/animations/HeroEntrance";
 import {
@@ -9,6 +10,13 @@ import {
   SupportPreview,
   ContactPreview,
 } from "@/components/sections/SectionPreviews";
+
+export const metadata: Metadata = {
+  title: "Nabuk Distributors Malta — Veterinary Equipment & Diagnostics",
+  description:
+    "Advanced veterinary equipment and diagnostics for the clinics of Malta and Gozo — backed by nearly three decades of partnership with the profession.",
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (
