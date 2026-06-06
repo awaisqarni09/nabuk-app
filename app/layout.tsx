@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "Advanced veterinary equipment and diagnostics for the clinics of Malta and Gozo — backed by nearly three decades of partnership with the profession.",
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
+  icons: {
+    icon: "/images/favicon.png",
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
+  },
   openGraph: {
     siteName: "Nabuk Distributors Malta",
     locale: "en_MT",
