@@ -15,15 +15,14 @@ export function organizationSchema() {
     areaServed: ["Malta", "Gozo"],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+356-9947-2220",
+      telephone: "+356-21492190",
       contactType: "customer service",
-      email: "info@nabukmalta.com", // PLACEHOLDER — replace with real address before launch
+      email: "info@nabukmalta.com",
       availableLanguage: "English",
     },
-    // TODO(real-data): add real social-profile URLs (Facebook, LinkedIn, Instagram).
-    // A `sameAs` that only points back to the site's own homepage is ignored by
-    // search engines, so it is omitted until real profiles are available.
-    sameAs: [],
+    sameAs: [
+      "https://www.facebook.com/share/1L3GYSURJi/",
+    ],
   };
 }
 
@@ -48,22 +47,21 @@ export function localBusinessSchema() {
     description:
       "Specialist veterinary equipment and diagnostics distributor serving Malta and Gozo since 1996.",
     url: SITE_URL,
-    telephone: "+356-9947-2220",
-    email: "info@nabukmalta.com", // PLACEHOLDER — replace with real address before launch
+    telephone: "+356-21492190",
+    email: "info@nabukmalta.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "STREET ADDRESS", // PLACEHOLDER — replace before launch
-      addressLocality: "Malta",
+      streetAddress: "The Park Offices 189/1, Canon Road District Zone 5, Central Business",
+      addressLocality: "Naxxar",
       addressRegion: "Malta",
-      postalCode: "POSTAL CODE", // PLACEHOLDER — replace before launch
+      postalCode: "CBD 5060",
       addressCountry: "MT",
     },
-    // TODO(real-data): add precise coordinates + opening hours to qualify for the
-    // local pack. Fake coordinates are worse than none, so they are left out until
-    // the real values are known:
-    //   geo: { "@type": "GeoCoordinates", latitude: 35.xxxx, longitude: 14.xxxx },
+    // TODO(optional): add precise coordinates + opening hours to improve local pack ranking:
+    //   geo: { "@type": "GeoCoordinates", latitude: 35.8989, longitude: 14.3522 },
     //   openingHoursSpecification: [{ "@type": "OpeningHoursSpecification",
-    //     dayOfWeek: ["Monday", ...], opens: "09:00", closes: "17:00" }],
+    //     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    //     opens: "09:00", closes: "17:00" }, ...]
     image: `${SITE_URL}/Nabuk-logo.png`,
     areaServed: [
       { "@type": "Country", name: "Malta" },
