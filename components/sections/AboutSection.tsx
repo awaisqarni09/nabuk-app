@@ -120,7 +120,7 @@ export function AboutSection() {
               <p className="page-hero-sub abt-hero-sub">
                 Since 1996, Nabuk Distributors Ltd. has been a trusted partner to the veterinary profession in Malta and Gozo, delivering advanced clinical technologies, dependable solutions, and unmatched support.
               </p>
-              <Link href="/contact" className="abt-hero-cta">
+              <Link href="#our-journey" className="abt-hero-cta">
                 Our Journey
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
                   width={15} height={15} aria-hidden="true">
@@ -130,7 +130,7 @@ export function AboutSection() {
             </div>
 
             {/* RIGHT: timeline */}
-            <div className="abt-timeline">
+            <div id="our-journey" className="abt-timeline">
               <div className="abt-timeline-axis">
                 <span className="abt-timeline-year">1996</span>
                 <div className="abt-timeline-track">
