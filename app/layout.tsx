@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   icons: {
-    icon: "/images/favicon.png",
-    shortcut: "/images/favicon.png",
-    apple: "/images/favicon.png",
+    icon: "/images/favicon.png?v=2",
+    shortcut: "/images/favicon.png?v=2",
+    apple: "/images/favicon.png?v=2",
   },
   openGraph: {
     siteName: "Nabuk Distributors Malta",
