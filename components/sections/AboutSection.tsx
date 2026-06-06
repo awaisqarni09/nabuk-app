@@ -1,6 +1,42 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Flag, TrendingUp, Users, Target, Calendar, Stethoscope, Package } from "lucide-react";
 import { AnimatedStatsCard } from "@/components/animations/AnimatedStatsCard";
+
+// ── About hero: 1996 → 2025 milestone timeline ──
+const heroMilestones = [
+  {
+    icon: Flag,
+    title: "Founded",
+    body: "Nabuk Distributors was established with a clear mission: to support veterinarians with high-quality products and trust.",
+    img: "/images/who-we-are.webp",
+  },
+  {
+    icon: TrendingUp,
+    title: "Growth",
+    body: "We expanded our product portfolio and partnered with world-leading manufacturers to better serve veterinary clinics.",
+    img: "/images/diagnostic-system.webp",
+  },
+  {
+    icon: Users,
+    title: "Clinical Expansion",
+    body: "Our solutions became integral to more clinics across Malta and Gozo, supporting better outcomes for animals.",
+    img: "/images/support-clinic.webp",
+  },
+  {
+    icon: Target,
+    title: "Technology Leadership",
+    body: "Today, we continue to lead with innovation, training, and end-to-end support for modern veterinary practice.",
+    img: "/images/specialised-equipment.webp",
+  },
+];
+
+const heroStats = [
+  { icon: Calendar,    value: "30+",    label: "Years of Experience", note: "Three decades of commitment to the veterinary profession." },
+  { icon: Stethoscope, value: "1,000+", label: "Clinics Served",      note: "Trusted by veterinary clinics across Malta and Gozo." },
+  { icon: Package,     value: "5,000+", label: "Projects Delivered",  note: "Successful installations and solutions delivered." },
+  { icon: Users,       value: "100%",   label: "Client Focused",      note: "Built on trust, reliability, and long-term relationships." },
+];
 
 // PLACEHOLDER: philosophy copy is professionally-toned but invented — replace with client-approved copy before launch
 const pillars = [
@@ -72,41 +108,70 @@ const timeline = [
 export function AboutSection() {
   return (
     <>
-      {/* ── HERO ── */}
-      <div className="page-hero visual-page-hero">
-        <div className="page-hero-inner">
-          <div className="visual-page-hero-text">
-            <div className="visual-page-hero-eyebrow">Our Identity</div>
-            <h1>About Us</h1>
-            <div className="page-hero-divider" />
-            <p className="page-hero-sub">
-              A specialist partner to Malta&apos;s veterinary profession since 1996 — built on competence, trust, and longevity.
-            </p>
-            <Link href="/contact" className="visual-page-hero-cta">
-              Speak to Nabuk
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                width={15} height={15} aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </Link>
+      {/* ── HERO — milestone timeline ── */}
+      <div className="page-hero abt-hero">
+        <div className="abt-hero-inner">
+          <div className="abt-hero-grid">
+            {/* LEFT: text */}
+            <div className="abt-hero-text">
+              <div className="abt-hero-eyebrow">Our Story</div>
+              <h1 className="abt-hero-h1">30 Years Supporting Veterinary Excellence</h1>
+              <div className="page-hero-divider" />
+              <p className="page-hero-sub abt-hero-sub">
+                Since 1996, Nabuk Distributors Ltd. has been a trusted partner to the veterinary profession in Malta and Gozo, delivering advanced clinical technologies, dependable solutions, and unmatched support.
+              </p>
+              <Link href="/contact" className="abt-hero-cta">
+                Our Journey
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
+                  width={15} height={15} aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* RIGHT: timeline */}
+            <div className="abt-timeline">
+              <div className="abt-timeline-axis">
+                <span className="abt-timeline-year">1996</span>
+                <div className="abt-timeline-track">
+                  {heroMilestones.map((m) => (
+                    <span key={m.title} className="abt-timeline-node" aria-hidden="true" />
+                  ))}
+                </div>
+                <span className="abt-timeline-year">2025</span>
+              </div>
+
+              <div className="abt-timeline-cards">
+                {heroMilestones.map(({ icon: Icon, title, body, img }) => (
+                  <div key={title} className="abt-tcard">
+                    <div className="abt-tcard-icon">
+                      <Icon size={20} strokeWidth={1.9} aria-hidden="true" />
+                    </div>
+                    <div className="abt-tcard-title">{title}</div>
+                    <p className="abt-tcard-body">{body}</p>
+                    <div className="abt-tcard-img">
+                      <Image src={img} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 980px) 50vw, 16vw" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="visual-page-hero-media">
-            <div className="visual-page-hero-glow" aria-hidden="true" />
-            <div className="visual-page-hero-frame" style={{ position: "relative", height: "420px" }}>
-              <Image
-                src="/images/about-us-banner.png"
-                alt="Nabuk Distributors supporting Malta's veterinary profession"
-                fill
-                priority
-                style={{ objectFit: "cover", objectPosition: "center" }}
-                sizes="(max-width: 900px) 0px, 50vw"
-              />
-            </div>
-            <div className="visual-page-hero-badge">
-              <span className="visual-page-hero-badge-dot">96</span>
-              <span className="visual-page-hero-badge-text">Serving veterinary clinics since 1996</span>
-            </div>
+          {/* stats */}
+          <div className="abt-stats">
+            {heroStats.map(({ icon: Icon, value, label, note }) => (
+              <div key={label} className="abt-stat">
+                <div className="abt-stat-icon">
+                  <Icon size={22} strokeWidth={1.7} aria-hidden="true" />
+                </div>
+                <div className="abt-stat-body">
+                  <div className="abt-stat-value">{value}</div>
+                  <div className="abt-stat-label">{label}</div>
+                  <p className="abt-stat-note">{note}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -249,6 +314,253 @@ export function AboutSection() {
       </section>
 
       <style>{`
+        /* ── About hero (timeline + stats) ── */
+        .abt-hero {
+          background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+          padding: 0;
+          color: var(--navy);
+          overflow: hidden;
+        }
+        .abt-hero-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 64px 20px 56px;
+          position: relative;
+          z-index: 1;
+        }
+        .abt-hero-grid {
+          display: grid;
+          grid-template-columns: 0.82fr 1.18fr;
+          gap: 48px;
+          align-items: center;
+        }
+        .abt-hero-text {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .abt-hero-eyebrow {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 2.6px;
+          color: var(--muted);
+          text-transform: uppercase;
+          margin-bottom: 18px;
+        }
+        .abt-hero-h1 {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(30px, 3.4vw, 46px);
+          line-height: 1.08;
+          letter-spacing: -1.2px;
+          color: var(--navy);
+          margin-bottom: 20px;
+          max-width: 12ch;
+        }
+        .abt-hero .page-hero-divider { width: 56px; margin: 0 0 22px; }
+        .abt-hero-sub {
+          font-size: 16px;
+          color: var(--muted) !important;
+          max-width: 420px;
+          line-height: 1.65;
+          font-weight: 500;
+          margin-bottom: 30px;
+        }
+        .abt-hero-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: var(--teal);
+          color: #fff;
+          font-weight: 700;
+          font-size: 13.5px;
+          padding: 14px 28px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.4px;
+          box-shadow: 0 8px 24px -8px rgba(31,78,78,0.5), 0 2px 8px -2px rgba(31,78,78,0.2);
+          transition:
+            background 0.2s ease,
+            transform 0.22s cubic-bezier(0.34,1.4,0.64,1),
+            box-shadow 0.2s ease;
+        }
+        .abt-hero-cta:hover {
+          background: var(--teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px -8px rgba(31,78,78,0.55);
+        }
+        .abt-hero-cta:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .abt-hero-cta:active { transform: translateY(0); }
+
+        /* timeline axis */
+        .abt-timeline-axis {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          margin-bottom: 26px;
+        }
+        .abt-timeline-year {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: clamp(18px, 1.8vw, 24px);
+          color: var(--teal);
+          letter-spacing: -0.5px;
+          flex-shrink: 0;
+        }
+        .abt-timeline-track {
+          flex: 1;
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          align-items: center;
+          height: 16px;
+        }
+        .abt-timeline-track::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          border-top: 2px dashed rgba(43,107,107,0.35);
+        }
+        .abt-timeline-node {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #fff;
+          border: 3px solid var(--teal);
+          justify-self: center;
+          position: relative;
+          z-index: 1;
+          box-shadow: 0 0 0 4px rgba(43,107,107,0.08);
+        }
+
+        /* timeline cards */
+        .abt-timeline-cards {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+        }
+        .abt-tcard {
+          display: flex;
+          flex-direction: column;
+          background: linear-gradient(155deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.34) 100%);
+          backdrop-filter: blur(16px) saturate(1.35);
+          -webkit-backdrop-filter: blur(16px) saturate(1.35);
+          border: 1px solid rgba(255,255,255,0.7);
+          border-radius: 18px;
+          padding: 18px 16px 16px;
+          box-shadow: 0 18px 42px -22px rgba(15,39,48,0.26), inset 0 1px 0 rgba(255,255,255,0.6);
+          transition: transform 0.24s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.22s ease;
+        }
+        .abt-tcard:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 26px 52px -20px rgba(15,39,48,0.3), inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+        .abt-tcard-icon {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: var(--teal);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 14px;
+          box-shadow: 0 8px 18px -6px rgba(43,107,107,0.6);
+        }
+        .abt-tcard-title {
+          font-size: 14px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.2px;
+          margin-bottom: 8px;
+        }
+        .abt-tcard-body {
+          font-size: 12px;
+          color: var(--muted);
+          line-height: 1.55;
+          margin: 0 0 14px;
+          flex: 1;
+        }
+        .abt-tcard-img {
+          position: relative;
+          width: 100%;
+          height: 84px;
+          border-radius: 12px;
+          overflow: hidden;
+          background: rgba(43,107,107,0.06);
+        }
+
+        /* stats row */
+        .abt-stats {
+          margin-top: 32px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          background: linear-gradient(155deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.32) 100%);
+          backdrop-filter: blur(16px) saturate(1.3);
+          -webkit-backdrop-filter: blur(16px) saturate(1.3);
+          border: 1px solid rgba(255,255,255,0.7);
+          border-radius: 20px;
+          box-shadow: 0 18px 46px -24px rgba(15,39,48,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+          overflow: hidden;
+        }
+        .abt-stat {
+          display: flex;
+          align-items: flex-start;
+          gap: 15px;
+          padding: 26px 26px;
+        }
+        .abt-stat + .abt-stat { border-left: 1px solid rgba(43,107,107,0.12); }
+        .abt-stat-icon {
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: rgba(43,107,107,0.09);
+          color: var(--teal);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .abt-stat-value {
+          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-size: 28px;
+          color: var(--teal);
+          letter-spacing: -1px;
+          line-height: 1;
+          margin-bottom: 6px;
+        }
+        .abt-stat-label {
+          font-size: 14px;
+          font-weight: 800;
+          color: var(--navy);
+          letter-spacing: -0.1px;
+          margin-bottom: 5px;
+        }
+        .abt-stat-note { font-size: 12px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+        @media (max-width: 980px) {
+          .abt-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+          .abt-timeline-cards { grid-template-columns: repeat(2, 1fr); }
+          .abt-timeline-track { grid-template-columns: repeat(2, 1fr); }
+          .abt-stats { grid-template-columns: repeat(2, 1fr); }
+          .abt-stat:nth-child(3) { border-left: none; }
+          .abt-stat:nth-child(n+3) { border-top: 1px solid rgba(43,107,107,0.12); }
+        }
+        @media (max-width: 768px) {
+          .abt-tcard, .abt-stats {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(255,255,255,0.94);
+          }
+        }
+        @media (max-width: 560px) {
+          .abt-timeline-cards { grid-template-columns: 1fr; }
+          .abt-timeline-axis { display: none; }
+          .abt-stats { grid-template-columns: 1fr; }
+          .abt-stat + .abt-stat { border-left: none; border-top: 1px solid rgba(43,107,107,0.12); }
+        }
+
         /* ── LEAD ── */
         .about-lead-text {
           font-size: clamp(20px, 2.2vw, 26px);
