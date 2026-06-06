@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Archivo_Black } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     apple: "/images/favicon.png?v=2",
   },
   openGraph: {
+    url: "/",
     siteName: "Nabuk Distributors Malta",
     locale: "en_MT",
     type: "website",
@@ -52,6 +53,11 @@ export const metadata: Metadata = {
   verification: {
     google: "zBfvZYJncTP9SKoZiVCpKq6mI-hs3wfdvE-alGb_zl4",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1a3a4a",
+  colorScheme: "light",
 };
 
 export default function RootLayout({

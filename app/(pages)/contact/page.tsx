@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     title: "Request a Consultation | Nabuk Distributors Malta",
     description:
       "Tell us about your clinic and what you're looking to achieve. We'll get back to you with expert advice on veterinary equipment and diagnostics.",
+    url: "/contact",
+    siteName: "Nabuk Distributors Malta",
+    locale: "en_MT",
     type: "website",
     images: ogImages("og-contact", "Nabuk Distributors Malta — Contact Us"),
   },

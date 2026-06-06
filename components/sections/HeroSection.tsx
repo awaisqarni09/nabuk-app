@@ -78,7 +78,6 @@ export function HeroSection() {
                 src="/images/G100-Device.png"
                 alt="G100 Device — veterinary equipment"
                 fill
-                priority
                 style={{ objectFit: "contain" }}
                 sizes="200px"
               />
@@ -106,7 +105,6 @@ export function HeroSection() {
                 src="/images/microscope.png"
                 alt="Microscope — veterinary equipment"
                 fill
-                priority
                 style={{ objectFit: "contain" }}
                 sizes="180px"
               />
@@ -120,7 +118,6 @@ export function HeroSection() {
                 src="/images/element-i-plus.png"
                 alt="Element i+ — veterinary analyser"
                 fill
-                priority
                 style={{ objectFit: "contain" }}
                 sizes="200px"
               />
@@ -134,7 +131,6 @@ export function HeroSection() {
                 src="/images/element-ht5.png"
                 alt="Element HT5 — veterinary analyser"
                 fill
-                priority
                 style={{ objectFit: "contain" }}
                 sizes="260px"
               />
@@ -151,7 +147,7 @@ export function HeroSection() {
             <div key={f.title} className="feature-item">
               <Icon size={44} strokeWidth={1.5} className="feature-icon" aria-hidden="true" />
               <div>
-                <h3 className="feature-title">{f.title}</h3>
+                <h2 className="feature-title">{f.title}</h2>
                 <p className="feature-body">{f.body}</p>
               </div>
             </div>
@@ -435,7 +431,7 @@ export function HeroSection() {
           font-weight: 800;
           color: var(--navy);
           letter-spacing: 0.5px;
-          margin-bottom: 6px;
+          margin: 0 0 6px;
         }
         .feature-body {
           font-size: 13px;

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     title: "Solutions | Nabuk Distributors Malta",
     description:
       "Veterinary clinical technologies for Malta — from diagnostics to the surgical suite. No prices, no catalogue — consultation-driven.",
+    url: "/solutions",
+    siteName: "Nabuk Distributors Malta",
+    locale: "en_MT",
     type: "website",
     images: ogImages("og-solutions", "Nabuk Distributors Malta — Solutions"),
   },

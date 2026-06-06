@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     title: "Support & Services | Nabuk Distributors Malta",
     description:
       "On-island consultation, installation, training and after-sales support for veterinary clinics across Malta and Gozo.",
+    url: "/support",
+    siteName: "Nabuk Distributors Malta",
+    locale: "en_MT",
     type: "website",
     images: ogImages("og-support", "Nabuk Distributors Malta — Support & Services"),
   },

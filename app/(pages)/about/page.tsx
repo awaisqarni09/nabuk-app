@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     title: "About Us | Nabuk Distributors Malta",
     description:
       "The history of Nabuk Distributors — from 1996 to a full-service veterinary equipment and diagnostics partner for Malta and Gozo.",
+    url: "/about",
+    siteName: "Nabuk Distributors Malta",
+    locale: "en_MT",
     type: "website",
     images: ogImages("og-about", "Nabuk Distributors Malta — About Us"),
   },
