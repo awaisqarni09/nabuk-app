@@ -68,6 +68,30 @@ export default function RootLayout({
       lang="en-MT"
       className={`${manrope.variable} ${archivoBlack.variable}`}
     >
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: `
+          html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 68px;
+            overflow-x: hidden;
+          }
+          body {
+            font-family: var(--font-manrope, system-ui, sans-serif);
+            min-height: 100vh;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+        ` }} />
+      </head>
       <body className="min-h-screen flex flex-col">
         {/* JSON-LD: Organisation + WebSite on every page */}
         <script

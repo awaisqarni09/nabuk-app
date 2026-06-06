@@ -92,6 +92,7 @@ export function HeroSection() {
                 alt="WISAP Unit — veterinary equipment"
                 fill
                 priority
+                fetchPriority="high"
                 style={{ objectFit: "contain" }}
                 sizes="240px"
               />
