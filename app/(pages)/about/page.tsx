@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AboutSection } from "@/components/sections/AboutSection";
+import { ogImages } from "@/lib/seo/og";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -11,8 +12,9 @@ export const metadata: Metadata = {
     description:
       "The history of Nabuk Distributors — from 1996 to a full-service veterinary equipment and diagnostics partner for Malta and Gozo.",
     type: "website",
-    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — About Us" }],
+    images: ogImages("og-about", "Nabuk Distributors Malta — About Us"),
   },
+  twitter: { card: "summary_large_image", images: ["/og/og-about.png"] },
 };
 
 export default function AboutPage() {

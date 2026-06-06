@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
+import { ogImages } from "@/lib/seo/og";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -11,8 +12,9 @@ export const metadata: Metadata = {
     description:
       "Veterinary clinical technologies for Malta — from diagnostics to the surgical suite. No prices, no catalogue — consultation-driven.",
     type: "website",
-    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Solutions" }],
+    images: ogImages("og-solutions", "Nabuk Distributors Malta — Solutions"),
   },
+  twitter: { card: "summary_large_image", images: ["/og/og-solutions.png"] },
 };
 
 export default function SolutionsPage() {

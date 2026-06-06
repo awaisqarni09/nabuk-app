@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { localBusinessSchema } from "@/lib/seo/schema";
+import { ogImages } from "@/lib/seo/og";
 
 export const metadata: Metadata = {
   title: "Request a Consultation",
@@ -12,8 +13,9 @@ export const metadata: Metadata = {
     description:
       "Tell us about your clinic and what you're looking to achieve. We'll get back to you with expert advice on veterinary equipment and diagnostics.",
     type: "website",
-    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Contact Us" }],
+    images: ogImages("og-contact", "Nabuk Distributors Malta — Contact Us"),
   },
+  twitter: { card: "summary_large_image", images: ["/og/og-contact.png"] },
 };
 
 export default function ContactPage() {

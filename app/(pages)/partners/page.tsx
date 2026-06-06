@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PartnersSection } from "@/components/sections/PartnersSection";
+import { ogImages } from "@/lib/seo/og";
 
 export const metadata: Metadata = {
   title: "Our Partners",
@@ -11,8 +12,9 @@ export const metadata: Metadata = {
     description:
       "International veterinary equipment manufacturers represented in Malta by Nabuk Distributors — including Eickemeyer, Antech, Melag, Covetrus and Veterinary Instrumentation.",
     type: "website",
-    images: [{ url: "/Nabuk-logo.png", width: 1200, height: 630, alt: "Nabuk Distributors Malta — Our Partners" }],
+    images: ogImages("og-partners", "Nabuk Distributors Malta — Our Partners"),
   },
+  twitter: { card: "summary_large_image", images: ["/og/og-partners.png"] },
 };
 
 export default function PartnersPage() {

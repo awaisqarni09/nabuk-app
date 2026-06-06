@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { organizationSchema, webSiteSchema } from "@/lib/seo/schema";
+import { ogImages } from "@/lib/seo/og";
 import { PageTransition } from "@/components/animations/PageTransition";
 import { AutoReveal } from "@/components/animations/AutoReveal";
 import { SITE_URL } from "@/lib/site";
@@ -41,16 +42,12 @@ export const metadata: Metadata = {
     siteName: "Nabuk Distributors Malta",
     locale: "en_MT",
     type: "website",
-    images: [
-      {
-        url: "/Nabuk-logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Nabuk Distributors Malta — Veterinary Equipment & Diagnostics",
-      },
-    ],
+    images: ogImages("og-default", "Nabuk Distributors Malta — Veterinary Equipment & Diagnostics"),
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    images: ogImages("og-default", "Nabuk Distributors Malta — Veterinary Equipment & Diagnostics").map((i) => i.url),
+  },
   robots: { index: true, follow: true },
   verification: {
     google: "zBfvZYJncTP9SKoZiVCpKq6mI-hs3wfdvE-alGb_zl4",
@@ -62,7 +59,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="en-MT"
       className={`${manrope.variable} ${archivoBlack.variable}`}
     >
       <body className="min-h-screen flex flex-col">
