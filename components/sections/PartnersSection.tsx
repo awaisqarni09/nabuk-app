@@ -6,21 +6,21 @@ import { Globe, ShieldCheck, MapPin, Clock, Award, Users, TrendingUp, Calendar, 
 // Positions are computed evenly around an ellipse; `cx`/`cy` (% of the orbit
 // box) double as the SVG connector endpoints. Real logo images can replace the
 // wordmark text once available.
-const orbitNames = [
-  "Eickemeyer",
-  "Antech",
-  "Melag",
-  "Covetrus",
-  "Veterinary Instrumentation",
-  "& more",
+// Our own manufacturing partners — clockwise from the top.
+const orbitBrands = [
+  { name: "Eickemeyer",                 tag: "Germany" },
+  { name: "Antech",                     tag: "Diagnostics" },
+  { name: "Melag",                      tag: "Germany" },
+  { name: "Covetrus",                   tag: "Global" },
+  { name: "Veterinary Instrumentation", tag: "United Kingdom" },
+  { name: "& more",                     tag: "" },
 ];
-const orbitPartners = orbitNames.map((name, i, arr) => {
+const orbitPartners = orbitBrands.map((b, i, arr) => {
   const a = (-90 + (i * 360) / arr.length) * (Math.PI / 180);
   return {
-    name,
-    cx: Math.round((50 + 39 * Math.cos(a)) * 100) / 100,
+    ...b,
+    cx: Math.round((50 + 38 * Math.cos(a)) * 100) / 100,
     cy: Math.round((50 + 43 * Math.sin(a)) * 100) / 100,
-    muted: name === "& more",
   };
 });
 
@@ -135,9 +135,16 @@ export function PartnersSection() {
 
             {/* RIGHT: orbit */}
             <div className="prt-orbit">
-              <div className="prt-orbit-map" aria-hidden="true" />
-              <div className="prt-orbit-ring" aria-hidden="true" />
-              <div className="prt-orbit-ring prt-orbit-ring-2" aria-hidden="true" />
+              <div className="prt-orbit-map" aria-hidden="true">
+                <Image
+                  src="/images/map.webp"
+                  alt=""
+                  fill
+                  priority
+                  style={{ objectFit: "contain", objectPosition: "center" }}
+                  sizes="(max-width: 980px) 0px, 60vw"
+                />
+              </div>
 
               {/* connectors from hub to each partner */}
               <svg className="prt-orbit-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -173,10 +180,11 @@ export function PartnersSection() {
               {orbitPartners.map((p) => (
                 <div
                   key={p.name}
-                  className={`prt-logo${p.muted ? " prt-logo-muted" : ""}`}
+                  className="prt-logo"
                   style={{ left: `${p.cx}%`, top: `${p.cy}%` }}
                 >
-                  <span>{p.name}</span>
+                  <span className="prt-logo-name">{p.name}</span>
+                  {p.tag ? <span className="prt-logo-tag">{p.tag}</span> : null}
                 </div>
               ))}
             </div>
@@ -450,29 +458,17 @@ export function PartnersSection() {
           width: 100%;
           min-height: 500px;
         }
-        /* faint dotted "world map" backdrop, fading at the edges */
+        /* transparent world-map backdrop graphic. A radial mask feathers the
+           edges so the soft internal haze fades into the section with no
+           visible rectangle/shade around it. */
         .prt-orbit-map {
           position: absolute;
-          inset: -6% -4%;
-          background-image: radial-gradient(rgba(43,107,107,0.22) 1.3px, transparent 1.4px);
-          background-size: 13px 13px;
-          -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 50%, #000 50%, transparent 82%);
-          mask-image: radial-gradient(ellipse 72% 64% at 50% 50%, #000 50%, transparent 82%);
-          opacity: 0.75;
+          inset: -10% -8%;
+          z-index: 0;
           pointer-events: none;
+          -webkit-mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 38%, transparent 70%);
+          mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 38%, transparent 70%);
         }
-        .prt-orbit-ring {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 84%;
-          aspect-ratio: 1;
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-          border: 1px dashed rgba(43,107,107,0.18);
-          pointer-events: none;
-        }
-        .prt-orbit-ring-2 { width: 54%; border-style: solid; border-color: rgba(43,107,107,0.12); }
         .prt-orbit-links {
           position: absolute;
           inset: 0;
@@ -506,14 +502,13 @@ export function PartnersSection() {
         }
         .prt-hub-glow {
           position: absolute;
-          inset: -28%;
+          inset: -18%;
           border-radius: 50%;
           background: radial-gradient(circle at 50% 48%,
-            rgba(140,228,216,0.85) 0%,
-            rgba(86,198,188,0.5) 38%,
-            rgba(43,140,132,0.16) 62%,
-            transparent 75%);
-          filter: blur(4px);
+            rgba(150,232,222,0.55) 0%,
+            rgba(86,198,188,0.28) 45%,
+            transparent 72%);
+          filter: blur(6px);
           pointer-events: none;
         }
         .prt-hub-inner {
@@ -521,9 +516,8 @@ export function PartnersSection() {
           width: 150px;
           height: 150px;
           border-radius: 50%;
-          background: radial-gradient(circle at 50% 38%, rgba(255,255,255,0.9) 0%, rgba(228,248,246,0.82) 100%);
-          border: 1.5px solid rgba(43,107,107,0.25);
-          box-shadow: 0 18px 40px -16px rgba(15,39,48,0.3), inset 0 1px 0 rgba(255,255,255,0.8);
+          background: transparent;
+          border: 1.5px solid rgba(43,107,107,0.3);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -579,15 +573,23 @@ export function PartnersSection() {
           transform: translate(-50%, -50%) scale(1.06);
           box-shadow: 0 20px 42px -16px rgba(15,39,48,0.34);
         }
-        .prt-logo span {
+        .prt-logo-name {
+          display: block;
           font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
-          font-size: 13px;
+          font-size: 15px;
           color: var(--navy);
           letter-spacing: -0.3px;
-          line-height: 1.15;
-          display: block;
+          line-height: 1.1;
         }
-        .prt-logo-muted span { color: var(--teal); font-size: 12px; }
+        .prt-logo-tag {
+          display: block;
+          margin-top: 2px;
+          font-size: 8.5px;
+          font-weight: 700;
+          letter-spacing: 0.4px;
+          text-transform: uppercase;
+          color: var(--teal);
+        }
 
         /* ── Stats row ── */
         .prt-stats {
@@ -652,8 +654,7 @@ export function PartnersSection() {
 
           /* collapse the orbit into a centred stack */
           .prt-orbit { min-height: 0; display: flex; flex-direction: column; align-items: center; gap: 26px; }
-          .prt-orbit-ring, .prt-orbit-ring-2, .prt-orbit-links, .prt-orbit-dot { display: none; }
-          .prt-orbit-map { position: absolute; inset: 0; }
+          .prt-orbit-links, .prt-orbit-dot, .prt-orbit-map { display: none; }
           .prt-hub {
             position: relative !important;
             inset: auto !important;

@@ -143,15 +143,16 @@ export function PVStyles() {
 
       /* ── Cards ── */
       .pv-item {
-        background: rgba(255,255,255,0.8);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1.5px solid rgba(43,107,107,0.09);
+        background: linear-gradient(155deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.34) 100%);
+        backdrop-filter: blur(16px) saturate(1.35);
+        -webkit-backdrop-filter: blur(16px) saturate(1.35);
+        border: 1px solid rgba(255,255,255,0.7);
         border-radius: 18px;
         padding: 22px 20px;
         box-shadow:
           0 2px 10px -3px rgba(15,39,48,0.07),
-          0 1px 3px rgba(15,39,48,0.04);
+          0 18px 42px -20px rgba(15,39,48,0.24),
+          inset 0 1px 0 rgba(255,255,255,0.6);
         transition:
           transform 0.24s cubic-bezier(0.34,1.4,0.64,1),
           box-shadow 0.22s ease,
@@ -160,11 +161,11 @@ export function PVStyles() {
       }
       .pv-item:hover {
         transform: translateY(-5px);
-        background: rgba(255,255,255,0.95);
-        border-color: rgba(43,107,107,0.2);
+        border-color: rgba(255,255,255,0.92);
         box-shadow:
-          0 18px 44px -12px rgba(15,39,48,0.16),
-          0 6px 16px -4px rgba(15,39,48,0.08);
+          0 26px 52px -16px rgba(15,39,48,0.2),
+          0 6px 16px -4px rgba(15,39,48,0.08),
+          inset 0 1px 0 rgba(255,255,255,0.7);
       }
 
       /* ── Icon badge ── */
