@@ -1,0 +1,6 @@
+# Target modern browsers only — drop IE11 polyfills (~50 KB savings)
+# Supports: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+
+last 2 major versions
+not dead
+not IE 11

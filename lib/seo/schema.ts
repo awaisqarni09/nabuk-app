@@ -52,7 +52,7 @@ export function localBusinessSchema() {
     address: {
       "@type": "PostalAddress",
       streetAddress: "The Park Offices 189/1, Canon Road District Zone 5, Central Business",
-      addressLocality: "Naxxar",
+      addressLocality: "Santa vanera",
       addressRegion: "Malta",
       postalCode: "CBD 5060",
       addressCountry: "MT",

@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
-import { ContactSection } from "@/components/sections/ContactSection";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { localBusinessSchema } from "@/lib/seo/schema";
 import { ogImages } from "@/lib/seo/og";
+
+// Dynamically import ContactSection to avoid loading form dependencies
+// (react-hook-form, zod, turnstile) on every page. This saves ~20–30 KB
+// on home, about, solutions, partners, and support pages.
+const ContactSection = dynamic(() => import("@/components/sections/ContactSection").then(m => ({ default: m.ContactSection })), {
+  loading: () => <div style={{ minHeight: "400px" }} />,
+  ssr: true,
+});
 
 export const metadata: Metadata = {
   title: "Request a Consultation",
@@ -30,7 +39,9 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema()) }}
       />
       <main id="main-content">
-        <ContactSection />
+        <Suspense fallback={<div style={{ minHeight: "400px" }} />}>
+          <ContactSection />
+        </Suspense>
       </main>
     </>
   );
