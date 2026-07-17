@@ -81,6 +81,15 @@ export function Footer() {
           <p className="footer-bottom-note">
             Serving veterinary clinics across Malta &amp; Gozo since 1996.
           </p>
+          <a
+            href="https://drasyo.com/en"
+            className="footer-credit"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Designed and built by Drasyo (opens in a new tab)"
+          >
+            Designed &amp; Built by <span>Drasyo</span>
+          </a>
         </div>
       </footer>
 
@@ -195,6 +204,28 @@ export function Footer() {
           color: rgba(255,255,255,0.4);
         }
         .footer-bottom-note { color: rgba(255,255,255,0.5); }
+        .footer-credit {
+          color: rgba(255,255,255,0.78);
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: color 0.15s;
+        }
+        .footer-credit span {
+          background: linear-gradient(90deg, #ff48a5 0%, #9d5cff 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+          font-size: 17px;
+          font-weight: 800;
+        }
+        .footer-credit:hover { color: #fff; }
+        .footer-credit:focus-visible {
+          outline: 2px solid var(--teal);
+          outline-offset: 4px;
+          border-radius: 2px;
+        }
 
         @media (max-width: 900px) {
           .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 32px; }
