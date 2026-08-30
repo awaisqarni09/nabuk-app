@@ -4,20 +4,15 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * Site-wide scroll reveal for inner pages.
+ * Site-wide scroll reveal.
  *
- * Mounted once in the root layout, it finds the current page's
- * `.page-content` block and reveals each top-level content section as it
- * scrolls into view — fading + rising the section, then staggering any
- * `.nabuk-card` children inside it. Mirrors the easing/stagger of the
- * existing <ScrollReveal> so the inner pages match the home page's motion
- * language.
+ * Mounted once in the root layout, it reveals each `.section-inner` content
+ * block as it scrolls into view — fading + rising the section, then
+ * staggering any `.nabuk-card` children inside it. The home page and inner
+ * pages share this one motion system.
  *
- * Scope is deliberately limited to `.page-content`:
- *   - The home page has no `.page-content` (it uses its own PreviewAnimator),
- *     so this is a no-op there and never double-animates it.
- *   - PageTransition fades the whole page container in on load; these
- *     per-section reveals compose on top of that for layered motion.
+ * PageTransition fades the whole page container in on load; these
+ * per-section reveals compose on top of that for layered motion.
  *
  * It renders nothing and re-runs on every route change (keyed on pathname).
  */
@@ -27,10 +22,9 @@ export function AutoReveal() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    // Inner pages use full-bleed bands, each constraining its content to a
+    // Pages use full-bleed bands, each constraining its content to a
     // `.section-inner` column — reveal those. Older single-wrapper pages fall
-    // back to the direct children of `.page-content`. (Home has neither and
-    // keeps its own PreviewAnimator, so this is a no-op there.)
+    // back to the direct children of `.page-content`.
     // `[data-no-reveal]` opts a band out of the reveal entirely — its content
     // stays fully visible from first paint (no opacity flip / fade-in).
     const sectionInners = Array.from(

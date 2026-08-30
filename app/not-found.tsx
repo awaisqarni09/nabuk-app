@@ -2,40 +2,15 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "80px 20px", minHeight: "60vh" }}>
-      <div style={{ textAlign: "center", maxWidth: "480px" }}>
-        <p style={{
-          fontFamily: "var(--font-archivo-black, 'Archivo Black')",
-          fontSize: "72px",
-          lineHeight: 1,
-          color: "var(--teal)",
-          marginBottom: "16px",
-          letterSpacing: "-2px",
-        }}>
-          404
-        </p>
-        <h1 style={{
-          fontFamily: "var(--font-archivo-black, 'Archivo Black')",
-          fontSize: "clamp(24px, 4vw, 36px)",
-          color: "var(--navy)",
-          marginBottom: "16px",
-          lineHeight: 1.1,
-        }}>
-          Page Not Found
-        </h1>
-        <p style={{ fontSize: "16px", color: "var(--muted)", lineHeight: 1.6, marginBottom: "32px" }}>
-          The page you&apos;re looking for doesn&apos;t exist. It may have moved or the address may be incorrect.
-        </p>
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <Link href="/" className="btn-teal">Back to Home</Link>
-          <Link href="/contact" style={{
-            display: "inline-flex", alignItems: "center",
-            border: "2px solid var(--teal)", color: "var(--teal)",
-            fontWeight: 700, fontSize: "15px", padding: "12px 24px",
-            borderRadius: "10px", textDecoration: "none", transition: "all 0.15s",
-          }}>
-            Contact Us
-          </Link>
+    <main id="main-content" className="not-found-editorial">
+      <div className="not-found-code" aria-hidden="true">404</div>
+      <div className="not-found-copy">
+        <p className="editorial-kicker">This route is off the map</p>
+        <h1 className="editorial-heading">Nothing clinical here.<br /><em>Let’s get you back.</em></h1>
+        <p className="editorial-copy editorial-copy--inverse">The page may have moved, or the address may be incomplete.</p>
+        <div className="editorial-actions">
+          <Link href="/" className="editorial-button editorial-button--solid">Return home <span aria-hidden="true">↗</span></Link>
+          <Link href="/contact" className="editorial-button editorial-button--light">Contact Nabuk</Link>
         </div>
       </div>
     </main>

@@ -53,7 +53,7 @@ export function ContactForm() {
       <div className="form-success" role="alert">
         <div className="form-success-icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="14" fill="var(--teal)" />
+            <circle cx="14" cy="14" r="14" fill="var(--eucalyptus)" />
             <path d="M8 14l4.5 4.5L20 9.5" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
@@ -218,50 +218,43 @@ export function ContactForm() {
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .contact-form { display: flex; flex-direction: column; gap: 20px; }
-        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .contact-form { display: flex; flex-direction: column; gap: 22px; }
+        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .field-group { display: flex; flex-direction: column; gap: 6px; }
         .field-label {
-          font-size: 13px;
-          font-weight: 700;
-          color: var(--navy);
-          letter-spacing: 0.2px;
+          font: 500 10px/1.2 var(--font-utility);
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--ink);
         }
-        .field-optional { font-weight: 500; color: var(--muted); }
+        .field-optional { text-transform: none; letter-spacing: 0.06em; opacity: 0.55; }
         .field-input {
           width: 100%;
-          padding: 12px 14px;
-          border: 2px solid rgba(26,58,74,0.12);
-          border-radius: 10px;
-          font-family: var(--font-manrope, 'Manrope'), sans-serif;
+          padding: 13px 0;
+          border: 0;
+          border-bottom: 1px solid rgba(16,47,54,0.28);
+          border-radius: 0;
+          font-family: var(--font-body);
           font-size: 15px;
-          color: var(--navy);
-          background: #fff;
-          transition: border-color 0.15s, box-shadow 0.15s;
+          color: var(--ink);
+          background: transparent;
+          transition: border-color 0.2s ease;
           outline: none;
         }
-        .field-input:focus {
-          border-color: var(--teal);
-          box-shadow: 0 0 0 3px rgba(43,107,107,0.12);
-        }
-        .field-input--error {
-          border-color: var(--red);
-        }
-        .field-input--error:focus {
-          box-shadow: 0 0 0 3px rgba(230,57,70,0.12);
-        }
+        .field-input::placeholder { color: rgba(16,47,54,0.35); }
+        .field-input:focus { border-color: var(--ember); }
+        .field-input--error { border-color: var(--ember); border-bottom-width: 2px; }
         .field-textarea { resize: vertical; min-height: 120px; }
         .field-error {
           font-size: 12px;
-          color: var(--red);
+          color: var(--ember);
           font-weight: 600;
         }
         .form-server-error {
-          padding: 14px 16px;
-          background: rgba(230,57,70,0.08);
-          border: 1px solid rgba(230,57,70,0.2);
-          border-radius: 10px;
-          color: var(--red);
+          padding: 14px 18px;
+          background: rgba(217,95,75,0.09);
+          border: 1px solid rgba(217,95,75,0.35);
+          color: var(--ember);
           font-size: 14px;
           font-weight: 600;
         }
@@ -269,28 +262,28 @@ export function ContactForm() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
-          background: var(--teal);
+          gap: 10px;
+          min-height: 54px;
+          background: var(--ink);
           color: #fff;
-          font-family: var(--font-manrope, 'Manrope'), sans-serif;
-          font-size: 16px;
+          font-family: var(--font-body);
+          font-size: 13px;
           font-weight: 700;
-          padding: 15px 28px;
-          border: none;
-          border-radius: 10px;
+          padding: 0 30px;
+          border: 1px solid var(--ink);
+          border-radius: 100px;
           cursor: pointer;
-          letter-spacing: 0.2px;
-          box-shadow: 0 6px 20px -6px rgba(31,78,78,0.4);
-          transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+          letter-spacing: 0.04em;
+          transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
         }
         .form-submit:hover:not(:disabled) {
-          background: var(--teal-dark);
-          transform: translateY(-1px);
-          box-shadow: 0 10px 28px -8px rgba(31,78,78,0.4);
+          background: var(--ink-deep);
+          border-color: var(--ink-deep);
+          transform: translateY(-2px);
         }
         .form-submit:active:not(:disabled) { transform: translateY(0); }
-        .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
-        .form-submit:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+        .form-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+        .form-submit:focus-visible { outline: 3px solid var(--ember); outline-offset: 4px; }
 
         .form-success {
           display: flex;
@@ -301,11 +294,12 @@ export function ContactForm() {
           padding: 40px 24px;
         }
         .form-success h3 {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
-          font-size: 22px;
-          color: var(--navy);
+          margin: 0;
+          font: 500 30px/1.1 var(--font-display);
+          letter-spacing: -0.03em;
+          color: var(--ink);
         }
-        .form-success p { font-size: 15px; color: var(--muted); }
+        .form-success p { font-size: 15px; color: rgba(16,47,54,0.65); }
 
         @media (max-width: 520px) {
           .form-row-2 { grid-template-columns: 1fr; }

@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // This app is a standalone project. Pin both roots here so Next does not
+  // mistake the lockfile in /Users/mac2/Desktop for a monorepo root.
+  turbopack: {
+    root: process.cwd(),
+  },
+  outputFileTracingRoot: process.cwd(),
   allowedDevOrigins: ["192.168.100.70"],
   experimental: {
     optimizePackageImports: ["lucide-react"],

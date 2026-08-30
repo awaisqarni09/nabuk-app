@@ -1,246 +1,95 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/",          label: "Home"      },
+  { href: "/", label: "Home" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/partners",  label: "Partners"  },
-  { href: "/about",     label: "About"     },
-  { href: "/support",   label: "Support"   },
+  { href: "/partners", label: "Partners" },
+  { href: "/about", label: "About" },
+  { href: "/support", label: "Support" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const [previousPathname, setPreviousPathname] = useState(pathname);
+  if (previousPathname !== pathname) {
+    setPreviousPathname(pathname);
+    setOpen(false);
+  }
+
+  // No JS scroll lock while the menu is open: overflow:hidden on <body>
+  // un-sticks the sticky header (menu vanishes when scrolled), and on <html>
+  // it resets the scroll position to 0. The menu itself is a scroll container
+  // with overscroll-behavior:contain, which keeps touch scrolling inside it.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <>
-      <header className="nabuk-nav">
-        <div className="nav-inner">
-          {/* Logo */}
-          <Link href="/" className="nav-logo" aria-label="Nabuk Distributors Malta — home">
-            <Image
-              src="/images/nabuk-logo-icon.png"
-              alt=""
-              height={36}
-              width={36}
-              priority
-              style={{ objectFit: "contain", height: "36px", width: "auto", mixBlendMode: "multiply" }}
-              aria-hidden="true"
-            />
-            <div className="nav-logo-text">
-              <span className="nav-vss">VSS</span>
-              <span className="nav-company">Vet Supplies Specialists</span>
-            </div>
-          </Link>
+    <header className={`nabuk-nav ${scrolled ? "nabuk-nav--scrolled" : ""}`}>
+      <div className="nav-inner">
+        <Link href="/" className="nav-logo" aria-label="Nabuk Distributors Malta — home">
+          <Image className="nav-logo-mark" src="/images/nabuk-logo-white.webp" alt="" width={42} height={42} priority />
+          <span className="nav-wordmark">
+            <strong className="nav-vss">VSS</strong>
+            <small>Vet Supplies Specialists</small>
+          </span>
+        </Link>
 
-          {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="nav-links-desktop">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`nav-link ${isActive(link.href) ? "nav-link--active" : ""}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <Link href="/contact" className="nav-cta">
-            Request a Consultation
-          </Link>
-
-          {/* Hamburger */}
-          <button
-            className="nav-hamburger"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        {open && (
-          <nav
-            aria-label="Mobile navigation"
-            className="nav-mobile"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`nav-mobile-link ${isActive(link.href) ? "nav-mobile-link--active" : ""}`}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="nav-mobile-cta"
-              onClick={() => setOpen(false)}
-            >
-              Request a Consultation
+        <nav aria-label="Main navigation" className="nav-links-desktop">
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className={`nav-link ${isActive(link.href) ? "nav-link--active" : ""}`} aria-current={isActive(link.href) ? "page" : undefined}>
+              {link.label}
             </Link>
-          </nav>
-        )}
-      </header>
+          ))}
+        </nav>
 
-      <style>{`
-        .nabuk-nav {
-          background: rgba(255,255,255,0.95);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(26,58,74,0.08);
-          position: sticky;
-          top: 0;
-          z-index: 100;
-          box-shadow: 0 4px 24px -8px rgba(15,39,48,0.12);
-        }
-        .nav-inner {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 0 20px;
-          height: 68px;
-          display: flex;
-          align-items: center;
-          gap: 40px;
-        }
-        .nav-logo {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          text-decoration: none;
-          flex-shrink: 0;
-        }
-        .nav-logo-text {
-          display: flex;
-          flex-direction: column;
-          line-height: 1;
-          gap: 2px;
-        }
-        .nav-vss {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
-          color: var(--red);
-          font-size: 18px;
-          letter-spacing: 1px;
-        }
-        .nav-company {
-          font-size: 10px;
-          font-weight: 600;
-          color: var(--muted);
-          letter-spacing: 0.3px;
-          text-transform: uppercase;
-        }
-        .nav-links-desktop {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          flex: 1;
-        }
-        .nav-link {
-          font-size: 14px;
-          font-weight: 600;
-          color: var(--navy);
-          text-decoration: none;
-          padding: 8px 12px;
-          border-radius: 8px;
-          transition: color 0.15s, background 0.15s;
-          white-space: nowrap;
-        }
-        .nav-link:hover { color: var(--teal); background: rgba(43,107,107,0.07); }
-        .nav-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
-        .nav-link--active { color: var(--teal); }
-        .nav-cta {
-          flex-shrink: 0;
-          background: var(--teal);
-          color: #fff;
-          font-size: 14px;
-          font-weight: 700;
-          padding: 10px 20px;
-          border-radius: 8px;
-          text-decoration: none;
-          letter-spacing: 0.2px;
-          transition: background 0.15s, transform 0.15s;
-          box-shadow: 0 4px 12px -4px rgba(31,78,78,0.35);
-        }
-        .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
-        .nav-cta:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
-        .nav-cta:active { transform: translateY(0); }
-        .nav-hamburger {
-          display: none;
-          align-items: center;
-          justify-content: center;
-          background: none;
-          border: none;
-          color: var(--navy);
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 8px;
-          padding: 0;
-          margin-left: auto;
-          transition: background 0.15s;
-        }
-        .nav-hamburger:hover { background: rgba(43,107,107,0.07); }
-        .nav-hamburger:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
-        .nav-mobile {
-          border-top: 1px solid rgba(26,58,74,0.08);
-          padding: 16px 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          background: rgba(255,255,255,0.98);
-        }
-        .nav-mobile-link {
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--navy);
-          text-decoration: none;
-          padding: 12px 16px;
-          border-radius: 10px;
-          transition: color 0.15s, background 0.15s;
-        }
-        .nav-mobile-link:hover, .nav-mobile-link--active {
-          color: var(--teal);
-          background: rgba(43,107,107,0.07);
-        }
-        .nav-mobile-cta {
-          margin-top: 8px;
-          background: var(--teal);
-          color: #fff;
-          font-size: 16px;
-          font-weight: 700;
-          padding: 14px 20px;
-          border-radius: 10px;
-          text-decoration: none;
-          text-align: center;
-          transition: background 0.15s;
-        }
-        .nav-mobile-cta:hover { background: var(--teal-dark); }
+        <Link href="/contact" className="nav-cta">Request a consultation <span aria-hidden="true">→</span></Link>
+        <button ref={buttonRef} type="button" className="nav-hamburger" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((value) => !value)}>
+          {open ? <X size={21} /> : <Menu size={21} />}
+        </button>
+      </div>
 
-        @media (max-width: 900px) {
-          .nav-links-desktop { display: none; }
-          .nav-cta { display: none; }
-          .nav-hamburger { display: flex; }
-        }
-        @media (max-width: 480px) {
-          .nav-inner { gap: 0; }
-          .nav-company { display: none; }
-        }
-      `}</style>
-    </>
+      <nav id="mobile-menu" className="nav-mobile" aria-label="Mobile navigation" hidden={!open}>
+        <div className="nav-mobile-links">
+          {navLinks.map((link, index) => (
+            <Link key={link.href} href={link.href} className="nav-mobile-link" onClick={() => setOpen(false)}>
+              <span className="nav-mobile-num">{String(index + 1).padStart(2, "0")}</span>{link.label}
+            </Link>
+          ))}
+          <Link href="/contact" className="nav-mobile-link" onClick={() => setOpen(false)}><span className="nav-mobile-num">06</span>Contact</Link>
+        </div>
+        <div className="nav-mobile-contact">
+          <a href="tel:+35699472220">+356 9947 2220</a>
+          <a href="mailto:info@nabukmalta.com">info@nabukmalta.com</a>
+        </div>
+      </nav>
+    </header>
   );
 }

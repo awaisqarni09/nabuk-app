@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Archivo_Black } from "next/font/google";
+import { Manrope, Bodoni_Moda, IBM_Plex_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
@@ -9,6 +9,7 @@ import { PageTransition } from "@/components/animations/PageTransition";
 import { AutoReveal } from "@/components/animations/AutoReveal";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
+import "./editorial.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -17,11 +18,20 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const archivoBlack = Archivo_Black({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  variable: "--font-archivo-black",
+  variable: "--font-bodoni",
   display: "swap",
-  weight: "400",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+});
+
+// Technical-annotation voice for labels, indices and figure captions.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-plex-mono",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -56,7 +66,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1a3a4a",
+  themeColor: "#0f2730",
   colorScheme: "light",
 };
 
@@ -66,13 +76,16 @@ export default function RootLayout({
   return (
     <html
       lang="en-MT"
-      className={`${manrope.variable} ${archivoBlack.variable}`}
+      // Next 16 no longer overrides CSS smooth scrolling on navigation unless
+      // this attribute is present — without it, route changes land mid-scroll.
+      data-scroll-behavior="smooth"
+      className={`${manrope.variable} ${bodoni.variable} ${plexMono.variable}`}
     >
       <head>
         <style dangerouslySetInnerHTML={{ __html: `
           html {
             scroll-behavior: smooth;
-            scroll-padding-top: 68px;
+            scroll-padding-top: 110px;
             overflow-x: hidden;
           }
           body {
@@ -100,6 +113,9 @@ export default function RootLayout({
             __html: JSON.stringify([organizationSchema(), webSiteSchema()]),
           }}
         />
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Navbar />
         <PageTransition>
           <div className="flex-1">{children}</div>

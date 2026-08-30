@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw product-image sources (converted copies live in public/images/products)
+nabuk-products/
+IMG_*.JPG
