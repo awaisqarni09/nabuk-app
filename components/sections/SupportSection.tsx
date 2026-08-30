@@ -51,7 +51,7 @@ export function SupportSection() {
               <div><p className="editorial-kicker">One continuous relationship</p><h2 id="support-journey-title" className="editorial-heading" style={{ marginTop:24 }}>No hand-offs.<br /><em>No disappearing.</em></h2></div>
               <p className="editorial-copy editorial-copy--inverse">The same local accountability runs from the first conversation through installation, training and the life of the equipment.</p>
             </div>
-            <div className="process-rail">{journey.map((step,index) => <article className="process-step" key={step.title}><b>{String(index+1).padStart(2,"0")}</b><h3>{step.title}</h3><p>{step.body}</p></article>)}</div>
+            <div className="process-rail">{journey.map((step,index) => <article className="process-card nabuk-card" key={step.title}><span className="process-card__ghost" aria-hidden="true">{String(index+1).padStart(2,"0")}</span><b>Step {String(index+1).padStart(2,"0")}</b><h3>{step.title}</h3><p>{step.body}</p><span className="process-card__trace" aria-hidden="true" /></article>)}</div>
           </div>
         </section>
 

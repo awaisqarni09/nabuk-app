@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Handshake, Headphones, History, MapPin, ShieldCheck, Stethoscope } from "lucide-react";
 
 const timeline = [
   { year: "1996", title: "A clear beginning", body: "Nabuk Distributors was founded to give Malta’s veterinary profession quality products and dependable local support." },
@@ -9,9 +10,33 @@ const timeline = [
 ];
 
 const values = [
-  { title: "Competence", body: "Specialist knowledge built through decades of hands-on work with clinical teams.", image: "/images/who-we-are.webp" },
-  { title: "Continuity", body: "A stable partner through changing technologies, suppliers and standards of care.", image: "/images/nabuk-team.webp" },
-  { title: "Closeness", body: "Local support that understands island logistics and the urgency of daily practice.", image: "/images/dog-cat-about-us.webp" },
+  {
+    title: "Competence",
+    body: "Specialist knowledge built through decades of hands-on work with clinical teams.",
+    image: "/images/who-we-are.webp",
+    meta: [
+      { icon: ShieldCheck, label: "Specialist knowledge" },
+      { icon: Stethoscope, label: "Clinical teams" },
+    ],
+  },
+  {
+    title: "Continuity",
+    body: "A stable partner through changing technologies, suppliers and standards of care.",
+    image: "/images/nabuk-team.webp",
+    meta: [
+      { icon: History, label: "Since 1996" },
+      { icon: Handshake, label: "One stable partner" },
+    ],
+  },
+  {
+    title: "Closeness",
+    body: "Local support that understands island logistics and the urgency of daily practice.",
+    image: "/images/dog-cat-about-us.webp",
+    meta: [
+      { icon: MapPin, label: "Malta & Gozo" },
+      { icon: Headphones, label: "Local support" },
+    ],
+  },
 ];
 
 export function AboutSection() {
@@ -37,9 +62,18 @@ export function AboutSection() {
             </div>
             <div className="image-card-grid">
               {values.map((value, index) => (
-                <article className="image-card nabuk-card" key={value.title}>
-                  <div className="image-card__visual"><Image src={value.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" /></div>
-                  <div className="image-card__body"><span className="image-card__meta">Principle · {String(index + 1).padStart(2, "0")}</span><h3>{value.title}</h3><p>{value.body}</p></div>
+                <article className="benefit-card nabuk-card" key={value.title}>
+                  <div className="benefit-card__visual"><Image src={value.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" /></div>
+                  <div className="benefit-card__body">
+                    <span className="benefit-card__kicker">Principle · {String(index + 1).padStart(2, "0")}</span>
+                    <h3>{value.title}</h3>
+                    <p>{value.body}</p>
+                    <div className="benefit-card__meta">
+                      {value.meta.map(({ icon: MetaIcon, label }) => (
+                        <span key={label}><MetaIcon size={14} aria-hidden="true" /> {label}</span>
+                      ))}
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>

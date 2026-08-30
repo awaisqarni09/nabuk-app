@@ -112,26 +112,24 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               </div>
 
               <ul className="product-grid">
-                {related.map((product, productIndex) => (
+                {related.map((product) => (
                   <li className="product-card" key={product.image}>
-                    <div className="product-card__visual">
-                      <span className="product-card__num" aria-hidden="true">
-                        {String(productIndex + 1).padStart(2, "0")} / {String(related.length).padStart(2, "0")}
-                      </span>
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width: 760px) 50vw, (max-width: 1050px) 33vw, 25vw"
-                      />
-                    </div>
-                    <div className="product-card__body">
-                      <span className="product-card__meta">{product.brand} · {product.discipline}</span>
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 760px) 50vw, (max-width: 1050px) 33vw, 25vw"
+                    />
+                    <div className="product-card__scrim" aria-hidden="true" />
+                    <div className="product-card__info">
                       <h3>{product.name}</h3>
+                      <span>{product.brand} · {product.discipline}</span>
                     </div>
                     <Link className="product-card__enquire" href="/contact">
-                      <span>Enquire for pricing</span>
-                      <i aria-hidden="true">→</i>
+                      <svg viewBox="0 0 16 16" fill="currentColor" width={11} height={11} aria-hidden="true">
+                        <path d="M15 1 1 6.5l5.4 2.1L8.5 14 15 1Z" />
+                      </svg>
+                      Enquire
                     </Link>
                   </li>
                 ))}

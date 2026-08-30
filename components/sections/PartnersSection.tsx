@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, Globe, Headphones, Layers, MapPin, ShieldCheck, Stethoscope } from "lucide-react";
 
 const partners = [
   { name: "Eickemeyer", field: "Veterinary instruments · Germany" },
@@ -10,9 +11,36 @@ const partners = [
 ];
 
 const benefits = [
-  { title: "Global standards", body: "Specialist veterinary manufacturers selected for clinical quality, reliability and long-term value.", image: "/images/surgical-instrument.webp" },
-  { title: "Local accountability", body: "One Maltese point of contact for advice, installation, escalation and after-sales support.", image: "/images/support-clinic.webp" },
-  { title: "Clinical context", body: "Manufacturer knowledge translated into recommendations that fit your caseload and workflow.", image: "/images/veterinary-workstation.webp" },
+  {
+    title: "Global standards",
+    body: "Specialist veterinary manufacturers selected for clinical quality, reliability and long-term value.",
+    image: "/images/surgical-instrument.webp",
+    meta: [
+      { icon: Globe, label: "5 manufacturers" },
+      { icon: ShieldCheck, label: "Clinical grade" },
+    ],
+    cta: { label: "Meet the makers", href: "#partner-list" },
+  },
+  {
+    title: "Local accountability",
+    body: "One Maltese point of contact for advice, installation, escalation and after-sales support.",
+    image: "/images/support-clinic.webp",
+    meta: [
+      { icon: MapPin, label: "Malta & Gozo" },
+      { icon: Headphones, label: "One contact" },
+    ],
+    cta: { label: "How support works", href: "/support" },
+  },
+  {
+    title: "Clinical context",
+    body: "Manufacturer knowledge translated into recommendations that fit your caseload and workflow.",
+    image: "/images/veterinary-workstation.webp",
+    meta: [
+      { icon: Layers, label: "8 disciplines" },
+      { icon: Stethoscope, label: "Caseload-fit" },
+    ],
+    cta: { label: "Explore solutions", href: "/solutions" },
+  },
 ];
 
 export function PartnersSection() {
@@ -49,7 +77,28 @@ export function PartnersSection() {
               <p className="editorial-copy">The real benefit is not access alone. It is having someone close who can interpret, coordinate and remain answerable.</p>
             </div>
             <div className="image-card-grid">
-              {benefits.map((benefit,index) => <article className="image-card nabuk-card" key={benefit.title}><div className="image-card__visual"><Image src={benefit.image} alt="" fill sizes="(max-width:760px) 100vw, 33vw" /></div><div className="image-card__body"><span className="image-card__meta">Advantage · {String(index+1).padStart(2,"0")}</span><h3>{benefit.title}</h3><p>{benefit.body}</p></div></article>)}
+              {benefits.map((benefit) => (
+                <article className="benefit-card nabuk-card" key={benefit.title}>
+                  <div className="benefit-card__visual">
+                    <Image src={benefit.image} alt="" fill sizes="(max-width:760px) 100vw, 33vw" />
+                  </div>
+                  <div className="benefit-card__body">
+                    <h3>{benefit.title}</h3>
+                    <p>{benefit.body}</p>
+                    <div className="benefit-card__meta">
+                      {benefit.meta.map(({ icon: MetaIcon, label }) => (
+                        <span key={label}><MetaIcon size={14} aria-hidden="true" /> {label}</span>
+                      ))}
+                    </div>
+                    <div className="benefit-card__actions">
+                      <Link className="benefit-card__cta" href={benefit.cta.href}>{benefit.cta.label}</Link>
+                      <Link className="benefit-card__go" href="/contact" aria-label={`Start a conversation about ${benefit.title.toLowerCase()}`}>
+                        <ArrowUpRight size={17} aria-hidden="true" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

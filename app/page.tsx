@@ -11,18 +11,23 @@ export const metadata: Metadata = {
 };
 
 const featuredSolutions = [
-  { title: "Diagnostics", body: "Fast, reliable in-house answers for confident clinical decisions.", image: "/images/diagnostic-system.webp", href: "/solutions/diagnostic-systems" },
-  { title: "Imaging", body: "Digital X-ray and ultrasound systems specified around your practice.", image: "/images/x-ray.webp", href: "/solutions/imaging" },
-  { title: "Surgical", body: "Precision instruments, sterilisation and infrastructure for the theatre.", image: "/images/surgical-instruments.webp", href: "/solutions/surgical-instruments" },
+  { label: "Diagnostics", category: "Diagnostic systems", title: "Fast, reliable answers while the patient is still in the room.", image: "/images/diagnostic-system.webp", href: "/solutions/diagnostic-systems" },
+  { label: "Imaging", category: "Imaging", title: "X-ray and ultrasound specified around your practice.", image: "/images/x-ray.webp", href: "/solutions/imaging" },
+  { label: "Surgical", category: "Surgical instruments", title: "Precision instruments for the theatre.", image: "/images/surgical-instruments.webp", href: "/solutions/surgical-instruments" },
+  { label: "Rapid testing", category: "Rapid testing", title: "A ten-minute answer that changes the plan.", image: "/images/rapid-testing.webp", href: "/solutions/rapid-testing" },
+  { label: "Sterilisation", category: "Sterilisation", title: "Sterility you can document, cycle after cycle.", image: "/images/sterilisation.webp", href: "/solutions/sterilisation" },
+  { label: "Specialist equipment", category: "Specialist equipment", title: "The technologies that let a practice open a whole new service.", image: "/images/specialised-equipment.webp", href: "/solutions/specialist-equipment" },
 ];
 
-const capabilityIndex = [
-  { title: "Laboratory diagnostics", body: "Haematology, biochemistry, microscopy and rapid testing for dependable answers inside the clinic.", image: "/images/laboratory-analyzers.webp", href: "/solutions/diagnostic-systems" },
-  { title: "Diagnostic imaging", body: "Digital X-ray and ultrasound systems planned around room layout, caseload and clinical workflow.", image: "/images/ultrasound-imaging.webp", href: "/solutions/imaging" },
-  { title: "Surgical theatre", body: "Precision instruments and specialist equipment selected for the procedures your team performs.", image: "/images/surgical-instrument.webp", href: "/solutions/surgical-instruments" },
-  { title: "Sterilisation & hygiene", body: "Autoclaves and decontamination systems that support consistent, compliant instrument processing.", image: "/images/sterilisation.webp", href: "/solutions/sterilisation" },
-  { title: "Clinic infrastructure", body: "Examination tables, cabinetry, trolleys and workstations that make daily movement more efficient.", image: "/images/clinic-furniture.webp", href: "/solutions/clinic-furniture" },
-  { title: "Specialised disciplines", body: "Focused technologies for dentistry, ophthalmology, endoscopy and other developing services.", image: "/images/specialised-equipment.webp", href: "/solutions/specialist-equipment" },
+// App-style portfolio tiles — each discipline's photo under a brand-tinted
+// scrim, with a count chip. `category` drives the chip.
+const portfolioTiles = [
+  { title: "Laboratory diagnostics", subtitle: "Haematology, microscopy & rapid testing", category: "Diagnostic systems", href: "/solutions/diagnostic-systems", image: "/images/laboratory-analyzers.webp", wide: true },
+  { title: "Diagnostic imaging", category: "Imaging", href: "/solutions/imaging", image: "/images/ultrasound-imaging.webp" },
+  { title: "Surgical theatre", category: "Surgical instruments", href: "/solutions/surgical-instruments", image: "/images/surgical-instrument.webp" },
+  { title: "Sterilisation & hygiene", category: "Sterilisation", href: "/solutions/sterilisation", image: "/images/sterilisation.webp" },
+  { title: "Clinic infrastructure", category: "Clinic furniture", href: "/solutions/clinic-furniture", image: "/images/clinic-furniture.webp" },
+  { title: "Specialised disciplines", subtitle: "Dentistry, endoscopy, ophthalmology & more", category: "Specialist equipment", href: "/solutions/specialist-equipment", image: "/images/specialised-equipment.webp", wide: true },
 ];
 
 const consultationSteps = [
@@ -82,7 +87,7 @@ export default function HomePage() {
             <div className="home-aperture home-aperture--window"><Image src="/images/dog-cat-about-us.webp" alt="A dog and cat at a bright, contemporary veterinary clinic" fill priority sizes="16vw" /></div>
             <div className="home-aperture home-aperture--device">
               <Image src="/images/element-ht5.webp" alt="Element HT5 haematology analyser" fill sizes="(max-width: 1050px) 60vw, 24vw" />
-              <span className="home-device-tag" aria-hidden="true">Element HT5 · Haematology</span>
+              <span className="home-device-tag" aria-hidden="true">Element HT5</span>
             </div>
             <p className="home-visual-caption">One local partner from first conversation to after-sales care.</p>
           </div>
@@ -109,17 +114,20 @@ export default function HomePage() {
               </div>
               <p className="editorial-copy">We bring together the technologies a modern practice depends on, with advice grounded in caseload, workflow and the realities of operating in Malta and Gozo.</p>
             </div>
-            <div className="service-grid">
-              {featuredSolutions.map((item, index) => (
-                <Link className="service-card nabuk-card" key={item.title} href={item.href}>
-                  <Image src={item.image} alt="" fill sizes="(max-width: 760px) 100vw, 40vw" />
-                  <div className="service-card-content">
-                    <span className="service-card-index">Focus · {String(index + 1).padStart(2, "0")}</span>
-                    <h3>{item.title}</h3><p>{item.body}</p>
-                    <span className="service-card-go">View solution &amp; products <i aria-hidden="true">→</i></span>
-                  </div>
-                </Link>
-              ))}
+            <div className="story-grid">
+              {featuredSolutions.map((item) => {
+                const count = products.filter((product) => product.category === item.category).length;
+                return (
+                  <Link className="story-card nabuk-card" key={item.label} href={item.href}>
+                    <Image src={item.image} alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
+                    <div className="story-card__content">
+                      <span className="story-card__label">{item.label}</span>
+                      <h3>{item.title}</h3>
+                      <span className="story-card__chip">View {count} products</span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
             <div style={{ marginTop: 42 }}><Link className="editorial-card-link" href="/solutions">View every solution <span aria-hidden="true">↗</span></Link></div>
           </div>
@@ -138,39 +146,58 @@ export default function HomePage() {
 
         <section className="editorial-section home-capability-section" aria-labelledby="home-capability-title">
           <div className="section-inner editorial-container">
-            <div className="home-capability-layout">
-              <div className="home-capability-lead">
+            <div className="editorial-intro">
+              <div>
                 <p className="editorial-kicker">The complete portfolio</p>
-                <h2 id="home-capability-title" className="editorial-heading">What your clinic needs,<br /><em>in one conversation.</em></h2>
-                <p className="editorial-copy">Instead of sending teams between unrelated suppliers, Nabuk brings the key clinical disciplines together with one accountable local partner.</p>
-                <Link className="editorial-card-link" href="/solutions">Explore the full portfolio <span aria-hidden="true">↗</span></Link>
-                <div className="home-capability-device" aria-hidden="true">
-                  <Image src="/images/element-i-plus.webp" alt="" fill sizes="(max-width: 900px) 70vw, 34vw" />
-                </div>
+                <h2 id="home-capability-title" className="editorial-heading" style={{ marginTop: 24 }}>What your clinic needs,<br /><em>in one conversation.</em></h2>
               </div>
-
-              <div className="home-capability-list">
-                {capabilityIndex.map((item, index) => (
-                  <Link className="home-capability-row nabuk-card" key={item.title} href={item.href}>
-                    <span className="home-capability-number">{String(index + 1).padStart(2, "0")}</span>
-                    <div className="home-capability-thumb"><Image src={item.image} alt="" fill sizes="88px" /></div>
-                    <div><h3>{item.title}</h3><p>{item.body}</p></div>
-                    <i className="home-capability-arrow" aria-hidden="true">→</i>
-                  </Link>
-                ))}
-              </div>
+              <p className="editorial-copy">Instead of sending teams between unrelated suppliers, Nabuk brings the key clinical disciplines together with one accountable local partner.</p>
             </div>
+
+            <div className="tile-grid">
+              {portfolioTiles.map(({ title, subtitle, category, href, image, wide }) => {
+                const count = products.filter((product) => product.category === category).length;
+                return (
+                  <Link className={`tile nabuk-card ${wide ? "tile--wide" : ""}`} key={title} href={href}>
+                    <Image src={image} alt="" fill sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw" />
+                    <span className="tile__scrim" aria-hidden="true" />
+                    <h3>{title}</h3>
+                    {subtitle && <p>{subtitle}</p>}
+                    <span className="tile__chip">{count} {count === 1 ? "product" : "products"}</span>
+                  </Link>
+                );
+              })}
+            </div>
+            <div style={{ marginTop: 42 }}><Link className="editorial-card-link" href="/solutions">Explore the full portfolio <span aria-hidden="true">↗</span></Link></div>
           </div>
         </section>
 
-        <section className="editorial-split editorial-section--ink" aria-labelledby="home-partner-title">
-          <div className="section-inner editorial-split-copy">
-            <p className="editorial-kicker">Beyond delivery</p>
-            <h2 id="home-partner-title" className="editorial-heading">The relationship starts <em>before the equipment arrives.</em></h2>
-            <p className="editorial-copy editorial-copy--inverse">Specification, installation, team training and on-island after-sales care are one continuous service—not a list of extras.</p>
-            <div className="editorial-actions"><Link className="editorial-button editorial-button--light" href="/support">How support works <span aria-hidden="true">↗</span></Link></div>
+        <section className="editorial-section" aria-label="Beyond delivery — a direct line to the team">
+          <div className="section-inner editorial-container">
+            <div className="direct-card nabuk-card">
+              <div className="direct-card__visual">
+                <Image src="/images/support-clinic.webp" alt="Nabuk specialist supporting a veterinary clinic team" fill sizes="(max-width: 900px) 100vw, 55vw" />
+                <span className="direct-card__caption">Malta / On-island support</span>
+                <span className="direct-card__badge" aria-hidden="true">35°N</span>
+              </div>
+              <div className="direct-card__panel">
+                <p className="direct-card__kicker">Beyond delivery · Direct line to the team</p>
+                <a className="direct-card__mail" href="mailto:info@nabukmalta.com">info@nabukmalta.com</a>
+                <a className="direct-card__phone" href="tel:+35699472220">+356 9947 2220</a>
+                <Link className="direct-card__support" href="/support">How support works <span aria-hidden="true">↗</span></Link>
+                <div className="direct-card__meta">
+                  <div>
+                    <span>One continuous service</span>
+                    <p>Specification, installation, team training and after-sales care.</p>
+                  </div>
+                  <div>
+                    <span>Working across</span>
+                    <p>Malta / Gozo<br />Clinics island-wide</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="editorial-split-visual"><Image src="/images/support-clinic.webp" alt="Nabuk specialist supporting a veterinary clinic team" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
         </section>
 
         <section className="editorial-section editorial-section--ink home-process-section" aria-labelledby="home-process-title">
@@ -184,10 +211,12 @@ export default function HomePage() {
             </div>
             <div className="process-rail">
               {consultationSteps.map((step, index) => (
-                <article className="process-step" key={step.title}>
-                  <b>{String(index + 1).padStart(2, "0")}</b>
+                <article className="process-card nabuk-card" key={step.title}>
+                  <span className="process-card__ghost" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <b>Step {String(index + 1).padStart(2, "0")}</b>
                   <h3>{step.title}</h3>
                   <p>{step.body}</p>
+                  <span className="process-card__trace" aria-hidden="true" />
                 </article>
               ))}
             </div>

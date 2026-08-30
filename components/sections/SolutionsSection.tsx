@@ -36,20 +36,16 @@ export function SolutionsSection() {
               <div><p className="editorial-kicker">Clinical portfolio</p><h2 id="capabilities-title" className="editorial-heading" style={{ marginTop:24 }}>One practice.<br /><em>Every discipline.</em></h2></div>
               <p className="editorial-copy">Eight disciplines, {products.length} products from the manufacturers we represent. Open a solution to see how we approach it — and the products behind it.</p>
             </div>
-            <div className="image-card-grid">
+            <div className="story-grid">
               {solutions.map((solution) => {
                 const count = countFor(solution.category);
                 return (
-                  <Link className="image-card image-card--link nabuk-card" key={solution.slug} href={`/solutions/${solution.slug}`}>
-                    <div className="image-card__visual">
-                      <Image src={solution.image} alt="" fill sizes="(max-width:760px) 100vw, 33vw" />
-                      <span className="image-card__count">{count} {count === 1 ? "product" : "products"}</span>
-                    </div>
-                    <div className="image-card__body">
-                      <span className="image-card__meta">{solution.meta}</span>
-                      <h3>{solution.category}</h3>
-                      <p>{solution.summary}</p>
-                      <span className="image-card__go">View solution &amp; products <i aria-hidden="true">→</i></span>
+                  <Link className="story-card nabuk-card" key={solution.slug} href={`/solutions/${solution.slug}`}>
+                    <Image src={solution.image} alt="" fill sizes="(max-width:760px) 100vw, 50vw" />
+                    <div className="story-card__content">
+                      <span className="story-card__label">{solution.category}</span>
+                      <h3>{solution.lead}</h3>
+                      <span className="story-card__chip">View {count} {count === 1 ? "product" : "products"}</span>
                     </div>
                   </Link>
                 );
@@ -65,7 +61,7 @@ export function SolutionsSection() {
               <p className="editorial-copy editorial-copy--inverse">Equipment becomes valuable when it is selected well, integrated thoughtfully and supported properly.</p>
             </div>
             <div className="process-rail">
-              {process.map((step, index) => <article className="process-step" key={step.title}><b>{String(index + 1).padStart(2, "0")}</b><h3>{step.title}</h3><p>{step.body}</p></article>)}
+              {process.map((step, index) => <article className="process-card nabuk-card" key={step.title}><span className="process-card__ghost" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><b>Step {String(index + 1).padStart(2, "0")}</b><h3>{step.title}</h3><p>{step.body}</p><span className="process-card__trace" aria-hidden="true" /></article>)}
             </div>
           </div>
         </section>
