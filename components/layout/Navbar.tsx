@@ -55,7 +55,7 @@ export function Navbar() {
     <header className={`nabuk-nav ${scrolled ? "nabuk-nav--scrolled" : ""}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo" aria-label="Nabuk Distributors Malta — home">
-          <Image className="nav-logo-mark" src="/images/nabuk-logo-white.webp" alt="" width={42} height={42} priority />
+          <Image className="nav-logo-mark" src="/images/nabuk-logo-icon.webp" alt="" width={144} height={96} priority />
           <span className="nav-wordmark">
             <strong className="nav-vss">VSS</strong>
             <small>Vet Supplies Specialists</small>

@@ -8,6 +8,7 @@ export interface Solution {
   meta: string;
   summary: string;
   image: string;
+  heroImage: string;
   lead: string;
   discussion: string[];
   considerations: { title: string; body: string }[];
@@ -19,7 +20,8 @@ export const solutions: Solution[] = [
     category: "Diagnostic systems",
     meta: "Laboratory · In-clinic",
     summary: "Integrated platforms for dependable, fast results at the point of care.",
-    image: "/images/diagnostic-system.webp",
+    image: "/images/card-diagnostic-systems.webp",
+    heroImage: "/images/hero-diagnostic-systems.webp",
     lead: "Answers inside the clinic, while the patient is still on the table.",
     discussion: [
       "An in-house diagnostic platform changes how a consultation runs: instead of sending samples away and calling the owner back days later, your team confirms a diagnosis while the patient is still in the room. That speed only matters if the results are dependable — which is why we specify established analysers and readers with proven veterinary reference ranges.",
@@ -36,7 +38,8 @@ export const solutions: Solution[] = [
     category: "Blood analysers",
     meta: "Haematology · Biochemistry",
     summary: "Systems matched to your caseload, throughput and team workflow.",
-    image: "/images/blood-analysers.webp",
+    image: "/images/card-blood-analysers.webp",
+    heroImage: "/images/hero-blood-analysers.webp",
     lead: "Haematology and biochemistry sized to the way your practice actually works.",
     discussion: [
       "Blood work is the backbone of veterinary medicine — pre-anaesthetic screens, geriatric profiles, emergency panels. The right analyser is the one that matches your throughput: a system built for a referral hospital frustrates a two-vet practice, and an under-sized unit becomes a bottleneck on busy mornings.",
@@ -53,7 +56,8 @@ export const solutions: Solution[] = [
     category: "Imaging",
     meta: "X-ray · Ultrasound",
     summary: "Complete digital radiography and ultrasound solutions, installed on-island.",
-    image: "/images/ultrasound-imaging.webp",
+    image: "/images/card-imaging.webp",
+    heroImage: "/images/hero-imaging.webp",
     lead: "See more, sooner — imaging specified around your rooms and your caseload.",
     discussion: [
       "Imaging is where equipment choice is most visible in clinical outcomes. Detector quality, generator power and probe selection decide whether you see the lesion — and room layout, shielding and positioning aids decide whether your team enjoys using the system every day.",
@@ -70,7 +74,8 @@ export const solutions: Solution[] = [
     category: "Rapid testing",
     meta: "Point of care",
     summary: "Faster clinical decisions with precise in-clinic testing systems.",
-    image: "/images/rapid-testing.webp",
+    image: "/images/card-rapid-testing.webp",
+    heroImage: "/images/hero-rapid-testing.webp",
     lead: "A ten-minute answer that changes the treatment plan.",
     discussion: [
       "Rapid tests are the most-used diagnostic tool in most clinics: parvo and distemper combos, FeLV/FIV, heartworm, pancreatic lipase, tick-borne panels. Their value depends entirely on sensitivity and consistent lots — a cheap cassette that hedges is worse than no test at all.",
@@ -87,7 +92,8 @@ export const solutions: Solution[] = [
     category: "Surgical instruments",
     meta: "Precision · Theatre",
     summary: "Specialist instruments for a broad range of veterinary disciplines.",
-    image: "/images/surgical-instruments.webp",
+    image: "/images/card-surgical-instruments.webp",
+    heroImage: "/images/hero-surgical-instruments.webp",
     lead: "From spay kit to TPLO plate — instruments your hands can trust.",
     discussion: [
       "Surgical outcomes are built from small details: the balance of a needle holder, the bite of a locking plate, a suture that behaves predictably in tissue. We supply theatre instrumentation from Veterinary Instrumentation and EICKEMEYER — from complete spay kits and left-handed sets to orthopaedic implants, drills and electrosurgery.",
@@ -104,7 +110,8 @@ export const solutions: Solution[] = [
     category: "Sterilisation",
     meta: "Hygiene · Compliance",
     summary: "Autoclaves and hygiene systems for modern clinical standards.",
-    image: "/images/sterilisation.webp",
+    image: "/images/card-sterilisation.webp",
+    heroImage: "/images/hero-sterilisation.webp",
     lead: "Sterility you can document, cycle after cycle.",
     discussion: [
       "Sterilisation is the least glamorous system in the clinic and the least forgiving. A modern reprocessing workflow — cleaning, packaging, autoclaving, documentation — protects patients and protects the practice when compliance questions arise.",
@@ -118,19 +125,20 @@ export const solutions: Solution[] = [
   },
   {
     slug: "clinic-furniture",
-    category: "Clinic furniture",
-    meta: "Workflow · Durability",
-    summary: "Tables, cabinetry and infrastructure designed around daily practice.",
-    image: "/images/clinic-furniture.webp",
-    lead: "Infrastructure that makes every procedure a little easier.",
+    category: "Clinic & patient care",
+    meta: "Workflow · Infusion · Warming",
+    summary: "Practical treatment-room systems designed around daily patient care.",
+    image: "/images/card-clinic-furniture.webp",
+    heroImage: "/images/hero-clinic-furniture.webp",
+    lead: "The quiet systems that keep patients comfortable and teams moving.",
     discussion: [
-      "Clinic furniture is used hundreds of times a day, so ergonomics and cleanability compound: a tray system in the right place saves a walk on every procedure, and surfaces that disinfect quickly keep rooms turning over.",
-      "We supply examination and treatment infrastructure sized for Maltese clinic spaces — and because we also install the equipment that sits on it, the room is planned as one working environment rather than a furniture catalogue.",
+      "Patient care depends on the systems around the headline equipment: accurate infusion, dependable warming and treatment-room organisation. Small improvements here compound across every admission and procedure.",
+      "We specify pumps, warming systems and modular support equipment around the way your team moves through the room, then provide one local point of contact for setup and ongoing support.",
     ],
     considerations: [
-      { title: "Room dimensions", body: "Furniture specified to the centimetre for compact island practices." },
-      { title: "Hygiene by design", body: "Materials and edges chosen for fast, repeatable disinfection." },
-      { title: "Grows with you", body: "Modular systems that adapt when the practice adds a service or a room." },
+      { title: "Patient pathway", body: "Recovery, ward and theatre needs shape the right warming and infusion setup." },
+      { title: "Team workflow", body: "Controls, trays and accessories are positioned for fast, repeatable use." },
+      { title: "Reliable support", body: "A local contact helps keep essential daily-care systems available." },
     ],
   },
   {
@@ -138,7 +146,8 @@ export const solutions: Solution[] = [
     category: "Specialist equipment",
     meta: "Dentistry · Endoscopy · More",
     summary: "Focused technologies sourced through trusted international manufacturers.",
-    image: "/images/specialised-equipment.webp",
+    image: "/images/card-specialist-equipment.webp",
+    heroImage: "/images/hero-specialist-equipment.webp",
     lead: "The equipment that lets a practice open a new service.",
     discussion: [
       "This is where a clinic differentiates itself: dentistry with dedicated X-ray, endoscopy, ophthalmology, anaesthesia and monitoring, patient warming. Each discipline has its own learning curve, so the equipment decision is really a service-launch decision.",

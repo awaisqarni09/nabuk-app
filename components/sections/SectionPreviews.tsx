@@ -205,7 +205,7 @@ export function TrustBento() {
           flex: 1;
         }
         .tb-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-family: var(--font-poppins), "Segoe UI", sans-serif;
           font-size: clamp(17px, 1.7vw, 22px);
           line-height: 1.16;
           letter-spacing: -0.01em;
@@ -319,7 +319,7 @@ export function SolutionsPreview() {
           position: absolute;
           top: 14px;
           left: 16px;
-          font-family: var(--font-plex-mono, 'IBM Plex Mono'), monospace;
+          font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-size: 11px;
           font-weight: 500;
           letter-spacing: 0.18em;
@@ -339,7 +339,7 @@ export function SolutionsPreview() {
           flex: 1;
         }
         .sb-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-family: var(--font-poppins), "Segoe UI", sans-serif;
           font-size: 17px;
           line-height: 1.2;
           letter-spacing: -0.01em;
@@ -526,7 +526,7 @@ export function PartnersPreview() {
           background: linear-gradient(to right, var(--teal), var(--teal-dark));
         }
         .pp-name {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-family: var(--font-poppins), "Segoe UI", sans-serif;
           font-size: 18px;
           line-height: 1.15;
           letter-spacing: -0.01em;
@@ -621,14 +621,14 @@ export function SupportPreview() {
           width: 100%;
         }
         .sj-num {
-          font-family: var(--font-plex-mono, 'IBM Plex Mono'), monospace;
+          font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-size: 13px;
           font-weight: 500;
           letter-spacing: 0.18em;
           color: var(--teal);
         }
         .sj-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-family: var(--font-poppins), "Segoe UI", sans-serif;
           font-size: 16px;
           letter-spacing: -0.01em;
           color: var(--navy);
@@ -760,7 +760,7 @@ export function AboutPreview() {
         }
         .hm-milestone:first-child { border-top: 1px solid var(--hairline-soft); }
         .hm-year {
-          font-family: var(--font-plex-mono, 'IBM Plex Mono'), monospace;
+          font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-size: 13px;
           font-weight: 500;
           letter-spacing: 0.12em;
@@ -835,7 +835,7 @@ export function ContactPreview() {
           margin-bottom: 34px;
         }
         .cc-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-family: var(--font-poppins), "Segoe UI", sans-serif;
           font-size: clamp(28px, 4.4vw, 54px);
           line-height: 1.06;
           letter-spacing: -0.02em;

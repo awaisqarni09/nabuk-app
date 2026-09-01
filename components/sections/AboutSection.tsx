@@ -13,7 +13,7 @@ const values = [
   {
     title: "Competence",
     body: "Specialist knowledge built through decades of hands-on work with clinical teams.",
-    image: "/images/who-we-are.webp",
+    image: "/images/support-technical-care.webp",
     meta: [
       { icon: ShieldCheck, label: "Specialist knowledge" },
       { icon: Stethoscope, label: "Clinical teams" },
@@ -22,7 +22,7 @@ const values = [
   {
     title: "Continuity",
     body: "A stable partner through changing technologies, suppliers and standards of care.",
-    image: "/images/nabuk-team.webp",
+    image: "/images/team-history.webp",
     meta: [
       { icon: History, label: "Since 1996" },
       { icon: Handshake, label: "One stable partner" },
@@ -31,7 +31,7 @@ const values = [
   {
     title: "Closeness",
     body: "Local support that understands island logistics and the urgency of daily practice.",
-    image: "/images/dog-cat-about-us.webp",
+    image: "/images/clinic-reception.webp",
     meta: [
       { icon: MapPin, label: "Malta & Gozo" },
       { icon: Headphones, label: "Local support" },
@@ -42,15 +42,23 @@ const values = [
 export function AboutSection() {
   return (
     <div className="editorial-shell">
-      <section className="page-hero inner-hero" aria-labelledby="about-title">
-        <div className="inner-hero__image"><Image src="/images/about-us-banner.webp" alt="Illustrated veterinary diagnostic equipment connected across a clinical network" fill priority sizes="100vw" /></div>
-        <div className="about-number" aria-hidden="true">30</div>
-        <div className="inner-hero__content editorial-container">
+      <section className="page-hero about-hero" aria-labelledby="about-title">
+        <div className="editorial-container about-hero__head">
           <p className="editorial-kicker">Our story · Since 1996</p>
           <h1 id="about-title" className="editorial-title">Three decades.<br /><em>One purpose.</em></h1>
-          <p className="page-hero-sub editorial-copy editorial-copy--inverse">To help veterinary professionals do their best work—with dependable technology, practical knowledge and a partner who stays close.</p>
+          <p className="page-hero-sub editorial-copy">To help veterinary professionals do their best work—with dependable technology, practical knowledge and a partner who stays close.</p>
         </div>
-        <p className="inner-hero__side-note">Malta · Gozo · Veterinary technology</p>
+        <div className="editorial-container">
+          <div className="about-hero__banner">
+            <Image src="/images/team-about-hero.webp" alt="The Nabuk team in their Malta warehouse" fill priority sizes="100vw" />
+            <ol className="about-hero__timeline" aria-label="Milestones">
+              <li><b>1996</b><span>Founded in Malta</span></li>
+              <li><b>2001</b><span>Education &amp; seminars</span></li>
+              <li><b>2018</b><span>Equipment focus</span></li>
+              <li className="about-hero__now"><b>Today</b><span>Complete clinical technology</span></li>
+            </ol>
+          </div>
+        </div>
       </section>
 
       <div className="page-content">
@@ -99,7 +107,7 @@ export function AboutSection() {
             <p className="editorial-copy editorial-copy--inverse">We continue to bring new diagnostic and clinical technologies to Malta without losing the personal service that built the company.</p>
             <div className="editorial-actions"><Link className="editorial-button editorial-button--light" href="/contact">Meet the team <span aria-hidden="true">↗</span></Link></div>
           </div>
-          <div className="editorial-split-visual"><Image src="/images/veterinary-solution.webp" alt="A contemporary veterinary clinic" fill sizes="(max-width:760px) 100vw, 50vw" /></div>
+          <div className="editorial-split-visual"><Image src="/images/clinic-equipment-wall.webp" alt="A contemporary veterinary clinic" fill sizes="(max-width:760px) 100vw, 50vw" /></div>
         </section>
       </div>
     </div>

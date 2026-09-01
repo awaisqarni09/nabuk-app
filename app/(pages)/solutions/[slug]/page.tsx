@@ -49,7 +49,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
       <div className="editorial-shell">
         <section className="page-hero inner-hero solution-hero" aria-labelledby="solution-title">
           <div className="inner-hero__image">
-            <Image src={solution.image} alt="" fill priority sizes="100vw" />
+            <Image src={solution.heroImage} alt="" fill priority sizes="100vw" />
           </div>
           <div className="inner-hero__content editorial-container">
             <nav className="solution-crumb" aria-label="Breadcrumb">
@@ -114,13 +114,14 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               <ul className="product-grid">
                 {related.map((product) => (
                   <li className="product-card" key={product.image}>
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 760px) 50vw, (max-width: 1050px) 33vw, 25vw"
-                    />
-                    <div className="product-card__scrim" aria-hidden="true" />
+                    <div className="product-card__media">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 760px) 50vw, (max-width: 1050px) 33vw, 25vw"
+                      />
+                    </div>
                     <div className="product-card__info">
                       <h3>{product.name}</h3>
                       <span>{product.brand} · {product.discipline}</span>

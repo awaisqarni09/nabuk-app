@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Bodoni_Moda, IBM_Plex_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
@@ -11,27 +11,12 @@ import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 import "./editorial.css";
 
-const manrope = Manrope({
+// Display face for headings — bold, friendly commerce voice.
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-poppins",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const bodoni = Bodoni_Moda({
-  subsets: ["latin"],
-  variable: "--font-bodoni",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
-
-// Technical-annotation voice for labels, indices and figure captions.
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-plex-mono",
-  display: "swap",
-  weight: ["400", "500"],
+  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -66,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f2730",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
 
@@ -79,7 +64,7 @@ export default function RootLayout({
       // Next 16 no longer overrides CSS smooth scrolling on navigation unless
       // this attribute is present — without it, route changes land mid-scroll.
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${bodoni.variable} ${plexMono.variable}`}
+      className={poppins.variable}
     >
       <head>
         <style dangerouslySetInnerHTML={{ __html: `
@@ -89,7 +74,7 @@ export default function RootLayout({
             overflow-x: hidden;
           }
           body {
-            font-family: var(--font-manrope, system-ui, sans-serif);
+            font-family: var(--font-poppins, "Segoe UI", Arial, sans-serif);
             min-height: 100vh;
             line-height: 1.7;
             margin: 0;

@@ -124,7 +124,7 @@ export function HeroSection() {
           align-items: flex-start;
         }
         .home-title {
-          font-family: var(--font-archivo-black, 'Archivo Black'), sans-serif;
+          font-family: var(--font-poppins), "Segoe UI", sans-serif;
           font-size: var(--fs-display);
           line-height: 0.94;
           color: var(--navy);
@@ -207,7 +207,7 @@ export function HeroSection() {
           left: 50%;
           bottom: -26px;
           transform: translateX(-50%);
-          font-family: var(--font-plex-mono, 'IBM Plex Mono'), monospace;
+          font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-size: 9.5px;
           font-weight: 500;
           letter-spacing: 0.16em;
@@ -251,7 +251,7 @@ export function HeroSection() {
         .hero-trust-item:hover { background: var(--teal-wash); }
         .hero-trust-item:focus-visible { outline: 3px solid var(--teal); outline-offset: -3px; }
         .hero-trust-label {
-          font-family: var(--font-plex-mono, 'IBM Plex Mono'), monospace;
+          font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-size: 11.5px;
           font-weight: 500;
           letter-spacing: 0.18em;

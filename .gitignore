@@ -43,3 +43,7 @@ next-env.d.ts
 # Raw product-image sources (converted copies live in public/images/products)
 nabuk-products/
 IMG_*.JPG
+
+# python
+__pycache__/
+*.pyc

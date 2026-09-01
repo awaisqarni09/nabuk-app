@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactFormData } from "@/lib/schemas/contact";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { submitContactForm } from "@/app/actions/contact";
 import { getTurnstileSiteKey, shouldUseTestTurnstileKeys } from "@/lib/turnstile";
@@ -20,9 +20,22 @@ export function ContactForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    setValue,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  // Prefill from the footer consultation band (?email=…&topic=…).
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get("email");
+    const topic = params.get("topic");
+    if (email) setValue("email", email);
+    if (topic && topic !== "other") {
+      const label = topic.replace(/-/g, " ");
+      setValue("message", `Hello, we're interested in ${label} for our practice. `);
+    }
+  }, [setValue]);
 
   const onSubmit = async (data: ContactFormData) => {
     if (!turnstileToken) {
@@ -264,21 +277,21 @@ export function ContactForm() {
           justify-content: center;
           gap: 10px;
           min-height: 54px;
-          background: var(--ink);
+          background: var(--teal);
           color: #fff;
           font-family: var(--font-body);
           font-size: 13px;
           font-weight: 700;
           padding: 0 30px;
-          border: 1px solid var(--ink);
+          border: 1px solid var(--teal);
           border-radius: 100px;
           cursor: pointer;
           letter-spacing: 0.04em;
           transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
         }
         .form-submit:hover:not(:disabled) {
-          background: var(--ink-deep);
-          border-color: var(--ink-deep);
+          background: var(--teal-deep);
+          border-color: var(--teal-deep);
           transform: translateY(-2px);
         }
         .form-submit:active:not(:disabled) { transform: translateY(0); }

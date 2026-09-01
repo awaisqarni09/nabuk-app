@@ -5,7 +5,7 @@ import { ogImages } from "@/lib/seo/og";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Nabuk Distributors supplies diagnostic systems, blood analysers, imaging, rapid testing, surgical instruments, sterilisation systems and clinic furniture to veterinary clinics across Malta and Gozo.",
+    "Nabuk Distributors supplies diagnostic systems, blood analysers, imaging, rapid testing, surgical instruments, sterilisation systems and patient-care equipment to veterinary clinics across Malta and Gozo.",
   alternates: { canonical: "/solutions" },
   openGraph: {
     title: "Solutions | Nabuk Distributors Malta",

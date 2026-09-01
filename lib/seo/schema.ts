@@ -8,7 +8,7 @@ export function organizationSchema() {
     name: "Nabuk Distributors Ltd.",
     alternateName: "VSS — Vet Supplies Specialists",
     url: SITE_URL,
-    logo: `${SITE_URL}/Nabuk-logo.png`,
+    logo: `${SITE_URL}/Nabuk-logo.webp`,
     description:
       "Malta's specialist partner for advanced veterinary equipment and diagnostics, serving clinics across Malta and Gozo since 1996.",
     foundingDate: "1996",
@@ -62,7 +62,7 @@ export function localBusinessSchema() {
     //   openingHoursSpecification: [{ "@type": "OpeningHoursSpecification",
     //     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     //     opens: "09:00", closes: "17:00" }, ...]
-    image: `${SITE_URL}/Nabuk-logo.png`,
+    image: `${SITE_URL}/Nabuk-logo.webp`,
     areaServed: [
       { "@type": "Country", name: "Malta" },
       { "@type": "AdministrativeArea", name: "Gozo" },

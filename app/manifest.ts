@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Advanced veterinary equipment and diagnostics for the clinics of Malta and Gozo.",
     start_url: "/",
     display: "standalone",
-    background_color: "#e8f4f4",
-    theme_color: "#1a3a4a",
+    background_color: "#e7eff2",
+    theme_color: "#084c61",
     icons: [
       { src: "/images/favicon.png", sizes: "any", type: "image/png" },
       { src: "/images/nabuk-logo-icon.webp", sizes: "512x512", type: "image/webp" },

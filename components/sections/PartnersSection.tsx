@@ -14,7 +14,7 @@ const benefits = [
   {
     title: "Global standards",
     body: "Specialist veterinary manufacturers selected for clinical quality, reliability and long-term value.",
-    image: "/images/surgical-instrument.webp",
+    image: "/images/card-surgical-instruments.webp",
     meta: [
       { icon: Globe, label: "5 manufacturers" },
       { icon: ShieldCheck, label: "Clinical grade" },
@@ -24,7 +24,7 @@ const benefits = [
   {
     title: "Local accountability",
     body: "One Maltese point of contact for advice, installation, escalation and after-sales support.",
-    image: "/images/support-clinic.webp",
+    image: "/images/support-technical-care.webp",
     meta: [
       { icon: MapPin, label: "Malta & Gozo" },
       { icon: Headphones, label: "One contact" },
@@ -34,7 +34,7 @@ const benefits = [
   {
     title: "Clinical context",
     body: "Manufacturer knowledge translated into recommendations that fit your caseload and workflow.",
-    image: "/images/veterinary-workstation.webp",
+    image: "/images/clinic-equipment-wall.webp",
     meta: [
       { icon: Layers, label: "8 disciplines" },
       { icon: Stethoscope, label: "Caseload-fit" },
@@ -46,15 +46,27 @@ const benefits = [
 export function PartnersSection() {
   return (
     <div className="editorial-shell">
-      <section className="page-hero inner-hero partners-hero" aria-labelledby="partners-title">
-        <div className="inner-hero__image"><Image src="/images/map.webp" alt="Global manufacturer network connected to Malta" fill priority sizes="100vw" /></div>
-        <div className="inner-hero__content editorial-container">
+      <section className="page-hero partners-roster" aria-labelledby="partners-title">
+        <div className="editorial-container">
           <p className="editorial-kicker">Global reach · Maltese responsibility</p>
           <h1 id="partners-title" className="editorial-title">World-class makers.<br /><em>One local partner.</em></h1>
-          <p className="page-hero-sub editorial-copy editorial-copy--inverse">We connect Malta’s veterinary profession with respected international manufacturers—and make that global expertise locally useful.</p>
-          <div className="editorial-actions"><a className="editorial-button editorial-button--light" href="#partner-list">Meet the partners <span aria-hidden="true">↓</span></a></div>
+          <p className="page-hero-sub editorial-copy">We connect Malta’s veterinary profession with respected international manufacturers—and make that global expertise locally useful.</p>
+          <ul className="partners-roster__wall" aria-label="Manufacturers represented by Nabuk">
+            {[
+              { src: "/images/partners/eickemeyer-logo.webp", name: "Eickemeyer" },
+              { src: "/images/partners/antech-logo.webp", name: "Antech" },
+              { src: "/images/partners/melag-logo.webp", name: "Melag" },
+              { src: "/images/partners/covetrus-logo.webp", name: "Covetrus" },
+              { src: "/images/partners/vi-logo.webp", name: "Veterinary Instrumentation" },
+            ].map((logo) => (
+              <li key={logo.name}>
+                <a href="#partner-list" aria-label={`${logo.name} — see partner details`}>
+                  <Image src={logo.src} alt={logo.name} width={150} height={56} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <p className="inner-hero__side-note">Representation · Specification · Support</p>
       </section>
 
       <div className="page-content">
@@ -110,7 +122,7 @@ export function PartnersSection() {
             <p className="editorial-copy editorial-copy--inverse">We offer long-standing veterinary relationships, product introduction, education, installation and after-sales care through one established local team.</p>
             <div className="editorial-actions"><Link className="editorial-button editorial-button--light" href="/contact">Discuss representation <span aria-hidden="true">↗</span></Link></div>
           </div>
-          <div className="editorial-split-visual"><Image src="/images/dog-cat-about-us.webp" alt="A modern veterinary clinic supported by Nabuk" fill sizes="(max-width:760px) 100vw, 50vw" /></div>
+          <div className="editorial-split-visual"><Image src="/images/clinic-reception.webp" alt="A modern veterinary clinic supported by Nabuk" fill sizes="(max-width:760px) 100vw, 50vw" /></div>
         </section>
       </div>
     </div>

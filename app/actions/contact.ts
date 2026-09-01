@@ -137,12 +137,12 @@ export async function submitContactForm(
     to: notifyTo,
     subject: `New consultation request — ${name}`,
     html: `
-      <table style="font-family:sans-serif;font-size:15px;color:#1a3a4a;max-width:580px;">
+      <table style="font-family:sans-serif;font-size:15px;color:#084c61;max-width:580px;">
         <tr><td style="padding:0 0 8px"><strong>Name:</strong> ${escapeHtml(name)}</td></tr>
         <tr><td style="padding:0 0 8px"><strong>Clinic:</strong> ${clinic ? escapeHtml(clinic) : "—"}</td></tr>
         <tr><td style="padding:0 0 8px"><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
         <tr><td style="padding:0 0 16px"><strong>Phone:</strong> ${phone ? escapeHtml(phone) : "—"}</td></tr>
-        <tr><td style="border-top:1px solid #d5ebeb;padding:16px 0 0;white-space:pre-wrap">${escapeHtml(message)}</td></tr>
+        <tr><td style="border-top:1px solid #cfe8ee;padding:16px 0 0;white-space:pre-wrap">${escapeHtml(message)}</td></tr>
       </table>
     `,
   });
