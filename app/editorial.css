@@ -2390,3 +2390,228 @@ body { background:#fff; color:#35454c; font-family:var(--font-body); line-height
   .about-hero .about-hero__timeline { grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px 0; }
   .about-hero .about-hero__timeline li:nth-child(odd) { border-left:0; padding-left:0; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT PAGE
+   The two things that decide whether someone sends the form:
+   knowing what happens next, and having a way to reach a
+   person instead. Both sit beside the form, not below it.
+   ═══════════════════════════════════════════════════════════ */
+.contact-hero {
+  background:linear-gradient(150deg, #23aec0 0%, var(--teal-deep) 62%, #0b7080 100%);
+  color:#fff;
+  padding-block:clamp(52px,6.5vw,92px);
+  border-bottom:0;
+}
+.contact-hero__inner { display:flex; flex-direction:column; align-items:flex-start; }
+.contact-hero .editorial-kicker { color:rgba(255,255,255,.86); }
+.contact-hero .editorial-kicker::before { background:rgba(255,255,255,.7); }
+.contact-hero .editorial-title {
+  margin:20px 0 18px;
+  max-width:16ch;
+  font-size:clamp(40px,5.2vw,76px);
+  line-height:1.02;
+  color:#fff;
+}
+.contact-hero .editorial-title em { color:var(--ink-deep); font-style:normal; }
+.contact-hero__sub {
+  margin:0;
+  max-width:56ch;
+  font-size:clamp(15px,1.3vw,17.5px);
+  line-height:1.65;
+  color:rgba(255,255,255,.88);
+}
+
+.contact-body { padding-top:clamp(40px,5vw,72px); }
+.contact-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
+  gap:clamp(24px,3vw,44px);
+  align-items:start;
+}
+
+/* ── The form card ── */
+.contact-panel {
+  padding:clamp(26px,3vw,46px);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 1px 2px rgba(8,60,76,.04), 0 24px 54px -30px rgba(8,60,76,.3);
+}
+.contact-panel__head { margin-bottom:clamp(24px,2.4vw,34px); }
+.contact-panel__head h2 {
+  margin:0 0 10px;
+  font:700 clamp(24px,2.4vw,34px)/1.15 var(--font-display);
+  letter-spacing:-.025em;
+  color:var(--ink);
+}
+.contact-panel__head p { margin:0; font-size:14px; line-height:1.6; color:rgba(8,76,97,.62); }
+
+/* Fields — filled and framed, so they read as targets inside the card.
+   Specificity beats the component's own scoped styles. */
+.contact-panel .contact-form { gap:20px; }
+.contact-panel .field-label {
+  font:700 11px/1.2 var(--font-body);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+.contact-panel .field-optional { font-weight:600; color:rgba(8,76,97,.45); }
+.contact-panel .field-input {
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  border-radius:11px;
+  background:#fbfdfe;
+  font-size:15px;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.contact-panel .field-input::placeholder { color:rgba(8,76,97,.4); }
+.contact-panel .field-input:hover { border-color:rgba(8,76,97,.28); }
+.contact-panel .field-input:focus {
+  background:#fff;
+  border-color:var(--teal);
+  box-shadow:0 0 0 4px rgba(21,180,199,.16);
+}
+.contact-panel .field-input--error {
+  border-width:1px;
+  border-color:var(--ember);
+  background:rgba(235,40,119,.03);
+}
+.contact-panel .field-input--error:focus { box-shadow:0 0 0 4px rgba(235,40,119,.14); }
+.contact-panel .field-textarea { min-height:150px; }
+.contact-panel .form-submit {
+  align-self:flex-start;
+  min-width:210px;
+  font-size:14px;
+  box-shadow:0 10px 24px -12px rgba(14,147,163,.7);
+}
+.contact-panel .form-submit:focus-visible { outline:3px solid var(--ink); outline-offset:4px; }
+.contact-panel .form-success { padding:52px 24px; }
+
+/* ── Support rail ── */
+.contact-rail { display:flex; flex-direction:column; gap:clamp(16px,1.6vw,22px); }
+
+.contact-direct { display:grid; gap:10px; }
+.contact-direct__card {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  text-decoration:none;
+  transition:border-color .2s ease, transform .25s ease, box-shadow .25s ease;
+}
+.contact-direct__card:hover {
+  border-color:rgba(21,180,199,.45);
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px -18px rgba(8,60,76,.4);
+}
+.contact-direct__card:focus-visible { outline:3px solid var(--teal); outline-offset:3px; }
+.contact-direct__icon {
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  width:42px; height:42px;
+  border-radius:50%;
+  background:var(--teal-wash);
+  color:var(--teal-deep);
+}
+.contact-direct__text { display:flex; flex-direction:column; gap:3px; min-width:0; }
+.contact-direct__text small {
+  font:700 10px/1 var(--font-body);
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:rgba(8,76,97,.5);
+}
+.contact-direct__text strong {
+  font:700 15px/1.25 var(--font-body);
+  color:var(--ink);
+  overflow-wrap:anywhere;
+}
+
+/* What happens next — the site's stepper grammar, running vertically */
+.contact-next {
+  padding:clamp(20px,2vw,26px);
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--sand);
+}
+.contact-next h3 {
+  margin:0 0 18px;
+  font:700 11px/1 var(--font-body);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--teal-deep);
+}
+.contact-next__steps { position:relative; list-style:none; margin:0; padding:0; display:grid; gap:20px; }
+.contact-next__steps::before {
+  content:"";
+  position:absolute;
+  left:17px; top:12px; bottom:14px;
+  width:2px;
+  background:linear-gradient(180deg,
+    rgba(21,180,199,.9) 0%,
+    rgba(21,180,199,.55) 64%,
+    rgba(235,40,119,.6) 100%);
+}
+.contact-next__step { position:relative; display:grid; grid-template-columns:36px 1fr; gap:14px; align-items:start; }
+.contact-next__node {
+  position:relative;
+  z-index:1;
+  display:grid;
+  place-items:center;
+  width:36px; height:36px;
+  border-radius:50%;
+  background:var(--teal);
+  color:#fff;
+  font:800 12px/1 var(--font-display);
+  box-shadow:0 0 0 5px var(--sand);
+}
+.contact-next__step--ongoing .contact-next__node { background:var(--ember); }
+.contact-next__step strong {
+  display:block;
+  margin:7px 0 5px;
+  font:700 14.5px/1.25 var(--font-body);
+  color:var(--ink);
+}
+.contact-next__step strong em {
+  font:700 9.5px/1 var(--font-body);
+  font-style:normal;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ember);
+  vertical-align:middle;
+}
+.contact-next__step p { margin:0; font-size:13px; line-height:1.6; color:rgba(8,76,97,.66); }
+
+.contact-facts { margin:0; display:grid; gap:0; }
+.contact-facts > div { display:grid; gap:3px; padding:13px 0; border-top:1px solid var(--line); }
+.contact-facts > div:last-child { border-bottom:1px solid var(--line); }
+.contact-facts dt {
+  font:700 9.5px/1 var(--font-body);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--teal-deep);
+}
+.contact-facts dd { margin:0; font-size:13.5px; line-height:1.5; color:var(--ink); }
+
+.contact-rail__note { margin:0; font-size:12.5px; line-height:1.6; color:rgba(8,76,97,.6); }
+.contact-rail__note a { color:var(--teal-deep); font-weight:700; text-decoration:none; }
+.contact-rail__note a:hover { text-decoration:underline; text-underline-offset:2px; }
+
+@media (max-width:960px) {
+  .contact-layout { grid-template-columns:1fr; }
+  .contact-rail { order:2; }
+}
+@media (max-width:560px) {
+  .contact-panel { padding:22px 18px; border-radius:16px; }
+  .contact-panel .form-submit { width:100%; }
+}
+
+/* The footer consultation band routes to /contact, so on the contact
+   page itself it is a loop back to the form directly above it. */
+body:has(.contact-hero) .footer-cta-band { display:none; }
+body:has(.contact-hero) .nabuk-footer .footer-editorial { padding-top:clamp(56px,6vw,84px); }
