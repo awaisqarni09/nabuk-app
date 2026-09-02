@@ -50,7 +50,7 @@ export function AboutSection() {
         </div>
         <div className="editorial-container">
           <div className="about-hero__banner">
-            <Image src="/images/team-about-hero.webp" alt="The Nabuk team in their Malta warehouse" fill priority sizes="100vw" />
+            <Image src="/images/team-about-hero.webp" alt="Shelves of veterinary equipment in the Nabuk warehouse in Malta" fill priority sizes="100vw" />
             <ol className="about-hero__timeline" aria-label="Milestones">
               <li><b>1996</b><span>Founded in Malta</span></li>
               <li><b>2001</b><span>Education &amp; seminars</span></li>
