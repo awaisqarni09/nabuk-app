@@ -335,20 +335,20 @@ export default function HomePage() {
 
         <section className="editorial-section editorial-section--mist" aria-labelledby="home-history-title">
           <div className="section-inner editorial-container">
-            <div className="home-history-grid home-history-card">
-              <div className="home-history-visual">
-                <Image src="/images/team-history.webp" alt="The Nabuk Distributors team in Malta" fill sizes="(max-width: 850px) 100vw, 52vw" />
-                <div className="home-history-stamp"><strong>30</strong><span>years beside the profession</span></div>
-              </div>
-              <div className="home-history-copy">
+            <div className="history-band">
+              <figure className="history-band__figure">
+                <Image src="/images/team-history.webp" alt="Veterinary monitors and diagnostic equipment being unboxed in the Nabuk warehouse in Malta" fill sizes="(max-width: 900px) 100vw, 42vw" />
+                <figcaption className="history-band__badge"><strong>30</strong><span>years beside<br />the profession</span></figcaption>
+              </figure>
+              <div className="history-band__copy">
                 <p className="editorial-kicker">Established 1996</p>
                 <h2 id="home-history-title" className="editorial-heading">Built alongside Malta’s<br /><em>veterinary profession.</em></h2>
                 <p className="editorial-copy">Nabuk began by bringing quality veterinary products to the Maltese market. As clinical practice evolved, so did the company—toward diagnostics, imaging, surgery and the specialised infrastructure modern clinics depend on.</p>
-                <div className="home-history-points">
-                  <div><strong>Then</strong><p>Trusted products, education and long-term clinic relationships.</p></div>
-                  <div><strong>Now</strong><p>Complete clinical technologies with local installation and after-sales care.</p></div>
-                  <div><strong>Always</strong><p>Practical advice and one accountable team based in Malta.</p></div>
-                </div>
+                <dl className="history-band__track">
+                  <div><dt>Then</dt><dd>Trusted products, education and long-term clinic relationships.</dd></div>
+                  <div><dt>Now</dt><dd>Complete clinical technologies with local installation and after-sales care.</dd></div>
+                  <div><dt>Always</dt><dd>Practical advice and one accountable team based in Malta.</dd></div>
+                </dl>
                 <Link className="editorial-button" href="/about">Read our story <span aria-hidden="true">↗</span></Link>
               </div>
             </div>
